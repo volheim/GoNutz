@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Go_Nutz
 {
-    class WorldManager
+    public class WorldManager
     {
+
+        public void Update()
+        {
+
+        }
     }
 }
