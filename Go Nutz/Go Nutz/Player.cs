@@ -22,6 +22,8 @@ namespace Go_Nutz
         Vector2 kickVector;
 
 
+
+
         PlayerScore pointKeeper = new PlayerScore();
 
         public Player(Vector2 position, Image sprite, int health, float speed, int maxNuts)

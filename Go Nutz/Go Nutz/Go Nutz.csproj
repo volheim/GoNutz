@@ -56,6 +56,7 @@
     </Compile>
     <Compile Include="GameObject.cs" />
     <Compile Include="HomeTree.cs" />
+    <Compile Include="Keyboard.cs" />
     <Compile Include="NutObject.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerScore.cs" />
