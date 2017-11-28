@@ -8,5 +8,19 @@ namespace Go_Nutz
 {
     class PlayerScore
     {
+
+        int points;
+        
+        public PlayerScore() { }
+            
+        public int GetPoints()
+        {
+            return points;
+        }
+        public int SetPoints(int val)
+        {
+            points += val;
+            return points;
+        }
     }
 }

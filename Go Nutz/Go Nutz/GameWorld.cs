@@ -33,6 +33,11 @@ namespace Go_Nutz
 
         }
 
+        public void SetupWorld()
+        {
+
+        }
+
         public virtual void Update(float fps)
         {
             foreach (var item in objects)
