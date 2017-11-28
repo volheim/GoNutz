@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Numerics;
 
 namespace Go_Nutz
 {
@@ -15,11 +16,10 @@ namespace Go_Nutz
 
 
         private Graphics dc;
-        private static List<GameObject> objects;
+        private static List<Player> players;
         private DateTime endTime;
         private float currentFps;
         private BufferedGraphics backBuffer;
-
 
 
         public GameWorld(Graphics dc, Rectangle displayRectangle)
@@ -29,28 +29,28 @@ namespace Go_Nutz
 
             //sets the graphics context to the graphics in the buffer
             this.dc = backBuffer.Graphics;
-
+            players = new List<Player>();
         }
 
         public void SetupWorld()
         {
-
+            players.Add (new Player(new Vector2(0, 0), @"51zeHiyhNOL._SY445_.jpg", 1, 5, 1));
         }
 
         public virtual void Update(float fps)
         {
-            /*foreach (var item in objects)
+            foreach (var item in players)
             {
-                item.Update(fps);
+                item.Update();
 
-            }*/
+            }
         }
 
         public virtual void Draw()
         {
             dc.Clear(Color.Red);
 
-            foreach (GameObject go in objects)
+            foreach (Player go in players)
             {
                 go.Draw(dc);
 #if DEBUG //This code will only be run in   debug mode

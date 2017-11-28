@@ -10,20 +10,22 @@ namespace Go_Nutz
 {
     abstract class GameObject
     {
+        Graphics dc;
+
         public Vector2 position;
         public Vector2 movementVector;
 
         private Rectangle collisionbox;
         private Image sprite;
 
-        public void Draw(Graphics dc)
+        public virtual void Draw(Graphics dc)
         {
 
         }
 
         public virtual void Update(float fps)
         {
-
+            Draw(dc);
         }
     }
 }

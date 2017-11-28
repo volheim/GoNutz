@@ -10,6 +10,8 @@ namespace Go_Nutz
 {
     class Player
     {
+        Graphics dc;
+
         int health;
         float speed;
         int nutCount;
@@ -17,19 +19,18 @@ namespace Go_Nutz
 
         Image sprite;
         Vector2 position;
+        float scaleFactor;
 
         int kickForce;
         Vector2 kickVector;
 
-
-
-
+        
         PlayerScore pointKeeper = new PlayerScore();
 
-        public Player(Vector2 position, Image sprite, int health, float speed, int maxNuts)
+        public Player(Vector2 position, string sprite, int health, float speed, int maxNuts)
         {
+            this.sprite = Image.FromFile(@sprite);
             this.position = position;
-            this.sprite = sprite;
             this.health = health;
             this.speed = speed;
             this.maxNuts = maxNuts;
@@ -66,7 +67,7 @@ namespace Go_Nutz
 
         public void Update()
         {
-
+            Draw(dc);
         }
 
         public void Kick(GameObject other)
@@ -75,10 +76,25 @@ namespace Go_Nutz
             other.movementVector = kickVector;
         }
 
+        public RectangleF CollisionBox
+        {
+            get
+            {
+                return new RectangleF(position.X, position.Y, sprite.Width * scaleFactor, sprite.Height * scaleFactor);
+            }
+            set { CollisionBox = value; }
+        }
+
         public void DepositNuts()
         {
             pointKeeper.SetPoints(1);
             nutCount--;
+        }
+
+        public virtual void Draw(Graphics dc)
+        {
+            dc.DrawImage(sprite, position.X, position.Y, sprite.Width * scaleFactor, sprite.Height * scaleFactor);
+            dc.DrawRectangle(new Pen(Brushes.Red), CollisionBox.X, CollisionBox.Y, sprite.Width * scaleFactor, sprite.Height * scaleFactor);
         }
     }
 }

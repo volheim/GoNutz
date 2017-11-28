@@ -21,18 +21,26 @@ namespace Go_Nutz
         public Form1()
         {
             InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            world = new GameWorld(dc, rect);
-            world.SetupWorld();
+            timer1.Start();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+
             world.Update(fps);
 
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            if(dc == null)
+            {
+                dc = CreateGraphics();
+            }
+
+            world = new GameWorld(CreateGraphics(), rect);
+            world.SetupWorld();
+        }
+
     }
 }
