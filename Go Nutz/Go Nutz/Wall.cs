@@ -14,7 +14,12 @@ namespace Go_Nutz
         Vector2 position;
         float scaleFactor;
 
-
+        public Wall(Vector2 position, Image sprite, float scaleFactor)
+        {
+            this.position = position;
+            this.sprite = sprite;
+            this.scaleFactor = scaleFactor;
+        }
 
         public RectangleF CollisionBox
         {
