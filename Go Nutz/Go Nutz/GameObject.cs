@@ -16,12 +16,12 @@ namespace Go_Nutz
         private Rectangle collisionbox;
         private Image sprite;
 
-        public void Draw()
+        public void Draw(Graphics dc)
         {
 
         }
 
-        public virtual void Update()
+        public virtual void Update(float fps)
         {
 
         }
