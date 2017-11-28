@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace Go_Nutz
 {
-    class BoomNut
+    class BoomNut : Nut
     {
+        private bool phaseAble;
+
+        public BoomNut()
+        {
+        }
+
+        public void Explode()
+        {
+
+        }
     }
 }

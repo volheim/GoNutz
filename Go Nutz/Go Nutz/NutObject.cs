@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace Go_Nutz
 {
-    class NutObject
+    class NutObject : Nut
     {
+        private bool isAlive;
+
+        public NutObject()
+        {
+
+        }
+
+        public void BreakApart()
+        {
+
+        }
     }
 }

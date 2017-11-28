@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BoomNut.cs" />
+    <Compile Include="Explosion.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +55,7 @@
     </Compile>
     <Compile Include="GameObject.cs" />
     <Compile Include="HomeTree.cs" />
+    <Compile Include="Nut.cs" />
     <Compile Include="NutObject.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerScore.cs" />
