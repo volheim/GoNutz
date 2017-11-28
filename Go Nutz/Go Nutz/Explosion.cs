@@ -3,13 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace Go_Nutz
 {
-    class PowerUp : Nut
+    class Explosion
     {
-        public PowerUp()
+        private Image sprite;
+
+        public Explosion()
         {
+            
+        }
+
+        public void BlowPower()
+        {
+
         }
     }
 }

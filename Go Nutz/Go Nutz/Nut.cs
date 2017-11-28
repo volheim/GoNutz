@@ -6,10 +6,18 @@ using System.Threading.Tasks;
 
 namespace Go_Nutz
 {
-    class PowerUp : Nut
+    class Nut : GameObject
     {
-        public PowerUp()
+
+
+        private void OnCollision(GameObject other)
         {
+
+        }
+
+        private void CheckCollision()
+        {
+
         }
     }
 }
