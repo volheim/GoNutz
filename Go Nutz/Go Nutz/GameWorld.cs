@@ -29,7 +29,6 @@ namespace Go_Nutz
 
             //sets the graphics context to the graphics in the buffer
             this.dc = backBuffer.Graphics;
-            GameWorld();
 
         }
 

@@ -12,7 +12,7 @@ namespace StartMenu
     {
         public ButtomSettings()
         {
-            new ;
+            //new ;
         }
     }
 }
