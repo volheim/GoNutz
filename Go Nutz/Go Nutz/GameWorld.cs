@@ -39,11 +39,11 @@ namespace Go_Nutz
 
         public virtual void Update(float fps)
         {
-            foreach (var item in objects)
+            /*foreach (var item in objects)
             {
                 item.Update(fps);
 
-            }
+            }*/
         }
 
         public virtual void Draw()

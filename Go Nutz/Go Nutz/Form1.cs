@@ -12,6 +12,12 @@ namespace Go_Nutz
 {
     public partial class Form1 : Form
     {
+        Graphics dc;
+        Rectangle rect;
+
+        GameWorld world;
+        float fps;
+
         public Form1()
         {
             InitializeComponent();
@@ -19,11 +25,13 @@ namespace Go_Nutz
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            world = new GameWorld(dc, rect);
+            world.SetupWorld();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            world.Update(fps);
 
         }
     }
