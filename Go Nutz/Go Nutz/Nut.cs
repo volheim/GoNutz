@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Go_Nutz
 {
-    class Nut : GameObject
+    abstract class Nut : GameObject
     {
 
 
