@@ -8,31 +8,30 @@ using System.Numerics;
 
 namespace Go_Nutz
 {
-    class Player
+    class Player: GameObject
     {
+        #region Fields
         int health;
         float speed;
         int nutCount;
         int maxNuts;
-
         Image sprite;
         Vector2 position;
-
         int kickForce;
         Vector2 kickVector;
-
-
-
-
         PlayerScore pointKeeper = new PlayerScore();
+        #endregion
 
-        public Player(Vector2 position, Image sprite, int health, float speed, int maxNuts)
+        public Player(Vector2 position, string imagePath, int health, float speed, int maxNuts): base(position,imagePath)
         {
             this.position = position;
             this.sprite = sprite;
             this.health = health;
             this.speed = speed;
             this.maxNuts = maxNuts;
+            sprite = Image.FromFile(imagePath);
+            //string[] imagePaths = imagePath.Split(';');
+
         }
 
         public int GetHealth()
@@ -71,8 +70,8 @@ namespace Go_Nutz
 
         public void Kick(GameObject other)
         {
-            kickVector = new Vector2((other.position.X - position.X) * kickForce, (other.position.Y - position.Y) * kickForce); 
-            other.movementVector = kickVector;
+            kickVector = new Vector2((other.Position.X - position.X) * kickForce, (other.Position.Y - position.Y) * kickForce); 
+            other.MovementVector = kickVector;
         }
 
         public void DepositNuts()

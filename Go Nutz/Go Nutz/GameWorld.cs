@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Numerics;
 
 namespace Go_Nutz
 {
@@ -34,7 +35,9 @@ namespace Go_Nutz
 
         public void SetupWorld()
         {
-
+            objects = new List<GameObject>();
+            GameObject player = new Player(new Vector2(1.0f, 5.0f),"Piperlok.png", 100, 100, 10);
+            objects.Add(player);
         }
 
         public virtual void Update(float fps)

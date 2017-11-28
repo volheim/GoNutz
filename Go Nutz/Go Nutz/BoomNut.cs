@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,7 +11,7 @@ namespace Go_Nutz
     {
         private bool phaseAble;
 
-        public BoomNut()
+        public BoomNut(Vector2 position, string imagePath) : base(position, imagePath)
         {
         }
 
