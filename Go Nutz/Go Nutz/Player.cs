@@ -5,31 +5,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Numerics;
+using System.Windows.Forms;
 
 namespace Go_Nutz
 {
-    class Player: GameObject
+    class Player : GameObject
     {
         #region Fields
         int health;
         float speed;
         int nutCount;
         int maxNuts;
-        Image sprite;
-        Vector2 position;
         int kickForce;
         Vector2 kickVector;
         PlayerScore pointKeeper = new PlayerScore();
         #endregion
 
-        public Player(Vector2 position, string imagePath, int health, float speed, int maxNuts): base(position,imagePath)
+        public Player(Vector2 position, string imagePath, int health, float speed, int maxNuts) : base(position, imagePath)
         {
             this.position = position;
-            this.sprite = sprite;
             this.health = health;
             this.speed = speed;
             this.maxNuts = maxNuts;
-            sprite = Image.FromFile(imagePath);
             //string[] imagePaths = imagePath.Split(';');
 
         }
@@ -47,7 +44,6 @@ namespace Go_Nutz
         {
             //lose 1 health
             SetHealth(-1);
-
             //drop nuts
             nutCount = 0;
 
@@ -58,19 +54,23 @@ namespace Go_Nutz
              */
         }
 
-        public void CheckCollision()
+        public override void CheckCollision()
         {
 
         }
 
         public void Update()
         {
+            Keys[] movementKeys = new Keys[6] { Keys.A, Keys.S, Keys.D, Keys.W, Keys.E, Keys.Q };
+            if (Keyboard.IsKeyDown(movementKeys[0]))
+            {
 
+            }
         }
 
         public void Kick(GameObject other)
         {
-            kickVector = new Vector2((other.Position.X - position.X) * kickForce, (other.Position.Y - position.Y) * kickForce); 
+            kickVector = new Vector2((other.Position.X - position.X) * kickForce, (other.Position.Y - position.Y) * kickForce);
             other.MovementVector = kickVector;
         }
 

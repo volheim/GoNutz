@@ -21,7 +21,9 @@ namespace Go_Nutz
         private float currentFps;
         private BufferedGraphics backBuffer;
 
+        private static List<GameObject> objects1;
 
+        internal static List<GameObject> Objects { get => objects1; set => objects1 = value; }
 
         public GameWorld(Graphics dc, Rectangle displayRectangle)
         {
