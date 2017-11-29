@@ -16,6 +16,7 @@ namespace Go_Nutz
         protected RectangleF collisionbox;
         protected Image sprite;
         #endregion
+
         #region Properterties
         public Vector2 Position
         {
@@ -50,12 +51,19 @@ namespace Go_Nutz
         {
 
         }
+        public virtual void OnCollision(GameObject other)
+        {
+
+        }
+
         public virtual void CheckCollision()
         {
-            foreach (GameObject gameObject in GameWorld.Objects)
-            {
-
-            }
+        
         }
-    }
+        public virtual bool IsIntersectingWith(GameObject other)
+        {
+
+            return CollisionBox.IntersectsWith(other.CollisionBox);
+        }
+    } 
 }

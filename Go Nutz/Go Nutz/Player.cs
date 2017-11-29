@@ -53,10 +53,35 @@ namespace Go_Nutz
              * set sprite as transparent? blinking?
              */
         }
-
+        // Collision
         public override void CheckCollision()
         {
+            /// <summary>
+            /// Check if a GameObject Collides with anohter
+            /// </summary>
+            foreach (GameObject gameObject in GameWorld.Objects)
+            {
+                if (gameObject != this || gameObject is Player)
+                {
+                    if (this.IsIntersectingWith(gameObject))
+                    {
+                        OnCollision(gameObject);
+                    }
+                }
+            }
+        }
+        public override void OnCollision(GameObject other)
+        {
+            if(other is Wall)
+            {
 
+            }
+            base.OnCollision(other);
+        }
+
+        public override bool IsIntersectingWith(GameObject other)
+        {
+            return base.IsIntersectingWith(other);
         }
 
         public void Update()
@@ -64,7 +89,8 @@ namespace Go_Nutz
             Keys[] movementKeys = new Keys[6] { Keys.A, Keys.S, Keys.D, Keys.W, Keys.E, Keys.Q };
             if (Keyboard.IsKeyDown(movementKeys[0]))
             {
-
+                position.X -= 1;
+            
             }
         }
 
