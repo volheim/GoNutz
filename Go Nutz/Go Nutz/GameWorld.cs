@@ -20,11 +20,11 @@ namespace Go_Nutz
         private DateTime endTime;
         private float currentFps;
         private BufferedGraphics backBuffer;
-
-        private static List<GameObject> objects1;
-
-        internal static List<GameObject> Objects { get => objects1; set => objects1 = value; }
-
+        public static List<GameObject> Objects
+        {
+            get { return objects; }
+            set { objects = value; }
+        }
         public GameWorld(Graphics dc, Rectangle displayRectangle)
         {
             //create's (Allocates) a buffer in memory with the size of the display
@@ -42,7 +42,7 @@ namespace Go_Nutz
             objects.Add(player);
         }
 
-        public virtual void Update(float fps)
+        public void Update(float fps)
         {
             /*foreach (var item in objects)
             {

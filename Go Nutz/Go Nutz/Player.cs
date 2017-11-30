@@ -61,7 +61,7 @@ namespace Go_Nutz
             /// </summary>
             foreach (GameObject gameObject in GameWorld.Objects)
             {
-                if (gameObject != this || gameObject is Player)
+                if (gameObject != this)
                 {
                     if (this.IsIntersectingWith(gameObject))
                     {
@@ -72,16 +72,33 @@ namespace Go_Nutz
         }
         public override void OnCollision(GameObject other)
         {
-            if(other is Wall)
+            ///<summary>
+            ///depending on the other GameObject do something or nothing
+            /// </summary>
+            if (other is Wall || other is NutObject)
             {
 
             }
+            else if (other is PowerUp)
+            {
+
+            }
+            else if (other is BoomNut)
+            {
+                /*
+                if(other.inMotion == true)
+                {
+                    other.MovementVector = new Vector2(0,0);
+                    other.inMotion = false;
+                }
+                */
+                Kick(other as BoomNut);
+            }
             base.OnCollision(other);
         }
-
         public override bool IsIntersectingWith(GameObject other)
         {
-            return base.IsIntersectingWith(other);
+            return CollisionBox.IntersectsWith(other.CollisionBox);
         }
 
         public void Update()
@@ -89,13 +106,23 @@ namespace Go_Nutz
             Keys[] movementKeys = new Keys[6] { Keys.A, Keys.S, Keys.D, Keys.W, Keys.E, Keys.Q };
             if (Keyboard.IsKeyDown(movementKeys[0]))
             {
-                position.X -= 1;
-            
+                this.position.X -= 1;
             }
+
+
+
+            //PlaceHolder Code
+            /*
+            if (bombsPlaced < BombCap)
+                {
+                    PlaceBomb();
+                }
+            */
         }
 
-        public void Kick(GameObject other)
+        public void Kick(BoomNut other)
         {
+            //the player kicks the bomb in front of him forward based on his direction.
             kickVector = new Vector2((other.Position.X - position.X) * kickForce, (other.Position.Y - position.Y) * kickForce);
             other.MovementVector = kickVector;
         }
@@ -104,6 +131,18 @@ namespace Go_Nutz
         {
             pointKeeper.SetPoints(1);
             nutCount--;
+        }
+        public void PlaceBomb()
+        {
+            ///<summary>
+            ///the player places a bomb at his feet.
+            ///as long as have not placed more all his bombs.
+            /// </summary>
+            //PlaceHolder Code
+            /*
+            new BoomNut(new Vector2(position.X, position.Y), "Sprite");
+            BoombsPlaced++;
+            */
         }
     }
 }

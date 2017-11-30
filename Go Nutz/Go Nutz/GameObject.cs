@@ -18,11 +18,13 @@ namespace Go_Nutz
         #endregion
 
         #region Properterties
+        
         public Vector2 Position
         {
             get { return position; }
             set { position = value; }
         }
+        
         public Vector2 MovementVector
         {
             get { return movementVector; }

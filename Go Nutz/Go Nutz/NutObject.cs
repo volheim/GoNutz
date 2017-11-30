@@ -18,6 +18,7 @@ namespace Go_Nutz
         public void BreakApart()
         {
 
+            GameWorld.Objects.Remove(this);
         }
     }
 }
