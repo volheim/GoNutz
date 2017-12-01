@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Go Nutz", "Go Nutz\Go Nutz.csproj", "{61E5E640-BF52-4324-9D38-8EA7C3F42EF0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5F13CD29-F593-4113-844B-06609E8BF044}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartMenu", "WindowsFormsApp1\StartMenu.csproj", "{B4D4B7BE-1651-4205-948B-2C310FFDD3BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,10 @@ Global
 		{61E5E640-BF52-4324-9D38-8EA7C3F42EF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61E5E640-BF52-4324-9D38-8EA7C3F42EF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61E5E640-BF52-4324-9D38-8EA7C3F42EF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4D4B7BE-1651-4205-948B-2C310FFDD3BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4D4B7BE-1651-4205-948B-2C310FFDD3BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4D4B7BE-1651-4205-948B-2C310FFDD3BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4D4B7BE-1651-4205-948B-2C310FFDD3BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

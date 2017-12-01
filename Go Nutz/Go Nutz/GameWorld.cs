@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Numerics;
+using System.Windows.Forms;
 
 namespace Go_Nutz
 {
@@ -20,7 +22,9 @@ namespace Go_Nutz
         private float currentFps;
         private BufferedGraphics backBuffer;
 
+        private static List<GameObject> objects1;
 
+        internal static List<GameObject> Objects { get => objects1; set => objects1 = value; }
 
         public GameWorld(Graphics dc, Rectangle displayRectangle)
         {
@@ -29,16 +33,28 @@ namespace Go_Nutz
 
             //sets the graphics context to the graphics in the buffer
             this.dc = backBuffer.Graphics;
-            SetupWorld();
 
+        }
+
+        public void SetupWorld()
+        {
+            objects = new List<GameObject>();
+            GameObject player = new Player(new Vector2(1.0f, 5.0f),"Piperlok.png", 100, 100, 10, Keys.A, Keys.S, Keys.D, Keys.W, Keys.Q, Keys.E);
+            GameObject player2 = new Player(new Vector2(1.0f, 5.0f), "Piperlok.png", 100, 100, 10, Keys.J, Keys.K, Keys.L, Keys.I, Keys.U, Keys.O);
+            objects.Add(player);
+            objects.Add(player2);
         }
 
         public virtual void Update(float fps)
         {
-            foreach (var item in objects)
+            /*foreach (var item in objects)
             {
                 item.Update(fps);
 
+            }*/
+            foreach (GameObject go in objects)
+            {
+                go.Update(currentFps);
             }
         }
 

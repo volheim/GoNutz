@@ -7,15 +7,18 @@ using System.Threading.Tasks;
 
 namespace Go_Nutz
 {
-    class NutObject : Nut
+    class Nut : GameObject
     {
-        private bool isAlive;
-
-        public NutObject(Vector2 position, string imagePath) : base(position, imagePath)
+        public Nut(Vector2 position, string imagePath) : base(position, imagePath)
         {
         }
 
-        public void BreakApart()
+        private void OnCollision(GameObject other)
+        {
+
+        }
+
+        private void CheckCollision()
         {
 
         }

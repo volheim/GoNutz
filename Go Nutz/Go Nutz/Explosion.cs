@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace Go_Nutz
 {
-    class BoomNut : Nut
+    class Explosion
     {
-        private bool phaseAble;
+        private Image sprite;
 
-        public BoomNut(Vector2 position, string imagePath) : base(position, imagePath)
+        public Explosion()
         {
+            
         }
 
-        public void Explode()
+        public void BlowPower()
         {
 
         }

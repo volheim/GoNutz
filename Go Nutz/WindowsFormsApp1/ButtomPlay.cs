@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using Go_Nutz;
 
-namespace Go_Nutz
+namespace WindowsFormsApp1
 {
-    class PowerUp : Nut
+    class ButtomPlay
     {
-
-        public PowerUp(Vector2 position, string imagePath) : base(position, imagePath)
+        public ButtomPlay()
         {
+            new Go_Nutz.Form1();
         }
     }
 }
