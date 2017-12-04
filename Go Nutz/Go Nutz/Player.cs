@@ -77,7 +77,26 @@ namespace Go_Nutz
             /// </summary>
             if (other is Wall || other is NutObject)
             {
-
+                //Checks top collision
+                if (position.Y + sprite.Height > other.CollisionBox.Top && position.Y + sprite.Height < other.CollisionBox.Top + 10)
+                {
+                    position.Y = other.CollisionBox.Top - collisionbox.Height;
+                }
+                //Checks bottom collision
+                else if (position.Y > other.CollisionBox.Bottom && position.Y < other.CollisionBox.Bottom - 10)
+                {
+                    position.Y = other.CollisionBox.Bottom;
+                }
+                //Checks right collision
+                else if (collisionbox.Right >= other.CollisionBox.Left && collisionbox.Right <= other.CollisionBox.Left + 20)
+                {
+                    position.X = other.CollisionBox.Left - collisionbox.Width;
+                }
+                //Checks left collision
+                else if (collisionbox.Left >= other.CollisionBox.Right - 20 && collisionbox.Left <= other.CollisionBox.Right)
+                {
+                    position.X = other.CollisionBox.Right;
+                }
             }
             else if (other is PowerUp)
             {
@@ -104,11 +123,30 @@ namespace Go_Nutz
 
         public void Update()
         {
+            /*
             Keys[] movementKeys = new Keys[6] { Keys.A, Keys.S, Keys.D, Keys.W, Keys.E, Keys.Q };
             if (Keyboard.IsKeyDown(movementKeys[0]))
             {
                 this.position.X -= 1;
             }
+            */
+
+
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

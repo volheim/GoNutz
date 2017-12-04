@@ -8,7 +8,7 @@ using System.Numerics;
 
 namespace Go_Nutz
 {
-    public class GameWorld
+    class GameWorld
     {
         #region Fields
         private Graphics dc;
