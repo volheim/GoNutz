@@ -53,6 +53,7 @@ namespace Go_Nutz
              * set sprite as transparent? blinking?
              */
         }
+
         // Collision
         public override void CheckCollision()
         {

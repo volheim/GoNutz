@@ -17,7 +17,7 @@ namespace Go_Nutz
 
         public void BreakApart()
         {
-
+            //Removes the sprite
             GameWorld.Objects.Remove(this);
         }
     }
