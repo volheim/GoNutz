@@ -82,6 +82,7 @@ namespace Go_Nutz
             else if (other is PowerUp)
             {
 
+                GameWorld.Objects.Remove(other);
             }
             else if (other is BoomNut)
             {

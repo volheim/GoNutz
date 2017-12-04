@@ -67,5 +67,9 @@ namespace Go_Nutz
 
             return CollisionBox.IntersectsWith(other.CollisionBox);
         }
+        public virtual void Update()
+        {
+
+        }
     } 
 }
