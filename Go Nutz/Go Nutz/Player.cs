@@ -19,14 +19,6 @@ namespace Go_Nutz
         int kickForce;
         Vector2 kickVector;
         PlayerScore pointKeeper = new PlayerScore();
-
-
-
-
-
-
-
-
         Keys[] movementKeys;
         #endregion
 
