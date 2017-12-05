@@ -62,6 +62,7 @@
     <Compile Include="NutObject.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerScore.cs" />
+    <Compile Include="Player_CollisionWithBoomNut.cs" />
     <Compile Include="PowerUp.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,6 +97,9 @@
     <Content Include="Piperlok.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
