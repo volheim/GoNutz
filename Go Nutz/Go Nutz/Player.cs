@@ -56,13 +56,76 @@ namespace Go_Nutz
              */
         }
 
+        #region Collision
         public override void CheckCollision()
         {
-
+            /// <summary>
+            /// Check if a GameObject Collides with anohter
+            /// </summary>
+            foreach (GameObject gameObject in GameWorld.Objects)
+            {
+                if (gameObject != this)
+                {
+                    if (this.IsIntersectingWith(gameObject))
+                    {
+                        OnCollision(gameObject);
+                    }
+                }
+            }
         }
+        public void OnCollision(GameObject other)
+        {
+            ///<summary>
+            ///depending on the other GameObject do something or nothing
+            /// </summary>
+            if (other is Wall || other is NutObject || other is Player)
+            {
+                //Checks top collision
+                if (position.Y + sprite.Height > other.CollisionBox.Top && position.Y + sprite.Height < other.CollisionBox.Top + 10)
+                {
+                    position.Y = other.CollisionBox.Top - collisionbox.Height;
+                }
+                //Checks bottom collision
+                else if (position.Y > other.CollisionBox.Bottom && position.Y < other.CollisionBox.Bottom - 10)
+                {
+                    position.Y = other.CollisionBox.Bottom;
+                }
+                //Checks right collision
+                else if (collisionbox.Right >= other.CollisionBox.Left && collisionbox.Right <= other.CollisionBox.Left + 20)
+                {
+                    position.X = other.CollisionBox.Left - collisionbox.Width;
+                }
+                //Checks left collision
+                else if (collisionbox.Left >= other.CollisionBox.Right - 20 && collisionbox.Left <= other.CollisionBox.Right)
+                {
+                    position.X = other.CollisionBox.Right;
+                }
+            }
+            else if (other is PowerUp)
+            {
 
+                GameWorld.Objects.Remove(other);
+            }
+            else if (other is BoomNut)
+            {
+                /*
+                if(other.inMotion == true)
+                {
+                    other.MovementVector = new Vector2(0,0);
+                    other.inMotion = false;
+                }
+                */
+                Kick(other as BoomNut);
+            }
+        }
+        public bool IsIntersectingWith(GameObject other)
+        {
+            return CollisionBox.IntersectsWith(other.CollisionBox);
+        }
+        #endregion
         public override void Update(float fps)
         {
+            CheckCollision();
             Movement();
         }
 
@@ -77,99 +140,6 @@ namespace Go_Nutz
             pointKeeper.SetPoints(1);
             nutCount--;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         public void Movement()
         {
             if (Keyboard.IsKeyDown(movementKeys[0]))

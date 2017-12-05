@@ -9,22 +9,14 @@ using System.Windows.Forms;
 
 namespace Go_Nutz
 {
-    public class GameWorld
+    class GameWorld
     {
-
-        GameObject go;
-        Player player;
-
-
         private Graphics dc;
         private static List<GameObject> objects;
         private DateTime endTime;
         private float currentFps;
         private BufferedGraphics backBuffer;
 
-        private static List<GameObject> objects1;
-
-        internal static List<GameObject> Objects { get => objects1; set => objects1 = value; }
 
         public GameWorld(Graphics dc, Rectangle displayRectangle)
         {
@@ -40,7 +32,7 @@ namespace Go_Nutz
         {
             objects = new List<GameObject>();
             GameObject player = new Player(new Vector2(1.0f, 5.0f), "Piperlok.png", 100, 100, 10, new Keys[6] {Keys.A, Keys.S, Keys.D, Keys.W, Keys.Q, Keys.E});
-            GameObject player2 = new Player(new Vector2(1.0f, 5.0f), "Piperlok.png", 100, 100, 10,new Keys[6] { Keys.J, Keys.K, Keys.L, Keys.I, Keys.U, Keys.O });
+            GameObject player2 = new Player(new Vector2(800.0f, 5.0f), "Piperlok.png", 100, 100, 10,new Keys[6] { Keys.J, Keys.K, Keys.L, Keys.I, Keys.U, Keys.O });
             objects.Add(player);
             objects.Add(player2);
         }
