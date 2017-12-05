@@ -77,6 +77,7 @@ namespace Go_Nutz
         }
 
         // Collision
+#region Collision
         public override void CheckCollision()
         {
             /// <summary>
@@ -144,7 +145,7 @@ namespace Go_Nutz
         {
             return CollisionBox.IntersectsWith(other.CollisionBox);
         }
-
+#endregion
         public void Update()
         {
             //Draw(dc);
