@@ -147,7 +147,7 @@ namespace Go_Nutz
 
         public void Update()
         {
-            Draw(dc);
+            //Draw(dc);
             /*
             Keys[] movementKeys = new Keys[6] { Keys.A, Keys.S, Keys.D, Keys.W, Keys.E, Keys.Q };
             if (Keyboard.IsKeyDown(movementKeys[0]))

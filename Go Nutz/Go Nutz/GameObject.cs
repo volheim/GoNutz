@@ -65,10 +65,6 @@ namespace Go_Nutz
 
             return CollisionBox.IntersectsWith(other.CollisionBox);
         }
-        public virtual void Update()
-        {
-            Draw(dc);
-        }
         public virtual void CheckCollision()
         {
             foreach (GameObject gameObject in GameWorld.Objects)
