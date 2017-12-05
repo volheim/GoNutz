@@ -19,31 +19,26 @@ namespace Go_Nutz
         int kickForce;
         Vector2 kickVector;
         PlayerScore pointKeeper = new PlayerScore();
-        Keys keyLeft;
-        Keys keyDown;
-        Keys keyRight;
-        Keys keyUp;
-        Keys keyPlaceBomb;
-        Keys keyDepositeNut;
+
+
+
+
+
+
+
+
+        Keys[] movementKeys;
         #endregion
 
 
-        public Player(Vector2 position, string imagePath, int health, float speed, int maxNuts, Keys keyLeft, Keys keyDown, Keys keyRight, Keys keyUp, Keys keyPlaceBomb, Keys keyDepositeNut) : base(position, imagePath)
+        public Player(Vector2 position, string imagePath, int health, float speed, int maxNuts, Keys[] movementKeys) : base(position, imagePath)
         {
             this.position = position;
             //string[] imagePaths = imagePath.Split(';');
             this.health = health;
             this.speed = speed;
             this.maxNuts = maxNuts;
-            this.keyLeft = keyLeft;
-            this.keyDown = keyDown;
-            this.keyRight = keyRight;
-            this.keyUp = keyUp;
-            this.keyPlaceBomb = keyPlaceBomb;
-            this.keyDepositeNut = keyDepositeNut;
-            
-            
-
+            this.movementKeys = movementKeys;
         }
 
         public int GetHealth()
@@ -91,24 +86,116 @@ namespace Go_Nutz
             nutCount--;
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public void Movement()
         {
-            if (Keyboard.IsKeyDown(keyLeft))
+            if (Keyboard.IsKeyDown(movementKeys[0]))
             {
                 position.X -= speed;
             }
 
-            if (Keyboard.IsKeyDown(keyDown))
+            if (Keyboard.IsKeyDown(movementKeys[1]))
             {
                 position.Y += speed;
             }
 
-            if (Keyboard.IsKeyDown(keyRight))
+            if (Keyboard.IsKeyDown(movementKeys[2]))
             {
                 position.X += speed;
             }
 
-            if (Keyboard.IsKeyDown(keyUp))
+            if (Keyboard.IsKeyDown(movementKeys[3]))
             {
                 position.Y -= speed;
             }
