@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Go_Nutz
 {
-    class Player : GameObject
+    partial class Player : GameObject
     {
         #region Fields
         int health;
@@ -108,14 +108,7 @@ namespace Go_Nutz
             }
             else if (other is BoomNut)
             {
-                /*
-                if(other.inMotion == true)
-                {
-                    other.MovementVector = new Vector2(0,0);
-                    other.inMotion = false;
-                }
-                */
-                Kick(other as BoomNut);
+
             }
         }
         public bool IsIntersectingWith(GameObject other)
