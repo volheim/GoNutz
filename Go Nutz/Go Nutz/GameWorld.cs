@@ -8,20 +8,43 @@ using System.Numerics;
 
 namespace Go_Nutz
 {
-    public class GameWorld
+    class GameWorld
     {
-
-        GameObject go;
-        Player player;
-
-
+        #region Fields
         private Graphics dc;
+<<<<<<< HEAD
         private static List<Player> players;
         private DateTime endTime;
         private float currentFps;
         private BufferedGraphics backBuffer;
 
 
+=======
+        private static List<GameObject> objects;
+        private static List<GameObject> add_Objects;
+        private static List<GameObject> remove_Objects;
+        private DateTime endTime;
+        private float currentFps;
+        private BufferedGraphics backBuffer;
+        #endregion
+        #region Properties
+        public static List<GameObject> Add_Objects
+        {
+            get { return add_Objects; }
+            set { add_Objects = value; }
+        }
+        public static List<GameObject> Removed_Objects
+        {
+            get { return remove_Objects; }
+            set { remove_Objects = value; }
+        }
+        public static List<GameObject> Objects
+        {
+            get { return objects; }
+            set { objects = value; }
+        }
+        #endregion
+>>>>>>> Mikkel-Dev
         public GameWorld(Graphics dc, Rectangle displayRectangle)
         {
             //create's (Allocates) a buffer in memory with the size of the display
@@ -34,10 +57,16 @@ namespace Go_Nutz
 
         public void SetupWorld()
         {
+<<<<<<< HEAD
             players.Add (new Player(new Vector2(0, 0), @"51zeHiyhNOL._SY445_.jpg", 1, 5, 1));
+=======
+            objects = new List<GameObject>();
+            GameObject player = new Player(new Vector2(1.0f, 5.0f),"Piperlok.png", 100, 100, 10);
+            objects.Add(player);
+>>>>>>> Mikkel-Dev
         }
 
-        public virtual void Update(float fps)
+        public void Update(float fps)
         {
             foreach (var item in players)
             {

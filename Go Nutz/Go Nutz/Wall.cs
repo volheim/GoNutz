@@ -8,16 +8,12 @@ using System.Numerics;
 
 namespace Go_Nutz
 {
-    class Wall
+    class Wall : GameObject
     {
-        Image sprite;
-        Vector2 position;
         float scaleFactor;
 
-        public Wall(Vector2 position, Image sprite, float scaleFactor)
+        public Wall(Vector2 position, string imagePath, float scaleFactor) : base(position, imagePath)
         {
-            this.position = position;
-            this.sprite = sprite;
             this.scaleFactor = scaleFactor;
         }
 

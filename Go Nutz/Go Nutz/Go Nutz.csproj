@@ -93,7 +93,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Content Include="51zeHiyhNOL._SY445_.jpg">
+=======
+    <Content Include="Piperlok.png">
+>>>>>>> Mikkel-Dev
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
