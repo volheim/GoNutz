@@ -10,20 +10,66 @@ namespace Go_Nutz
 {
     abstract class GameObject
     {
-        public Vector2 position;
-        public Vector2 movementVector;
+        #region Fields
+        protected Vector2 position;
+        protected Vector2 movementVector;
+        protected RectangleF collisionbox;
+        protected Image sprite;
+        #endregion
 
-        private Rectangle collisionbox;
-        private Image sprite;
+        #region Properterties
+        
+        public Vector2 Position
+        {
+            get { return position; }
+            set { position = value; }
+        }
+        
+        public Vector2 MovementVector
+        {
+            get { return movementVector; }
+            set { movementVector = value; }
+        }
+        public RectangleF CollisionBox
+        {
+            get
+            {
+                return new RectangleF(position.X, position.Y, sprite.Width, sprite.Height);
+            }
+            set { CollisionBox = value; }
+        }
+        #endregion
 
+        public GameObject(Vector2 position, string imagePath)
+        {
+            this.position = position;
+            sprite = Image.FromFile(imagePath);
+        }
         public void Draw(Graphics dc)
         {
-
+            dc.DrawImage(sprite, position.X, position.Y, sprite.Width, sprite.Height);
         }
-
         public virtual void Update(float fps)
         {
 
         }
-    }
+        public virtual void OnCollision(GameObject other)
+        {
+
+        }
+
+        public virtual void CheckCollision()
+        {
+        
+        }
+        public virtual bool IsIntersectingWith(GameObject other)
+        {
+
+            return CollisionBox.IntersectsWith(other.CollisionBox);
+        }
+        public virtual void Update()
+        {
+
+        }
+    } 
 }
