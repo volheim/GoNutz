@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using StartMenu;
 
+<<<<<<< HEAD
 namespace WindowsFormsApp1
+=======
+namespace StartMenu
+>>>>>>> Lars-Dev
 {
     class ButtomSettings
     {
         public ButtomSettings()
         {
+<<<<<<< HEAD
             new Settings();
 
 #if DEBUG
@@ -22,6 +27,9 @@ namespace WindowsFormsApp1
 #endif
 
 
+=======
+            //new ;
+>>>>>>> Lars-Dev
         }
     }
 }

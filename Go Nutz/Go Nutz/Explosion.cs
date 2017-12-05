@@ -24,10 +24,6 @@ namespace Go_Nutz
         public void Expand()
         {
 
-        } 
-        public void BlowPower()
-        {
-
         }
     }
 }

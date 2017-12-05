@@ -10,10 +10,17 @@ namespace Go_Nutz
 {
     class Wall : GameObject
     {
+
         float scaleFactor;
+        Image sprite;
+        Vector2 position;
 
         public Wall(Vector2 position, string imagePath, float scaleFactor) : base(position, imagePath)
         {
+
+
+            this.position = position;
+
             this.scaleFactor = scaleFactor;
         }
 

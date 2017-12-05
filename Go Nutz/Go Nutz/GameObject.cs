@@ -10,28 +10,22 @@ namespace Go_Nutz
 {
     abstract class GameObject
     {
-<<<<<<< HEAD
-        Graphics dc;
 
-        public Vector2 position;
-        public Vector2 movementVector;
-=======
         #region Fields
         protected Vector2 position;
         protected Vector2 movementVector;
         protected RectangleF collisionbox;
         protected Image sprite;
         #endregion
->>>>>>> Mikkel-Dev
 
         #region Properterties
-        
+
         public Vector2 Position
         {
             get { return position; }
             set { position = value; }
         }
-        
+
         public Vector2 MovementVector
         {
             get { return movementVector; }
@@ -46,17 +40,14 @@ namespace Go_Nutz
             set { CollisionBox = value; }
         }
         #endregion
+        
 
-<<<<<<< HEAD
-        public virtual void Draw(Graphics dc)
-=======
         public GameObject(Vector2 position, string imagePath)
         {
             this.position = position;
             sprite = Image.FromFile(imagePath);
         }
         public void Draw(Graphics dc)
->>>>>>> Mikkel-Dev
         {
             dc.DrawImage(sprite, position.X, position.Y, sprite.Width, sprite.Height);
         }
@@ -69,10 +60,6 @@ namespace Go_Nutz
 
         }
 
-        public virtual void CheckCollision()
-        {
-        
-        }
         public virtual bool IsIntersectingWith(GameObject other)
         {
 
@@ -82,5 +69,12 @@ namespace Go_Nutz
         {
             Draw(dc);
         }
-    } 
+        public virtual void CheckCollision()
+        {
+            foreach (GameObject gameObject in GameWorld.Objects)
+            {
+
+            }
+        }
+    }
 }

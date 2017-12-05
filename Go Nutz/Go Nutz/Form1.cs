@@ -39,6 +39,7 @@ namespace Go_Nutz
         private void Form1_Load(object sender, EventArgs e)
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             if(dc == null)
             {
                 dc = CreateGraphics();
@@ -49,6 +50,15 @@ namespace Go_Nutz
 =======
             world.GameLoop();
 >>>>>>> Mikkel-Dev
+=======
+            world = new GameWorld(CreateGraphics(), rect);
+            world.SetupWorld();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            world.GameLoop();
+>>>>>>> Lars-Dev
         }
 
     }

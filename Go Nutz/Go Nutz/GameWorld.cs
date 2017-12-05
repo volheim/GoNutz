@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Numerics;
+using System.Windows.Forms;
 
 namespace Go_Nutz
 {
@@ -12,21 +13,18 @@ namespace Go_Nutz
     {
         #region Fields
         private Graphics dc;
-<<<<<<< HEAD
         private static List<Player> players;
         private DateTime endTime;
         private float currentFps;
         private BufferedGraphics backBuffer;
 
+        private static List<GameObject> objects1;
 
-=======
         private static List<GameObject> objects;
         private static List<GameObject> add_Objects;
         private static List<GameObject> remove_Objects;
-        private DateTime endTime;
-        private float currentFps;
-        private BufferedGraphics backBuffer;
         #endregion
+
         #region Properties
         public static List<GameObject> Add_Objects
         {
@@ -44,7 +42,8 @@ namespace Go_Nutz
             set { objects = value; }
         }
         #endregion
->>>>>>> Mikkel-Dev
+
+
         public GameWorld(Graphics dc, Rectangle displayRectangle)
         {
             //create's (Allocates) a buffer in memory with the size of the display
@@ -57,21 +56,18 @@ namespace Go_Nutz
 
         public void SetupWorld()
         {
-<<<<<<< HEAD
-            players.Add (new Player(new Vector2(0, 0), @"51zeHiyhNOL._SY445_.jpg", 1, 5, 1));
-=======
             objects = new List<GameObject>();
-            GameObject player = new Player(new Vector2(1.0f, 5.0f),"Piperlok.png", 100, 100, 10);
+            GameObject player = new Player(new Vector2(1.0f, 5.0f),"Piperlok.png", 100, 100, 10, Keys.A, Keys.S, Keys.D, Keys.W, Keys.Q, Keys.E);
+            GameObject player2 = new Player(new Vector2(1.0f, 5.0f), "Piperlok.png", 100, 100, 10, Keys.J, Keys.K, Keys.L, Keys.I, Keys.U, Keys.O);
             objects.Add(player);
->>>>>>> Mikkel-Dev
+            objects.Add(player2);
         }
 
-        public void Update(float fps)
+        public virtual void Update(float fps)
         {
-            foreach (var item in players)
+            foreach (GameObject go in objects)
             {
-                item.Update();
-
+                go.Update(currentFps);
             }
         }
 

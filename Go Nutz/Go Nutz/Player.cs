@@ -11,17 +11,12 @@ namespace Go_Nutz
 {
     class Player : GameObject
     {
-<<<<<<< HEAD
-        Graphics dc;
 
-=======
         #region Fields
->>>>>>> Mikkel-Dev
         int health;
         float speed;
         int nutCount;
         int maxNuts;
-<<<<<<< HEAD
 
         Image sprite;
         Vector2 position;
@@ -30,27 +25,32 @@ namespace Go_Nutz
         int kickForce;
         Vector2 kickVector;
 
-        
-=======
-        int kickForce;
-        Vector2 kickVector;
->>>>>>> Mikkel-Dev
         PlayerScore pointKeeper = new PlayerScore();
+
+        Keys keyLeft;
+        Keys keyDown;
+        Keys keyRight;
+        Keys keyUp;
+        Keys keyPlaceBomb;
+        Keys keyDepositeNut;
         #endregion
 
-<<<<<<< HEAD
-        public Player(Vector2 position, string sprite, int health, float speed, int maxNuts)
-=======
-        public Player(Vector2 position, string imagePath, int health, float speed, int maxNuts) : base(position, imagePath)
->>>>>>> Mikkel-Dev
+
+
+        public Player(Vector2 position, string imagePath, int health, float speed, int maxNuts, Keys keyLeft, Keys keyDown, Keys keyRight, Keys keyUp, Keys keyPlaceBomb, Keys keyDepositeNut) : base(position, imagePath)
         {
-            this.sprite = Image.FromFile(@sprite);
             this.position = position;
+            //string[] imagePaths = imagePath.Split(';');
             this.health = health;
             this.speed = speed;
             this.maxNuts = maxNuts;
-            //string[] imagePaths = imagePath.Split(';');
-
+            this.keyLeft = keyLeft;
+            this.keyDown = keyDown;
+            this.keyRight = keyRight;
+            this.keyUp = keyUp;
+            this.keyPlaceBomb = keyPlaceBomb;
+            this.keyDepositeNut = keyDepositeNut;
+            
         }
 
         public int GetHealth()
@@ -93,6 +93,7 @@ namespace Go_Nutz
                 }
             }
         }
+
         public override void OnCollision(GameObject other)
         {
             ///<summary>
@@ -146,9 +147,7 @@ namespace Go_Nutz
 
         public void Update()
         {
-<<<<<<< HEAD
             Draw(dc);
-=======
             /*
             Keys[] movementKeys = new Keys[6] { Keys.A, Keys.S, Keys.D, Keys.W, Keys.E, Keys.Q };
             if (Keyboard.IsKeyDown(movementKeys[0]))
@@ -159,23 +158,6 @@ namespace Go_Nutz
 
 
 
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             //PlaceHolder Code
             /*
             if (bombsPlaced < BombCap)
@@ -183,12 +165,15 @@ namespace Go_Nutz
                     PlaceBomb();
                 }
             */
->>>>>>> Mikkel-Dev
         }
 
         public void Kick(BoomNut other)
         {
             //the player kicks the bomb in front of him forward based on his direction.
+        }
+
+        public void Kick(GameObject other)
+        {
             kickVector = new Vector2((other.Position.X - position.X) * kickForce, (other.Position.Y - position.Y) * kickForce);
             other.MovementVector = kickVector;
         }
@@ -207,13 +192,14 @@ namespace Go_Nutz
             pointKeeper.SetPoints(1);
             nutCount--;
         }
-<<<<<<< HEAD
+
 
         public virtual void Draw(Graphics dc)
         {
             dc.DrawImage(sprite, position.X, position.Y, sprite.Width * scaleFactor, sprite.Height * scaleFactor);
             dc.DrawRectangle(new Pen(Brushes.Red), CollisionBox.X, CollisionBox.Y, sprite.Width * scaleFactor, sprite.Height * scaleFactor);
-=======
+        }
+
         public void PlaceBomb()
         {
             ///<summary>
@@ -225,7 +211,29 @@ namespace Go_Nutz
             new BoomNut(new Vector2(position.X, position.Y), "Sprite");
             BoombsPlaced++;
             */
->>>>>>> Mikkel-Dev
+
+        }
+        public void Movement()
+        {
+            if (Keyboard.IsKeyDown(keyLeft))
+            {
+                position.X -= speed;
+            }
+
+            if (Keyboard.IsKeyDown(keyDown))
+            {
+                position.Y += speed;
+            }
+
+            if (Keyboard.IsKeyDown(keyRight))
+            {
+                position.X += speed;
+            }
+
+            if (Keyboard.IsKeyDown(keyUp))
+            {
+                position.Y -= speed;
+            }
         }
     }
 }
