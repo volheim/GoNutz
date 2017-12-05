@@ -11,13 +11,32 @@ namespace Go_Nutz
 {
     class GameWorld
     {
+        #region Fields
         private Graphics dc;
         private static List<GameObject> objects;
+        private static List<GameObject> add_Objects;
+        private static List<GameObject> remove_Objects;
         private DateTime endTime;
         private float currentFps;
         private BufferedGraphics backBuffer;
-
-
+        #endregion
+        #region Properties
+        public static List<GameObject> Add_Objects
+        {
+            get { return add_Objects; }
+            set { add_Objects = value; }
+        }
+        public static List<GameObject> Removed_Objects
+        {
+            get { return remove_Objects; }
+            set { remove_Objects = value; }
+        }
+        public static List<GameObject> Objects
+        {
+            get { return objects; }
+            set { objects = value; }
+        }
+        #endregion
         public GameWorld(Graphics dc, Rectangle displayRectangle)
         {
             //create's (Allocates) a buffer in memory with the size of the display
@@ -39,11 +58,6 @@ namespace Go_Nutz
 
         public virtual void Update(float fps)
         {
-            /*foreach (var item in objects)
-            {
-                item.Update(fps);
-
-            }*/
             foreach (GameObject go in objects)
             {
                 go.Update(currentFps);
