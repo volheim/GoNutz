@@ -5,37 +5,27 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Numerics;
+using System.Windows.Forms;
 
 namespace Go_Nutz
 {
-    class GameWorld
+    public class GameWorld
     {
-        #region Fields
+
+        GameObject go;
+        Player player;
+
+
         private Graphics dc;
         private static List<GameObject> objects;
-        private static List<GameObject> add_Objects;
-        private static List<GameObject> remove_Objects;
         private DateTime endTime;
         private float currentFps;
         private BufferedGraphics backBuffer;
-        #endregion
-        #region Properties
-        public static List<GameObject> Add_Objects
-        {
-            get { return add_Objects; }
-            set { add_Objects = value; }
-        }
-        public static List<GameObject> Removed_Objects
-        {
-            get { return remove_Objects; }
-            set { remove_Objects = value; }
-        }
-        public static List<GameObject> Objects
-        {
-            get { return objects; }
-            set { objects = value; }
-        }
-        #endregion
+
+        private static List<GameObject> objects1;
+
+        internal static List<GameObject> Objects { get => objects1; set => objects1 = value; }
+
         public GameWorld(Graphics dc, Rectangle displayRectangle)
         {
             //create's (Allocates) a buffer in memory with the size of the display
@@ -49,17 +39,23 @@ namespace Go_Nutz
         public void SetupWorld()
         {
             objects = new List<GameObject>();
-            GameObject player = new Player(new Vector2(1.0f, 5.0f),"Piperlok.png", 100, 100, 10);
+            GameObject player = new Player(new Vector2(1.0f, 5.0f),"Piperlok.png", 100, 100, 10, Keys.A, Keys.S, Keys.D, Keys.W, Keys.Q, Keys.E);
+            GameObject player2 = new Player(new Vector2(1.0f, 5.0f), "Piperlok.png", 100, 100, 10, Keys.J, Keys.K, Keys.L, Keys.I, Keys.U, Keys.O);
             objects.Add(player);
+            objects.Add(player2);
         }
 
-        public void Update(float fps)
+        public virtual void Update(float fps)
         {
             /*foreach (var item in objects)
             {
                 item.Update(fps);
 
             }*/
+            foreach (GameObject go in objects)
+            {
+                go.Update(currentFps);
+            }
         }
 
         public virtual void Draw()

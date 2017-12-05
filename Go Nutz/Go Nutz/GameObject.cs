@@ -16,15 +16,12 @@ namespace Go_Nutz
         protected RectangleF collisionbox;
         protected Image sprite;
         #endregion
-
         #region Properterties
-        
         public Vector2 Position
         {
             get { return position; }
             set { position = value; }
         }
-        
         public Vector2 MovementVector
         {
             get { return movementVector; }
@@ -53,23 +50,12 @@ namespace Go_Nutz
         {
 
         }
-        public virtual void OnCollision(GameObject other)
-        {
-
-        }
-
         public virtual void CheckCollision()
         {
-        
-        }
-        public virtual bool IsIntersectingWith(GameObject other)
-        {
+            foreach (GameObject gameObject in GameWorld.Objects)
+            {
 
-            return CollisionBox.IntersectsWith(other.CollisionBox);
+            }
         }
-        public virtual void Update()
-        {
-
-        }
-    } 
+    }
 }
