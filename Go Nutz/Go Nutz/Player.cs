@@ -17,14 +17,17 @@ namespace Go_Nutz
         int nutCount;
         int maxNuts;
         int kickForce;
+        bool canPlaceBomb;
         Vector2 kickVector;
         PlayerScore pointKeeper = new PlayerScore();
+        GameObject bomb;
         Keys keyLeft;
         Keys keyDown;
         Keys keyRight;
         Keys keyUp;
         Keys keyPlaceBomb;
         Keys keyDepositeNut;
+       
         #endregion
 
 
@@ -77,6 +80,7 @@ namespace Go_Nutz
         public override void Update(float fps)
         {
             Movement();
+            PlaceBomb();
         }
 
         public void Kick(GameObject other)
@@ -111,6 +115,21 @@ namespace Go_Nutz
             if (Keyboard.IsKeyDown(keyUp))
             {
                 position.Y -= speed;
+            }
+        }
+
+        public void PlaceBomb()
+        {
+            if (Keyboard.IsKeyDown(keyPlaceBomb))
+            {
+                canPlaceBomb = true;
+            }
+
+            if (canPlaceBomb)
+            {
+                bomb = new BoomNut(position, "Piperlok.png");
+                GameWorld.Objects.Add(bomb);
+                canPlaceBomb = false;
             }
         }
     }
