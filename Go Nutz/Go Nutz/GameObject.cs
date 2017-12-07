@@ -33,7 +33,7 @@ namespace Go_Nutz
             {
                 return new RectangleF(position.X, position.Y, sprite.Width, sprite.Height);
             }
-            set { CollisionBox = value; }
+            set { collisionbox = value; }
         }
         #endregion
 
