@@ -84,6 +84,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="IrrKlang\irrKlang.exp" />
+    <None Include="IrrKlang\irrKlang.lib" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -118,7 +120,9 @@
     <Content Include="Images\Squirrelanimation\SquiwwelWalk06.png" />
     <Content Include="Images\Squirrelanimation\SquiwwelWalk07.png" />
     <Content Include="Images\Squirrelanimation\SquiwwelWalk08.png" />
-    <Content Include="Images\Squiwwel.png" />
+    <Content Include="Images\Squiwwel.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\stumpHome.png" />
     <Content Include="Images\wallNUT.png" />
     <Content Include="IrrKlang\ikpFlac.dll" />
