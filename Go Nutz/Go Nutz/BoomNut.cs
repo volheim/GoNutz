@@ -22,6 +22,11 @@ namespace Go_Nutz
             get { return inMotion; }
             set { inMotion = value; }
         }
+        public bool PhaseAble
+        {
+            get { return phaseAble; }
+            set { phaseAble = value; }
+        }
         #endregion
 
         public BoomNut(Vector2 position, string imagePath) : base(position, imagePath)

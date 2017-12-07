@@ -75,10 +75,6 @@ namespace Go_Nutz
                 Font f = new Font("Arial", 16);
                 dc.DrawString(string.Format("FPS: {0}", currentFps), f, Brushes.Black, 520, 0);
 #endif
-                /*
-                Font t = new Font("Arial", 16);
-                dc.DrawString(string.Format("Health:" + "" + ss.Health), t, Brushes.Black, 0, 0);
-                */
             }
             //Renders the content of the buffered graphics context to the real context(Swap buffers)
             backBuffer.Render();

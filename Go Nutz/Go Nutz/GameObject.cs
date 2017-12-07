@@ -45,6 +45,7 @@ namespace Go_Nutz
         public void Draw(Graphics dc)
         {
             dc.DrawImage(sprite, position.X, position.Y, sprite.Width, sprite.Height);
+            dc.DrawRectangle(new Pen(Brushes.Green), CollisionBox.X, CollisionBox.Y, sprite.Width, sprite.Height);
         }
         public virtual void Update(float fps)
         {

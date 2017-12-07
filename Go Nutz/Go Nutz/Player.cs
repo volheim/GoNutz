@@ -108,7 +108,7 @@ namespace Go_Nutz
             }
             else if (other is BoomNut)
             {
-
+                HandleBoomNut(other as BoomNut);
             }
         }
         public bool IsIntersectingWith(GameObject other)
@@ -116,6 +116,7 @@ namespace Go_Nutz
             return CollisionBox.IntersectsWith(other.CollisionBox);
         }
         #endregion
+
         public override void Update(float fps)
         {
             CheckCollision();

@@ -12,11 +12,11 @@ namespace Go_Nutz
     {
         public void HandleBoomNut(BoomNut boomNut)
         {
-            if (true)
+            if (boomNut.PhaseAble)
             {
 
             }
-            if (boomNut.InMotion == true)
+            if (boomNut.InMotion)
             {
                 boomNut.MovementVector = new Vector2(0, 0);
                 boomNut.InMotion = false;
