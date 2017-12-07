@@ -21,10 +21,16 @@ namespace Go_Nutz
         public Form1()
         {
             InitializeComponent();
+            timer1.Start();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            if(dc == null)
+            {
+                dc = CreateGraphics();
+            }
+
             world = new GameWorld(CreateGraphics(), rect);
             world.SetupWorld();
         }
@@ -33,5 +39,6 @@ namespace Go_Nutz
         {
             world.GameLoop();
         }
+
     }
 }
