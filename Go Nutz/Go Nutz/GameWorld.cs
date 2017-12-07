@@ -19,6 +19,7 @@ namespace Go_Nutz
         private DateTime endTime;
         private float currentFps;
         private BufferedGraphics backBuffer;
+        
         #endregion
         #region Properties
         public static List<GameObject> Add_Objects
@@ -53,6 +54,7 @@ namespace Go_Nutz
             {
                 go.Update(currentFps);
             }
+            UpdateAnimation(fps);
         }
 
         public void Draw()

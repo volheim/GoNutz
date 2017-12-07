@@ -16,21 +16,20 @@ namespace Go_Nutz
             #region Lists;
             objects = new List<GameObject>();
             #endregion
-            
+
             #region Create Objects;
 
-            GameObject player = new Player(new Vector2(1.0f, 5.0f), "Piperlok.png", 10, 10, 10, 0.1f, new Keys[6] { Keys.A, Keys.S, Keys.D, Keys.W, Keys.Q, Keys.E });
-            GameObject player2 = new Player(new Vector2(800.0f, 5.0f), @"Images\Squiwwel.png", 10, 10, 10, 0.1f, new Keys[6] { Keys.J, Keys.K, Keys.L, Keys.I, Keys.U, Keys.O });
+            objects.Add(new Player(new Vector2(1.0f, 5.0f), @"Images\ChipmunkWalk\ChipmunkWalk01.png;Images\ChipmunkWalk\ChipmunkWalk02.png;Images\ChipmunkWalk\ChipmunkWalk03.png;Images\ChipmunkWalk\ChipmunkWalk04.png", 10, 10, 10, 0.1f, new Keys[6] { Keys.A, Keys.S, Keys.D, Keys.W, Keys.Q, Keys.E }));
+            objects.Add(new Player(new Vector2(800.0f, 5.0f), @"Images\Squirrelanimation\SquiwwelWalk01.png;Images\Squirrelanimation\SquiwwelWalk02.png;Images\Squirrelanimation\SquiwwelWalk03.png;Images\Squirrelanimation\SquiwwelWalk04.png;Images\Squirrelanimation\SquiwwelWalk05.png;Images\Squirrelanimation\SquiwwelWalk06.png;Images\Squirrelanimation\SquiwwelWalk07.png;Images\Squirrelanimation\SquiwwelWalk08.png", 10, 10, 10, 0.1f, new Keys[6] { Keys.J, Keys.K, Keys.L, Keys.I, Keys.U, Keys.O }));
 
 
 
 
 
             #endregion;
-
             #region Adds To Lists;
-            objects.Add(player);
-            objects.Add(player2);
+            
+            
 
 
 
@@ -38,7 +37,16 @@ namespace Go_Nutz
 
 
             #endregion;
+            
         }
 
+
+        void UpdateAnimation(float fps)
+        {
+            foreach (GameObject obj in Objects)
+            {
+                obj.UpdateAnimations(fps);
+            }
+        }
     }
 }

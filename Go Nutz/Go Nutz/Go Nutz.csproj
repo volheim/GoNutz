@@ -109,19 +109,43 @@
     <Content Include="Images\blood\Splat03.png" />
     <Content Include="Images\blood\Splat04.png" />
     <Content Include="Images\Chipmunk.png" />
-    <Content Include="Images\ChipmunkWalk\ChipmunkWalk01.png" />
-    <Content Include="Images\ChipmunkWalk\ChipmunkWalk02.png" />
-    <Content Include="Images\ChipmunkWalk\ChipmunkWalk03.png" />
-    <Content Include="Images\ChipmunkWalk\ChipmunkWalk04.png" />
+    <Content Include="Images\ChipmunkWalk\ChipmunkWalk01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\ChipmunkWalk\ChipmunkWalk02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\ChipmunkWalk\ChipmunkWalk03.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\ChipmunkWalk\ChipmunkWalk04.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Squirrelanimation\Squirrel walk preview.gif" />
-    <Content Include="Images\Squirrelanimation\SquiwwelWalk01.png" />
-    <Content Include="Images\Squirrelanimation\SquiwwelWalk02.png" />
-    <Content Include="Images\Squirrelanimation\SquiwwelWalk03.png" />
-    <Content Include="Images\Squirrelanimation\SquiwwelWalk04.png" />
-    <Content Include="Images\Squirrelanimation\SquiwwelWalk05.png" />
-    <Content Include="Images\Squirrelanimation\SquiwwelWalk06.png" />
-    <Content Include="Images\Squirrelanimation\SquiwwelWalk07.png" />
-    <Content Include="Images\Squirrelanimation\SquiwwelWalk08.png" />
+    <Content Include="Images\Squirrelanimation\SquiwwelWalk01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Squirrelanimation\SquiwwelWalk02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Squirrelanimation\SquiwwelWalk03.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Squirrelanimation\SquiwwelWalk04.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Squirrelanimation\SquiwwelWalk05.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Squirrelanimation\SquiwwelWalk06.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Squirrelanimation\SquiwwelWalk07.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Squirrelanimation\SquiwwelWalk08.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Squiwwel.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

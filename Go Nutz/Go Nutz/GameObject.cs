@@ -15,6 +15,7 @@ namespace Go_Nutz
         protected Vector2 movementVector;
         protected RectangleF collisionbox;
         protected Image sprite;
+        protected List<Image> animationFrames;
         #endregion
 
         #region Properterties
@@ -34,19 +35,23 @@ namespace Go_Nutz
             {
                 return new RectangleF(position.X, position.Y, sprite.Width, sprite.Height);
             }
-            set { CollisionBox = value; }
         }
         #endregion
 
         public GameObject(Vector2 position, string imagePath, float scaleFactor)
         {
             this.position = position;
-            sprite = Image.FromFile(imagePath);
             this.scaleFactor = scaleFactor;
-        }
+            string[] Imagepaths = imagePath.Split(';');
 
-        public GameObject()
-        {
+            this.animationFrames = new List<Image>();
+
+            foreach (string path in Imagepaths)
+            {
+                animationFrames.Add(Image.FromFile(path));
+            }
+
+            this.sprite = this.animationFrames[0];
         }
 
         public void Draw(Graphics dc)
@@ -54,10 +59,12 @@ namespace Go_Nutz
             dc.DrawImage(sprite, position.X, position.Y, sprite.Width*scaleFactor, sprite.Height*scaleFactor);
             dc.DrawRectangle(new Pen(Brushes.Green), CollisionBox.X, CollisionBox.Y, CollisionBox.Width * scaleFactor, CollisionBox.Height * scaleFactor);
         }
+
         public virtual void Update(float fps)
         {
-
+           
         }
+
         public virtual void CheckCollision()
         {
             foreach (GameObject gameObject in GameWorld.Objects)
