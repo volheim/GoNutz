@@ -103,7 +103,7 @@ namespace Go_Nutz
 
             }
         }
-        public virtual bool IsIntersectingWith(GameObject other)
+        public bool IsIntersectingWith(GameObject other)
         {
             return CollisionBox.IntersectsWith(other.CollisionBox);
         }
