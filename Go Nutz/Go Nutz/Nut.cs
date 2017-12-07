@@ -9,7 +9,7 @@ namespace Go_Nutz
 {
     class Nut : GameObject
     {
-        public Nut(Vector2 position, string imagePath) : base(position, imagePath)
+        public Nut(Vector2 position, string imagePath, float scaleFactor) : base(position, imagePath, scaleFactor)
         {
         }
 

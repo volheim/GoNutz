@@ -9,22 +9,18 @@ using System.Windows.Forms;
 
 namespace Go_Nutz
 {
-    class GameWorld
+    partial class GameWorld
     {
         #region Fields
         private Graphics dc;
-        private static List<Player> players;
-        private DateTime endTime;
-        private float currentFps;
-        private BufferedGraphics backBuffer;
-
-        private static List<GameObject> objects1;
-
         private static List<GameObject> objects;
         private static List<GameObject> add_Objects;
         private static List<GameObject> remove_Objects;
+        private DateTime endTime;
+        private float currentFps;
+        private BufferedGraphics backBuffer;
+        
         #endregion
-
         #region Properties
         public static List<GameObject> Add_Objects
         {
@@ -42,8 +38,6 @@ namespace Go_Nutz
             set { objects = value; }
         }
         #endregion
-
-
         public GameWorld(Graphics dc, Rectangle displayRectangle)
         {
             //create's (Allocates) a buffer in memory with the size of the display
@@ -51,41 +45,29 @@ namespace Go_Nutz
 
             //sets the graphics context to the graphics in the buffer
             this.dc = backBuffer.Graphics;
-            players = new List<Player>();
-        }
 
-        public void SetupWorld()
-        {
-            objects = new List<GameObject>();
-            GameObject player = new Player(new Vector2(1.0f, 5.0f),"Piperlok.png", 100, 100, 10, Keys.A, Keys.S, Keys.D, Keys.W, Keys.Q, Keys.E);
-            GameObject player2 = new Player(new Vector2(1.0f, 5.0f), "Piperlok.png", 100, 100, 10, Keys.J, Keys.K, Keys.L, Keys.I, Keys.U, Keys.O);
-            objects.Add(player);
-            objects.Add(player2);
         }
-
-        public virtual void Update(float fps)
+        
+        public void Update(float fps)
         {
             foreach (GameObject go in objects)
             {
                 go.Update(currentFps);
             }
+            UpdateAnimation(fps);
         }
 
-        public virtual void Draw()
+        public void Draw()
         {
             dc.Clear(Color.Red);
 
-            foreach (Player go in players)
+            foreach (GameObject go in objects)
             {
                 go.Draw(dc);
 #if DEBUG //This code will only be run in   debug mode
                 Font f = new Font("Arial", 16);
                 dc.DrawString(string.Format("FPS: {0}", currentFps), f, Brushes.Black, 520, 0);
 #endif
-                /*
-                Font t = new Font("Arial", 16);
-                dc.DrawString(string.Format("Health:" + "" + ss.Health), t, Brushes.Black, 0, 0);
-                */
             }
             //Renders the content of the buffered graphics context to the real context(Swap buffers)
             backBuffer.Render();

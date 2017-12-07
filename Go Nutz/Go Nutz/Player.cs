@@ -9,48 +9,28 @@ using System.Windows.Forms;
 
 namespace Go_Nutz
 {
-    class Player : GameObject
+    partial class Player : GameObject
     {
-
         #region Fields
         int health;
         float speed;
         int nutCount;
         int maxNuts;
-
-        Image sprite;
-        Vector2 position;
-        float scaleFactor;
-
         int kickForce;
         Vector2 kickVector;
-
-        PlayerScore pointKeeper = new PlayerScore();
-
-        Keys keyLeft;
-        Keys keyDown;
-        Keys keyRight;
-        Keys keyUp;
-        Keys keyPlaceBomb;
-        Keys keyDepositeNut;
+        PlayerScore pointKeeper;
+        Keys[] movementKeys;
         #endregion
 
 
-
-        public Player(Vector2 position, string imagePath, int health, float speed, int maxNuts, Keys keyLeft, Keys keyDown, Keys keyRight, Keys keyUp, Keys keyPlaceBomb, Keys keyDepositeNut) : base(position, imagePath)
+        public Player(Vector2 position, string imagePath, int health, float speed, int maxNuts, float scaleFactor, Keys[] movementKeys) : base(position, imagePath, scaleFactor)
         {
             this.position = position;
             //string[] imagePaths = imagePath.Split(';');
             this.health = health;
             this.speed = speed;
             this.maxNuts = maxNuts;
-            this.keyLeft = keyLeft;
-            this.keyDown = keyDown;
-            this.keyRight = keyRight;
-            this.keyUp = keyUp;
-            this.keyPlaceBomb = keyPlaceBomb;
-            this.keyDepositeNut = keyDepositeNut;
-            
+            this.movementKeys = movementKeys;
         }
 
         public int GetHealth()
@@ -76,8 +56,7 @@ namespace Go_Nutz
              */
         }
 
-        // Collision
-#region Collision
+        #region Collision
         public override void CheckCollision()
         {
             /// <summary>
@@ -94,13 +73,12 @@ namespace Go_Nutz
                 }
             }
         }
-
-        public override void OnCollision(GameObject other)
+        public void OnCollision(GameObject other)
         {
             ///<summary>
             ///depending on the other GameObject do something or nothing
             /// </summary>
-            if (other is Wall || other is NutObject)
+            if (other is Wall || other is NutObject || other is Player)
             {
                 //Checks top collision
                 if (position.Y + sprite.Height > other.CollisionBox.Top && position.Y + sprite.Height < other.CollisionBox.Top + 10)
@@ -130,47 +108,19 @@ namespace Go_Nutz
             }
             else if (other is BoomNut)
             {
-                /*
-                if(other.inMotion == true)
-                {
-                    other.MovementVector = new Vector2(0,0);
-                    other.inMotion = false;
-                }
-                */
-                Kick(other as BoomNut);
+                HandleBoomNut(other as BoomNut);
             }
-            base.OnCollision(other);
         }
-        public override bool IsIntersectingWith(GameObject other)
+        public bool IsIntersectingWith(GameObject other)
         {
             return CollisionBox.IntersectsWith(other.CollisionBox);
         }
-#endregion
-        public void Update()
+        #endregion
+
+        public override void Update(float fps)
         {
-            //Draw(dc);
-            /*
-            Keys[] movementKeys = new Keys[6] { Keys.A, Keys.S, Keys.D, Keys.W, Keys.E, Keys.Q };
-            if (Keyboard.IsKeyDown(movementKeys[0]))
-            {
-                this.position.X -= 1;
-            }
-            */
-
-
-
-            //PlaceHolder Code
-            /*
-            if (bombsPlaced < BombCap)
-                {
-                    PlaceBomb();
-                }
-            */
-        }
-
-        public void Kick(BoomNut other)
-        {
-            //the player kicks the bomb in front of him forward based on his direction.
+            CheckCollision();
+            Movement();
         }
 
         public void Kick(GameObject other)
@@ -179,59 +129,29 @@ namespace Go_Nutz
             other.MovementVector = kickVector;
         }
 
-        public RectangleF CollisionBox
-        {
-            get
-            {
-                return new RectangleF(position.X, position.Y, sprite.Width * scaleFactor, sprite.Height * scaleFactor);
-            }
-            set { CollisionBox = value; }
-        }
-
         public void DepositNuts()
         {
             pointKeeper.SetPoints(1);
             nutCount--;
         }
-
-
-        public virtual void Draw(Graphics dc)
-        {
-            dc.DrawImage(sprite, position.X, position.Y, sprite.Width * scaleFactor, sprite.Height * scaleFactor);
-            dc.DrawRectangle(new Pen(Brushes.Red), CollisionBox.X, CollisionBox.Y, sprite.Width * scaleFactor, sprite.Height * scaleFactor);
-        }
-
-        public void PlaceBomb()
-        {
-            ///<summary>
-            ///the player places a bomb at his feet.
-            ///as long as have not placed more all his bombs.
-            /// </summary>
-            //PlaceHolder Code
-            /*
-            new BoomNut(new Vector2(position.X, position.Y), "Sprite");
-            BoombsPlaced++;
-            */
-
-        }
         public void Movement()
         {
-            if (Keyboard.IsKeyDown(keyLeft))
+            if (Keyboard.IsKeyDown(movementKeys[0]))
             {
                 position.X -= speed;
             }
 
-            if (Keyboard.IsKeyDown(keyDown))
+            if (Keyboard.IsKeyDown(movementKeys[1]))
             {
                 position.Y += speed;
             }
 
-            if (Keyboard.IsKeyDown(keyRight))
+            if (Keyboard.IsKeyDown(movementKeys[2]))
             {
                 position.X += speed;
             }
 
-            if (Keyboard.IsKeyDown(keyUp))
+            if (Keyboard.IsKeyDown(movementKeys[3]))
             {
                 position.Y -= speed;
             }
