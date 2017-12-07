@@ -128,6 +128,7 @@
     <Content Include="IrrKlang\ikpFlac.dll" />
     <Content Include="IrrKlang\ikpMP3.dll" />
     <Content Include="IrrKlang\irrKlang.dll" />
+    <Content Include="IrrKlang\irrKlang.NET4.dll" />
     <Content Include="Piperlok.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
