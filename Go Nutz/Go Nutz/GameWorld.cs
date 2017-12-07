@@ -18,8 +18,6 @@ namespace Go_Nutz
         private float currentFps;
         private BufferedGraphics backBuffer;
 
-        private static List<GameObject> objects1;
-
         private static List<GameObject> objects;
         private static List<GameObject> add_Objects;
         private static List<GameObject> remove_Objects;
