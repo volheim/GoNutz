@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace Go_Nutz
 {
-    abstract class GameObject
+    abstract partial class GameObject
     {
         #region Fields
         protected Vector2 position;
@@ -16,6 +16,7 @@ namespace Go_Nutz
         protected RectangleF collisionbox;
         protected Image sprite;
         #endregion
+
         #region Properterties
         public Vector2 Position
         {
@@ -37,15 +38,21 @@ namespace Go_Nutz
         }
         #endregion
 
-        public GameObject(Vector2 position, string imagePath)
+        public GameObject(Vector2 position, string imagePath, float scaleFactor)
         {
             this.position = position;
             sprite = Image.FromFile(imagePath);
+            this.scaleFactor = scaleFactor;
         }
+
+        public GameObject()
+        {
+        }
+
         public void Draw(Graphics dc)
         {
-            dc.DrawImage(sprite, position.X, position.Y, sprite.Width, sprite.Height);
-            dc.DrawRectangle(new Pen(Brushes.Green), CollisionBox.X, CollisionBox.Y, CollisionBox.Width, CollisionBox.Height);
+            dc.DrawImage(sprite, position.X, position.Y, sprite.Width*scaleFactor, sprite.Height*scaleFactor);
+            dc.DrawRectangle(new Pen(Brushes.Green), CollisionBox.X, CollisionBox.Y, CollisionBox.Width * scaleFactor, CollisionBox.Height * scaleFactor);
         }
         public virtual void Update(float fps)
         {

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Go_Nutz
 {
-    class GameWorld
+    partial class GameWorld
     {
         #region Fields
         private Graphics dc;
@@ -46,16 +46,7 @@ namespace Go_Nutz
             this.dc = backBuffer.Graphics;
 
         }
-
-        public void SetupWorld()
-        {
-            objects = new List<GameObject>();
-            GameObject player = new Player(new Vector2(1.0f, 5.0f), "Piperlok.png", 10, 10, 10, new Keys[6] {Keys.A, Keys.S, Keys.D, Keys.W, Keys.Q, Keys.E});
-            GameObject player2 = new Player(new Vector2(800.0f, 5.0f), @"Images\Squiwwel.png", 10, 10, 10,new Keys[6] { Keys.J, Keys.K, Keys.L, Keys.I, Keys.U, Keys.O });
-            objects.Add(player);
-            objects.Add(player2);
-        }
-
+        
         public void Update(float fps)
         {
             foreach (GameObject go in objects)

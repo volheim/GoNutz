@@ -59,6 +59,8 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="GameObject.cs" />
+    <Compile Include="GameObject%28Morten%29.cs" />
+    <Compile Include="GameWorld%28Objects%29.cs" />
     <Compile Include="HomeTree.cs" />
     <Compile Include="IrrKlang\SoundPlayer.cs" />
     <Compile Include="Keyboard.cs" />

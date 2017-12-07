@@ -17,7 +17,7 @@ namespace Go_Nutz
             get { return power; }
             set { power = value; }
         }
-        public Explosion(Vector2 position, string imagePath, int power) : base(position, imagePath)
+        public Explosion(Vector2 position, string imagePath, int power, float scaleFactor) : base(position, imagePath, scaleFactor)
         {
             this.power = power;
         }

@@ -29,7 +29,7 @@ namespace Go_Nutz
         }
         #endregion
 
-        public BoomNut(Vector2 position, string imagePath) : base(position, imagePath)
+        public BoomNut(Vector2 position, string imagePath, float scaleFactor) : base(position, imagePath, scaleFactor)
         {
             phaseAble = true;
             inMotion = false;
@@ -37,7 +37,7 @@ namespace Go_Nutz
 
         public void Explode()
         {
-            GameWorld.Objects.Add(new Explosion(new Vector2(position.X, position.X), "", 1));
+            GameWorld.Objects.Add(new Explosion(new Vector2(position.X, position.X), "", 1, 1));
             GameWorld.Objects.Remove(this);
         }
         public override void CheckCollision()
