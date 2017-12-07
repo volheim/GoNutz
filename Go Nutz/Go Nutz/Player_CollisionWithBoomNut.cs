@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Numerics;
+using Go_Nutz;
 
 namespace Go_Nutz
 {
@@ -11,11 +12,14 @@ namespace Go_Nutz
     {
         public void HandleBoomNut(BoomNut boomNut)
         {
-            if(!boomNut.pha)
+            if (true)
+            {
+
+            }
             if (boomNut.InMotion == true)
             {
                 boomNut.MovementVector = new Vector2(0, 0);
-                boomNut.inMotion = false;
+                boomNut.InMotion = false;
             }
 
             Kick(boomNut);

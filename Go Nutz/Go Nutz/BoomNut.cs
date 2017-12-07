@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Go_Nutz
 {
-    class BoomNut : Nut
+    class BoomNut : GameObject
     {
         #region Feilds
         //when a player places a bomp allow him/her to Phase through it

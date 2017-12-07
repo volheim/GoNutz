@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="irrKlang.NET4">
+      <HintPath>..\..\..\..\..\Downloads\irrKlang-64bit-1.5.0\irrKlang-64bit-1.5.0\bin\dotnet-4-64\irrKlang.NET4.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
@@ -57,6 +60,7 @@
     </Compile>
     <Compile Include="GameObject.cs" />
     <Compile Include="HomeTree.cs" />
+    <Compile Include="IrrKlang\SoundPlayer.cs" />
     <Compile Include="Keyboard.cs" />
     <Compile Include="Nut.cs" />
     <Compile Include="NutObject.cs" />
@@ -94,11 +98,38 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\acornDrawn.png" />
+    <Content Include="Images\acornDrawn_1..png" />
+    <Content Include="Images\blood\Splat01.png" />
+    <Content Include="Images\blood\Splat02.png" />
+    <Content Include="Images\blood\Splat03.png" />
+    <Content Include="Images\blood\Splat04.png" />
+    <Content Include="Images\Chipmunk.png" />
+    <Content Include="Images\ChipmunkWalk\ChipmunkWalk01.png" />
+    <Content Include="Images\ChipmunkWalk\ChipmunkWalk02.png" />
+    <Content Include="Images\ChipmunkWalk\ChipmunkWalk03.png" />
+    <Content Include="Images\ChipmunkWalk\ChipmunkWalk04.png" />
+    <Content Include="Images\Squirrelanimation\Squirrel walk preview.gif" />
+    <Content Include="Images\Squirrelanimation\SquiwwelWalk01.png" />
+    <Content Include="Images\Squirrelanimation\SquiwwelWalk02.png" />
+    <Content Include="Images\Squirrelanimation\SquiwwelWalk03.png" />
+    <Content Include="Images\Squirrelanimation\SquiwwelWalk04.png" />
+    <Content Include="Images\Squirrelanimation\SquiwwelWalk05.png" />
+    <Content Include="Images\Squirrelanimation\SquiwwelWalk06.png" />
+    <Content Include="Images\Squirrelanimation\SquiwwelWalk07.png" />
+    <Content Include="Images\Squirrelanimation\SquiwwelWalk08.png" />
+    <Content Include="Images\Squiwwel.png" />
+    <Content Include="Images\stumpHome.png" />
+    <Content Include="Images\wallNUT.png" />
+    <Content Include="IrrKlang\ikpFlac.dll" />
+    <Content Include="IrrKlang\ikpMP3.dll" />
+    <Content Include="IrrKlang\irrKlang.dll" />
     <Content Include="Piperlok.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Images\Sprites\" />
     <Folder Include="obj\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
