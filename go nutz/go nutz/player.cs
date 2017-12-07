@@ -23,7 +23,7 @@ namespace Go_Nutz
         #endregion
 
 
-        public Player(Vector2 position, string imagePath, int health, float speed, int maxNuts, Keys[] movementKeys) : base(position, imagePath)
+        public Player(Vector2 position, string imagePath, int health, float speed, int maxNuts, float scaleFactor, Keys[] movementKeys) : base(position, imagePath, scaleFactor)
         {
             this.position = position;
             //string[] imagePaths = imagePath.Split(';');
