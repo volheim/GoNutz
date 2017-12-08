@@ -14,9 +14,11 @@ namespace Go_Nutz
         float scaleFactor;
         #endregion
 
-        public Wall(Vector2 position, string imagePath, float scaleFactor) : base(position, imagePath)
+        public Wall(Vector2 position, string imagePath, float scaleFactor) : base(position, imagePath, scaleFactor)
         {
              
         }
+
+        
     }
 }

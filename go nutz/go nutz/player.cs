@@ -81,38 +81,31 @@ namespace Go_Nutz
             if (other is Wall || other is NutObject || other is Player)
             {
                 //Checks top collision
-                if (position.Y + sprite.Height > other.CollisionBox.Top && position.Y + sprite.Height < other.CollisionBox.Top + 10)
                 if (CollisionBox.Bottom > other.CollisionBox.Top && CollisionBox.Bottom < other.CollisionBox.Top + 30)
                 {
-                    position.Y = other.CollisionBox.Top - collisionbox.Height;
                     position.Y = other.CollisionBox.Top - CollisionBox.Height;
                 }
                 //Checks bottom collision
-                else if (position.Y > other.CollisionBox.Bottom && position.Y < other.CollisionBox.Bottom - 10)
                 else if (CollisionBox.Top > other.CollisionBox.Bottom && CollisionBox.Top < other.CollisionBox.Bottom - 30)
                 {
                     position.Y = other.CollisionBox.Bottom;
                 }
                 //Checks right collision
-                else if (collisionbox.Right >= other.CollisionBox.Left && collisionbox.Right <= other.CollisionBox.Left + 20)
                 else if (CollisionBox.Right >= other.CollisionBox.Left && CollisionBox.Right <= other.CollisionBox.Left + 20)
                 {
                     position.X = other.CollisionBox.Left - CollisionBox.Width;
                 }
                 //Checks left collision
-                else if (collisionbox.Left >= other.CollisionBox.Right - 20 && collisionbox.Left <= other.CollisionBox.Right)
                 else if (CollisionBox.Left >= other.CollisionBox.Right - 20 && CollisionBox.Left <= other.CollisionBox.Right)
                 {
                     position.X = other.CollisionBox.Right;
                 }
             }
-            else if (other is PowerUp)
             else if (other is PowerUp) //if the object is powerup.
             {
 
                 GameWorld.Objects.Remove(other);
             }
-            else if (other is BoomNut)
             else if (other is BoomNut) // if the other is BoomNut.
             {
                 HandleBoomNut(other as BoomNut);

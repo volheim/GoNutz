@@ -63,6 +63,7 @@
     <Compile Include="GameObject%28Morten%29.cs" />
     <Compile Include="GameWorld%28Objects%29.cs" />
     <Compile Include="HomeTree.cs" />
+    <Compile Include="HomeTree2.cs" />
     <Compile Include="IrrKlang\SoundPlayer.cs" />
     <Compile Include="Keyboard.cs" />
     <Compile Include="Nut.cs" />
@@ -103,7 +104,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\acornDrawn.png" />
+    <Content Include="Images\acornDrawn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\acornDrawn_1..png" />
     <Content Include="Images\blood\Splat01.png" />
     <Content Include="Images\blood\Splat02.png" />
@@ -150,15 +153,14 @@
     <Content Include="Images\Squiwwel.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\stumpHome.png" />
+    <Content Include="Images\stumpHome.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\wallNUT.png" />
     <Content Include="IrrKlang\ikpFlac.dll" />
     <Content Include="IrrKlang\ikpMP3.dll" />
     <Content Include="IrrKlang\irrKlang.dll" />
     <Content Include="IrrKlang\irrKlang.NET4.dll" />
-    <Content Include="Piperlok.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\Sprites\" />

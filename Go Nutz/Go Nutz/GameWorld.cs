@@ -14,19 +14,15 @@ namespace Go_Nutz
         #region Fields
         private Graphics dc;
         private static List<GameObject> objects;
-        private static List<GameObject> add_Objects;
         private static List<GameObject> remove_Objects;
+        private static Stack<GameObject> Nuts;
         private DateTime endTime;
         private float currentFps;
         private BufferedGraphics backBuffer;
         
         #endregion
         #region Properties
-        public static List<GameObject> Add_Objects
-        {
-            get { return add_Objects; }
-            set { add_Objects = value; }
-        }
+
         public static List<GameObject> Removed_Objects
         {
             get { return remove_Objects; }
@@ -60,13 +56,16 @@ namespace Go_Nutz
         public void Draw()
         {
             dc.Clear(Color.Red);
-
+            Font f = new Font("Arial", 16);
             foreach (GameObject go in objects)
             {
                 go.Draw(dc);
+                dc.DrawString(string.Format("Eaten Nuts: {0}", currentFps), f, Brushes.Black, 220, 0);
+                dc.DrawString(string.Format("Eaten Nuts: {0}", currentFps), f, Brushes.Black, 800, 0);
+                dc.DrawString(string.Format("P1 Score: {0}", currentFps), f, Brushes.Black, 0, 600);
+                dc.DrawString(string.Format("P2 Score: {0}", currentFps), f, Brushes.Black, 1055, 600);
 #if DEBUG //This code will only be run in   debug mode
-                Font f = new Font("Arial", 16);
-                dc.DrawString(string.Format("FPS: {0}", currentFps), f, Brushes.Black, 520, 0);
+                dc.DrawString(string.Format("FPS: {0}", currentFps), f, Brushes.Black, 550, 0);
 #endif
             }
             //Renders the content of the buffered graphics context to the real context(Swap buffers)
