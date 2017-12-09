@@ -7,16 +7,15 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Numerics;
 
-
-
 namespace Go_Nutz
 {
-    class HomeTree : GameObject
+    class HomeTree2 : GameObject
     {
+        //Jeg var nød til at lave en HomeTree2 for at lave Collision til den
         private float scaleFactor;
         private float scaleFactorWidth = 0.2f;
-        
-        public HomeTree(Vector2 position, string imagePath, float scaleFactor) : base(position,imagePath,scaleFactor)
+
+        public HomeTree2(Vector2 position, string imagePath, float scaleFactor) : base(position, imagePath, scaleFactor)
         {
             this.scaleFactor = scaleFactor;
         }
@@ -25,7 +24,7 @@ namespace Go_Nutz
         {
             get
             {
-                return new RectangleF(position.X, position.Y, sprite.Width*scaleFactorWidth , sprite.Height*scaleFactor);
+                return new RectangleF(position.X-104, position.Y, sprite.Width * scaleFactorWidth, sprite.Height * scaleFactor);
             }
         }
     }
