@@ -14,11 +14,10 @@ namespace Go_Nutz
         #region Fields
         int health;
         float speed;
-        int nutCount;
+        Nut nutCount;
         int maxNuts;
         int kickForce;
         Vector2 kickVector;
-        PlayerScore pointKeeper;
         Keys[] movementKeys;
         #endregion
 
@@ -37,17 +36,19 @@ namespace Go_Nutz
         {
             return health;
         }
+
         public int SetHealth(int val)
         {
             health += val;
             return health;
         }
+
         public void LoseHealth()
         {
             //lose 1 health
             SetHealth(-1);
             //drop nuts
-            nutCount = 0;
+            
 
             /* pseudo code:
              * move to home tree
@@ -123,7 +124,9 @@ namespace Go_Nutz
             //Checks the players Collision
             CheckCollision();
             Movement();
+            
         }
+
 
         public void Kick(GameObject other)
         {
@@ -133,8 +136,30 @@ namespace Go_Nutz
 
         public void DepositNuts()
         {
-            pointKeeper.SetPoints(1);
-            nutCount--;
+            if (Keyboard.IsKeyDown(Keys.Q) && nutCount.P1Nuts > 0 && nutCount.P1Nuts <= 6)
+            {   
+                
+                PlayerScore p1 = new PlayerScore();
+                p1.Points_p1 = 1;
+
+
+                nutCount.P1Nuts--;
+                
+            }
+
+            if (Keyboard.IsKeyDown(Keys.U) && nutCount.P2Nuts > 0 && nutCount.P2Nuts <= 6)
+            {
+                PlayerScore p2 = new PlayerScore();
+                p2.Points_p2 = 1;
+
+                if(nutCount.P2Nuts < 0)
+                {
+
+                    nutCount.P2Nuts--;
+                }
+            }
+
+
         }
         public void Movement()
         {
