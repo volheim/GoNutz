@@ -62,10 +62,12 @@
     <Compile Include="GameObject.cs" />
     <Compile Include="GameObject%28Morten%29.cs" />
     <Compile Include="GameWorld%28Objects%29.cs" />
+    <Compile Include="GameWorld_Allan.cs" />
     <Compile Include="HomeTree.cs" />
     <Compile Include="HomeTree2.cs" />
     <Compile Include="IrrKlang\SoundPlayer.cs" />
     <Compile Include="Keyboard.cs" />
+    <Compile Include="MapLoader.cs" />
     <Compile Include="Nut.cs" />
     <Compile Include="NutObject.cs" />
     <Compile Include="Player.cs" />
@@ -104,6 +106,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="51zeHiyhNOL._SY445_.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\acornDrawn.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
