@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Go_Nutz
 {
-    class BoomNut : Nut
+    class BoomNut : GameObject
     {
         #region Feilds
         //when a player places a bomp allow him/her to Phase through it
@@ -22,9 +22,14 @@ namespace Go_Nutz
             get { return inMotion; }
             set { inMotion = value; }
         }
+        public bool PhaseAble
+        {
+            get { return phaseAble; }
+            set { phaseAble = value; }
+        }
         #endregion
 
-        public BoomNut(Vector2 position, string imagePath) : base(position, imagePath)
+        public BoomNut(Vector2 position, string imagePath, float scaleFactor) : base(position, imagePath, scaleFactor)
         {
             phaseAble = true;
             inMotion = false;
@@ -32,7 +37,7 @@ namespace Go_Nutz
 
         public void Explode()
         {
-            GameWorld.Objects.Add(new Explosion(new Vector2(position.X, position.X), "", 1));
+            GameWorld.Objects.Add(new Explosion(new Vector2(position.X, position.X), "", 1, 1));
             GameWorld.Objects.Remove(this);
         }
         public override void CheckCollision()
@@ -50,11 +55,11 @@ namespace Go_Nutz
                     }
                 }
             }
-        }   
+        }
         public void Update()
         {
             //if the Boomnut is moving check collision else don't shuold increase performance
-            if(inMotion = true)
+            if (inMotion = true)
             {
                 CheckCollision();
             }
@@ -89,7 +94,7 @@ namespace Go_Nutz
                     position.X = other.CollisionBox.Left - collisionbox.Width;
                 }
                 //Checks left collision
-                else if(collisionbox.Left >= other.CollisionBox.Right -20 && collisionbox.Left <= other.CollisionBox.Right)
+                else if (collisionbox.Left >= other.CollisionBox.Right - 20 && collisionbox.Left <= other.CollisionBox.Right)
                 {
                     movementVector = new Vector2(0, 0);
                     inMotion = false;
@@ -98,7 +103,7 @@ namespace Go_Nutz
 
             }
         }
-        public virtual bool IsIntersectingWith(GameObject other)
+        public bool IsIntersectingWith(GameObject other)
         {
             return CollisionBox.IntersectsWith(other.CollisionBox);
         }
