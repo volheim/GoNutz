@@ -29,14 +29,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.GameLoop = new System.Windows.Forms.Timer(this.components);
+            this.ButtomCooldown = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // timer1
+            // GameLoop
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 25;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.GameLoop.Enabled = true;
+            this.GameLoop.Interval = 25;
+            this.GameLoop.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // ButtomCooldown
+            // 
+            this.ButtomCooldown.Enabled = true;
+            this.ButtomCooldown.Interval = 200;
+            this.ButtomCooldown.Tick += new System.EventHandler(this.ButtomCooldown_Tick);
             // 
             // Form1
             // 
@@ -57,7 +64,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer GameLoop;
+        private System.Windows.Forms.Timer ButtomCooldown;
     }
 }
 

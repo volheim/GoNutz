@@ -60,6 +60,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="GameObject.cs" />
+    <Compile Include="GameWorld_Allan.cs" />
     <Compile Include="GameObject%28Morten%29.cs" />
     <Compile Include="GameWorld%28Objects%29.cs" />
     <Compile Include="GameWorld_Allan.cs" />
@@ -71,9 +72,12 @@
     <Compile Include="Nut.cs" />
     <Compile Include="NutObject.cs" />
     <Compile Include="Player.cs" />
-    <Compile Include="PlayerScore.cs" />
     <Compile Include="Player_CollisionWithBoomNut.cs" />
+<<<<<<< HEAD
     <Compile Include="Player_PlaceBomb.cs" />
+=======
+    <Compile Include="PlayerScore.cs" />
+>>>>>>> master
     <Compile Include="PowerUp.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -110,6 +114,12 @@
     <Content Include="51zeHiyhNOL._SY445_.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+<<<<<<< HEAD
+=======
+    <Content Include="classic_bitmap.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+>>>>>>> master
     <Content Include="Images\acornDrawn.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

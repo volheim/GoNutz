@@ -11,6 +11,7 @@ namespace Go_Nutz
 {
     class GameWorld_Allan
     {
+        /*
         #region Fields
         private Graphics dc;
         private static List<Player> players;
@@ -42,13 +43,13 @@ namespace Go_Nutz
             set { objects = value; }
         }
         #endregion
-
+        */
         #region generate properties
         private static int playerNumber;
         private static int homeNumber;
         #endregion
-
-        public GameWorld_Allan(Graphics dc, Rectangle displayRectangle)
+        /*
+        public GameWorld(Graphics dc, Rectangle displayRectangle)
         {
             //create's (Allocates) a buffer in memory with the size of the display
             this.backBuffer = BufferedGraphicsManager.Current.Allocate(dc, displayRectangle);
@@ -57,16 +58,20 @@ namespace Go_Nutz
             this.dc = backBuffer.Graphics;
             players = new List<Player>();
         }
-
+        */
         public void SetupWorld()
         {
+            MapLoader ML = new MapLoader();
+            ML.GenerateLevelBitmap(0);
+            /*
             objects = new List<GameObject>();
             GameObject player = new Player(new Vector2(1.0f, 5.0f), "Piperlok.png", 100, 100, 10,0.1f,new Keys[6] { Keys.A, Keys.S, Keys.D, Keys.W, Keys.Q, Keys.E });
             GameObject player2 = new Player(new Vector2(1.0f, 5.0f), "Piperlok.png", 100, 100, 10,0.1f,new Keys[6] { Keys.J, Keys.K, Keys.L, Keys.I, Keys.U, Keys.O });
             objects.Add(player);
             objects.Add(player2);
+            */
         }
-
+        /*
         public virtual void Update(float fps)
         {
             foreach (GameObject go in objects)
@@ -89,7 +94,7 @@ namespace Go_Nutz
                 /*
                 Font t = new Font("Arial", 16);
                 dc.DrawString(string.Format("Health:" + "" + ss.Health), t, Brushes.Black, 0, 0);
-                */
+                
             }
             //Renders the content of the buffered graphics context to the real context(Swap buffers)
             backBuffer.Render();
@@ -116,6 +121,7 @@ namespace Go_Nutz
             Update(currentFps);
             Draw();
         }
+        */
         public static void GenerateBlock(int x, int y)
         {
 
@@ -128,15 +134,12 @@ namespace Go_Nutz
         {
             if (playerNumber == 0)
             {
-                /* make new player objecct
-                 * set sprite as squirrel image
-                 * set position as x,y
-                 * include control keys
-                 */
+                GameObject player = new Player(new Vector2(x, y), "Piperlok.png", 100, 100, 10, Keys.A, Keys.S, Keys.D, Keys.W, Keys.Q, Keys.E);
                 playerNumber++;
             }
-            if (playerNumber == 1)
+            else if (playerNumber == 1)
             {
+                GameObject player2 = new Player(new Vector2(1.0f, 5.0f), "Piperlok.png", 100, 100, 10, Keys.J, Keys.K, Keys.L, Keys.I, Keys.U, Keys.O);
                 /* make new player objecct
                  * set sprite as chipmunk image
                  * set position as x,y

@@ -16,16 +16,26 @@ namespace Go_Nutz
         private Player player;
         private float scaleFactor;
         private float scaleFactorWidth = 0.2f;
+<<<<<<< HEAD
         private bool direction;
         private RectangleF deliverZone;
         public HomeTree(Vector2 position, string imagePath, float scaleFactor, Player player, bool direction) : base(position,imagePath,scaleFactor)
+=======
+        
+        public HomeTree(Vector2 position, string imagePath, float scaleFactor, Player player) : base(position,imagePath,scaleFactor)
+>>>>>>> master
         {
             this.scaleFactor = scaleFactor;
             this.player = player;
             this.direction = direction;
         }
+<<<<<<< HEAD
         //Lav en extra collision boc i stedet
       /*  public override RectangleF CollisionBox
+=======
+    #region Collision;
+        public override RectangleF CollisionBox
+>>>>>>> master
         {
             get
             {
@@ -53,10 +63,34 @@ namespace Go_Nutz
                 }
             }
         }
+<<<<<<< HEAD
         public override void Draw(Graphics dc)
         {
             dc.DrawRectangle(new Pen(Brushes.Blue), deliverZone.X, deliverZone.Y, deliverZone.Width, deliverZone.Height);
             base.Draw(dc);
+=======
+
+        public bool IsIntersectingWith(GameObject other)
+        {
+            return CollisionBox.IntersectsWith(other.CollisionBox);
+        }
+        public override void CheckCollision()
+        {
+            /// <summary>
+            /// Check if a GameObject Collides with anohter
+            /// </summary>
+            foreach (GameObject gameObject in GameWorld.Objects)
+            {
+                if (gameObject == this)
+                {
+                    //if (this.IsIntersectingWith(Player))
+                    //{
+                    //    OnCollision(gameObject);
+                    //}
+                }
+            }
+>>>>>>> master
         }
     }
+    #endregion;
 }
