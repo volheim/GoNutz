@@ -69,8 +69,8 @@
     <Compile Include="Nut.cs" />
     <Compile Include="NutObject.cs" />
     <Compile Include="Player.cs" />
-    <Compile Include="PlayerScore.cs" />
     <Compile Include="Player_CollisionWithBoomNut.cs" />
+    <Compile Include="PlayerScore.cs" />
     <Compile Include="PowerUp.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

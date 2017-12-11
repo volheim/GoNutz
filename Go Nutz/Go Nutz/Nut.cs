@@ -11,11 +11,11 @@ namespace Go_Nutz
 {
     class Nut : GameObject
     {
-        int p1Nuts = 0;
-        int p2Nuts = 0;
+        static int p1Nuts = 2;
+        static int p2Nuts = 1;
 
-        public int P1Nuts { get => p1Nuts; set => p1Nuts = value; }
-        public int P2Nuts { get => p2Nuts; set => p2Nuts = value; }
+        public static int P1Nuts { get => p1Nuts; set => p1Nuts = value; }
+        public static int P2Nuts { get => p2Nuts; set => p2Nuts = value; }
 
         public Nut(Vector2 position, string imagePath, float scaleFactor) : base(position, imagePath, scaleFactor)
         {
@@ -31,19 +31,21 @@ namespace Go_Nutz
         {
 
         }
-
+        Font f = new Font("Arial", 16);
         public override void Draw(Graphics dc)
         {
-            
+
             //SpawnRandom();
-            
-            
+
+            dc.DrawString(string.Format("P1 Eaten Nuts: {0}", P1Nuts), f, Brushes.Black, 220, 0);
+            dc.DrawString(string.Format("P2 Eaten Nuts: {0}", P2Nuts), f, Brushes.Black, 800, 0);
 
         }
 
         public override void Update(float fps)
         {
             //SpawnRandom();
+            
         }
 
         public void SpawnRandom()

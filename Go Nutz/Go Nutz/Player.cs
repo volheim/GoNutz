@@ -14,7 +14,6 @@ namespace Go_Nutz
         #region Fields
         int health;
         float speed;
-        Nut nutCount;
         int maxNuts;
         int kickForce;
         Vector2 kickVector;
@@ -31,6 +30,8 @@ namespace Go_Nutz
             this.maxNuts = maxNuts;
             this.movementKeys = movementKeys;
         }
+
+
 
         public int GetHealth()
         {
@@ -119,6 +120,15 @@ namespace Go_Nutz
         }
         #endregion
 
+        Font f = new Font("Arial", 16);
+        public override void Draw(Graphics dc)
+        {
+            dc.DrawString(string.Format("P1 Score: {0}", Points_p1), f, Brushes.Black, 0, 600);
+            dc.DrawString(string.Format("P2 Score: {0}", Points_p2), f, Brushes.Black, 1055, 600);
+
+            base.Draw(dc);
+        }
+
         public override void Update(float fps)
         {
             //Checks the players Collision
@@ -126,41 +136,38 @@ namespace Go_Nutz
             Movement();
             
         }
-
-
+        
         public void Kick(GameObject other)
         {
             kickVector = new Vector2((other.Position.X - position.X) * kickForce, (other.Position.Y - position.Y) * kickForce);
             other.MovementVector = kickVector;
         }
 
-        public void DepositNuts()
+        public static void DepositNuts()
         {
-            if (Keyboard.IsKeyDown(Keys.Q) && nutCount.P1Nuts > 0 && nutCount.P1Nuts <= 6)
-            {   
-                
-                PlayerScore p1 = new PlayerScore();
-                p1.Points_p1 = 1;
-
-
-                nutCount.P1Nuts--;
-                
-            }
-
-            if (Keyboard.IsKeyDown(Keys.U) && nutCount.P2Nuts > 0 && nutCount.P2Nuts <= 6)
+           
+            if ((Keyboard.IsKeyDown(Keys.Q)) && Nut.P1Nuts > 0 && Nut.P1Nuts <= 6)
             {
-                PlayerScore p2 = new PlayerScore();
-                p2.Points_p2 = 1;
 
-                if(nutCount.P2Nuts < 0)
-                {
+                Points_p1 += 1;
+                
 
-                    nutCount.P2Nuts--;
-                }
+                Nut.P1Nuts--;
+                
             }
 
+            if (Keyboard.IsKeyDown(Keys.U) && Nut.P2Nuts > 0 && Nut.P2Nuts <= 6)
+            {
+                
+                Points_p2 += 1;
+                
 
+                Nut.P2Nuts--;
+                
+            }
+            
         }
+        
         public void Movement()
         {
             ///<summary>
