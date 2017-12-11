@@ -14,11 +14,9 @@ namespace Go_Nutz
         #region Fields
         int health;
         float speed;
-        int nutCount;
         int maxNuts;
         int kickForce;
         Vector2 kickVector;
-        PlayerScore pointKeeper;
         Keys[] movementKeys;
         #endregion
 
@@ -28,26 +26,30 @@ namespace Go_Nutz
             this.position = position;
             //string[] imagePaths = imagePath.Split(';');
             this.health = health;
-            this.speed = speed;
+            this.Speed = speed;
             this.maxNuts = maxNuts;
             this.movementKeys = movementKeys;
         }
+
+        public float Speed { get => speed; set => speed = value; }
 
         public int GetHealth()
         {
             return health;
         }
+
         public int SetHealth(int val)
         {
             health += val;
             return health;
         }
+
         public void LoseHealth()
         {
             //lose 1 health
             SetHealth(-1);
             //drop nuts
-            nutCount = 0;
+            
 
             /* pseudo code:
              * move to home tree
@@ -73,6 +75,7 @@ namespace Go_Nutz
                 }
             }
         }
+
         public void OnCollision(GameObject other)
         {
             ///<summary>
@@ -118,24 +121,58 @@ namespace Go_Nutz
         }
         #endregion
 
+        Font f = new Font("Arial", 16);
+
+        
+
+        public override void Draw(Graphics dc)
+        {
+            dc.DrawString(string.Format("P1 Score: {0}", Points_p1), f, Brushes.Black, 0, 600);
+            dc.DrawString(string.Format("P2 Score: {0}", Points_p2), f, Brushes.Black, 1055, 600);
+
+            base.Draw(dc);
+        }
+
         public override void Update(float fps)
         {
             //Checks the players Collision
             CheckCollision();
             Movement();
+            PlayerSpeed();
+            
         }
-
+        
         public void Kick(GameObject other)
         {
             kickVector = new Vector2((other.Position.X - position.X) * kickForce, (other.Position.Y - position.Y) * kickForce);
             other.MovementVector = kickVector;
         }
 
-        public void DepositNuts()
+        public static void DepositNuts()
         {
-            pointKeeper.SetPoints(1);
-            nutCount--;
+           
+            if ((Keyboard.IsKeyDown(Keys.Q)) && Nut.P1Nuts > 0 && Nut.P1Nuts <= 6)
+            {
+
+                Points_p1 += 1;
+                
+
+                Nut.P1Nuts--;
+                
+            }
+
+            if (Keyboard.IsKeyDown(Keys.U) && Nut.P2Nuts > 0 && Nut.P2Nuts <= 6)
+            {
+                
+                Points_p2 += 1;
+                
+
+                Nut.P2Nuts--;
+                
+            }
+            
         }
+        
         public void Movement()
         {
             ///<summary>
@@ -143,22 +180,22 @@ namespace Go_Nutz
             /// </summary>
             if (Keyboard.IsKeyDown(movementKeys[0]))
             {
-                position.X -= speed;
+                position.X -= Speed;
             }
 
             if (Keyboard.IsKeyDown(movementKeys[1]))
             {
-                position.Y += speed;
+                position.Y += Speed;
             }
 
             if (Keyboard.IsKeyDown(movementKeys[2]))
             {
-                position.X += speed;
+                position.X += Speed;
             }
 
             if (Keyboard.IsKeyDown(movementKeys[3]))
             {
-                position.Y -= speed;
+                position.Y -= Speed;
             }
         }
     }
