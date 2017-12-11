@@ -129,6 +129,8 @@ namespace Go_Nutz
         {
             kickVector = new Vector2((other.Position.X - position.X) * kickForce, (other.Position.Y - position.Y) * kickForce);
             other.MovementVector = kickVector;
+            //Test element
+            other.MovementVector = new Vector2(5,0);
         }
 
         public void DepositNuts()
@@ -139,7 +141,7 @@ namespace Go_Nutz
         public void Movement()
         {
             ///<summary>
-            ///KEY order ()
+            ///KEY order (LEFT,DOWN,RIGHT,UP,ACTIONKEY1(placeBomb),ACTIONKEY2)
             /// </summary>
             if (Keyboard.IsKeyDown(movementKeys[0]))
             {
@@ -159,6 +161,10 @@ namespace Go_Nutz
             if (Keyboard.IsKeyDown(movementKeys[3]))
             {
                 position.Y -= speed;
+            }
+            if (Keyboard.IsKeyDown(movementKeys[4]))
+            {
+                PlaceBomb();
             }
         }
     }

@@ -9,7 +9,7 @@ namespace Go_Nutz
     partial class GameObject
     {
         #region Fields;
-        float scaleFactor;
+        protected float scaleFactor;
         float animationSpeed = 5;
         float currentFrameIndex;
         #endregion

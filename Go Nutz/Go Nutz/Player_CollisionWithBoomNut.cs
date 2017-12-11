@@ -25,6 +25,7 @@ namespace Go_Nutz
                 else // if the BoomNut is not moving the player will kick the BoomNut
                 {
                     //calls kick Method
+                    boomNut.InMotion = true;
                     Kick(boomNut);
                 }
             }

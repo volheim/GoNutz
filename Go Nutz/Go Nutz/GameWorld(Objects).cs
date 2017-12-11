@@ -15,6 +15,8 @@ namespace Go_Nutz
         {
             #region Lists;
             objects = new List<GameObject>();
+            add_Objects = new List<GameObject>();
+            remove_Objects = new List<GameObject>();
             #endregion
 
             #region Create Objects;

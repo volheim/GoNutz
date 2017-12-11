@@ -16,6 +16,7 @@ namespace Go_Nutz
         protected RectangleF collisionbox;
         protected Image sprite;
         protected List<Image> animationFrames;
+
         #endregion
 
         #region Properterties

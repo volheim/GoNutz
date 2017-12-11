@@ -15,6 +15,7 @@ namespace Go_Nutz
         private Graphics dc;
         private static List<GameObject> objects;
         private static List<GameObject> remove_Objects;
+        private static List<GameObject> add_Objects;
         private static Stack<GameObject> Nuts;
         private DateTime endTime;
         private float currentFps;
@@ -33,6 +34,11 @@ namespace Go_Nutz
             get { return objects; }
             set { objects = value; }
         }
+        public  static List<GameObject> Add_Objects
+        {
+            get { return add_Objects; }
+            set { add_Objects = value; }
+        }
         #endregion
         public GameWorld(Graphics dc, Rectangle displayRectangle)
         {
@@ -50,9 +56,20 @@ namespace Go_Nutz
             {
                 go.Update(currentFps);
             }
+            //adds the added objects to the loop
+            Objects.AddRange(add_Objects);
+            foreach (GameObject gameobject in remove_Objects)
+            {
+                Objects.Remove(gameobject);
+            }
             UpdateAnimation(fps);
+            ClearLoopLists();
         }
-
+        public void ClearLoopLists()
+        {
+            add_Objects.Clear();
+            remove_Objects.Clear();
+        }
         public void Draw()
         {
             dc.Clear(Color.Red);

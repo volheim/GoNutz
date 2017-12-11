@@ -14,6 +14,7 @@ namespace Go_Nutz
         private bool phaseAble;
         //Tells other objects that the Boomnut is moveing also usefull for ativator for collision
         private bool inMotion;
+        int timeLeft;
         #endregion
 
         #region Properties
@@ -31,14 +32,27 @@ namespace Go_Nutz
 
         public BoomNut(Vector2 position, string imagePath, float scaleFactor) : base(position, imagePath, scaleFactor)
         {
-            phaseAble = true;
+            phaseAble = false;
             inMotion = false;
+            timeLeft = 0;
         }
-
+        public override void Update(float fps)
+        {
+            if (timeLeft > 24*2)
+            {
+                Explode();
+            }
+            timeLeft++;
+            if (inMotion)
+            {
+                position += movementVector;
+            }
+            base.Update(fps);
+        }
         public void Explode()
         {
-            GameWorld.Objects.Add(new Explosion(new Vector2(position.X, position.X), "", 1, 1));
-            GameWorld.Objects.Remove(this);
+            //GameWorld.Objects.Add(new Explosion(new Vector2(position.X, position.X), "", 1, 1));
+            GameWorld.Removed_Objects.Add(this);
         }
         public override void CheckCollision()
         {
@@ -58,7 +72,7 @@ namespace Go_Nutz
         }
         public void Update()
         {
-            //if the Boomnut is moving check collision else don't shuold increase performance
+            //if the Boomnut is moving check collision else don't. :: should increase performance
             if (inMotion = true)
             {
                 CheckCollision();
