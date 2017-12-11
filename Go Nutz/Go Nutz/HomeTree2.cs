@@ -15,7 +15,7 @@ namespace Go_Nutz
         private float scaleFactor;
         private float scaleFactorWidth = 0.2f;
 
-        public HomeTree2(Vector2 position, string imagePath, float scaleFactor) : base(position, imagePath, scaleFactor)
+        public HomeTree2(Vector2 position, string imagePath, float scaleFactor, Player player) : base(position, imagePath, scaleFactor)
         {
             this.scaleFactor = scaleFactor;
         }

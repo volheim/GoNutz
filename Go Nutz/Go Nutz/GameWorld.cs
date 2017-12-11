@@ -19,7 +19,9 @@ namespace Go_Nutz
         private DateTime endTime;
         private float currentFps;
         private BufferedGraphics backBuffer;
-        
+
+
+
         #endregion
         #region Properties
 
@@ -66,10 +68,7 @@ namespace Go_Nutz
             foreach (GameObject go in objects)
             {
                 go.Draw(dc);
-                dc.DrawString(string.Format("Eaten Nuts: {0}", currentFps), f, Brushes.Black, 220, 0);
-                dc.DrawString(string.Format("Eaten Nuts: {0}", currentFps), f, Brushes.Black, 800, 0);
-                dc.DrawString(string.Format("P1 Score: {0}", currentFps), f, Brushes.Black, 0, 600);
-                dc.DrawString(string.Format("P2 Score: {0}", currentFps), f, Brushes.Black, 1055, 600);
+
 #if DEBUG //This code will only be run in   debug mode
                 dc.DrawString(string.Format("FPS: {0}", currentFps), f, Brushes.Black, 550, 0);
 #endif

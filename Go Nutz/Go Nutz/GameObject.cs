@@ -59,6 +59,7 @@ namespace Go_Nutz
             dc.DrawImage(sprite, position.X, position.Y, sprite.Width*scaleFactor, sprite.Height*scaleFactor);
             dc.DrawRectangle(new Pen(Brushes.Green), CollisionBox.X, CollisionBox.Y, CollisionBox.Width, CollisionBox.Height);
             
+
         }
 
         public virtual void Update(float fps)
