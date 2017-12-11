@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Go_Nutz
 {
-    class GameWorld
+    class GameWorld_Backup
     {
         #region Fields
         private Graphics dc;
@@ -44,7 +44,7 @@ namespace Go_Nutz
         #endregion
 
 
-        public GameWorld(Graphics dc, Rectangle displayRectangle)
+        public GameWorld_Backup(Graphics dc, Rectangle displayRectangle)
         {
             //create's (Allocates) a buffer in memory with the size of the display
             this.backBuffer = BufferedGraphicsManager.Current.Allocate(dc, displayRectangle);

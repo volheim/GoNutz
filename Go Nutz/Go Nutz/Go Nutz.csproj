@@ -56,8 +56,10 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="GameObject.cs" />
+    <Compile Include="GameWorld_Allan.cs" />
     <Compile Include="HomeTree.cs" />
     <Compile Include="Keyboard.cs" />
+    <Compile Include="MapLoader.cs" />
     <Compile Include="Nut.cs" />
     <Compile Include="NutObject.cs" />
     <Compile Include="Player.cs" />
@@ -94,8 +96,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="51zeHiyhNOL._SY445_.jpg">
-		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	</Content>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="classic_bitmap.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Piperlok.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
