@@ -11,30 +11,52 @@ using System.Numerics;
 
 namespace Go_Nutz
 {
-    class HomeTree
+    class HomeTree : GameObject
     {
-        Vector2 position;
-        Image sprite;
-        int playerIdentifier;
-        float scaleFactor;
-
-        public RectangleF treeCollsisionBox;
-
-        public HomeTree(Vector2 position, Image sprite, int playerIdent, float collisionWidth, float collisionHeight)
+        private Player player;
+        private float scaleFactor;
+        private float scaleFactorWidth = 0.2f;
+        private bool direction;
+        private RectangleF deliverZone;
+        public HomeTree(Vector2 position, string imagePath, float scaleFactor, Player player, bool direction) : base(position,imagePath,scaleFactor)
         {
-            this.position = position;
-            this.sprite = sprite;
-            this.playerIdentifier = playerIdent;
+            this.scaleFactor = scaleFactor;
+            this.player = player;
+            this.direction = direction;
         }
-
-        public RectangleF CollisionBox
+        //Lav en extra collision boc i stedet
+      /*  public override RectangleF CollisionBox
         {
             get
             {
-                return new RectangleF(position.X, position.Y, sprite.Width * scaleFactor, sprite.Height * scaleFactor);
+                if (direction)
+                {
+                    return new RectangleF(position.X, position.Y, sprite.Width * scaleFactorWidth, sprite.Height * scaleFactor);
+                }
+                else
+                {
+                    return new RectangleF(position.X-104, position.Y, sprite.Width * scaleFactorWidth, sprite.Height * scaleFactor);
+                }
             }
-            set { CollisionBox = value; }
         }
-
+        */
+        public RectangleF DeliverZone
+        {
+            get {
+                if (direction)
+                {
+                    return new RectangleF(position.X, position.Y, sprite.Width * scaleFactorWidth, sprite.Height * scaleFactor);
+                }
+                else
+                {
+                    return new RectangleF(position.X - 104, position.Y, sprite.Width * scaleFactorWidth, sprite.Height * scaleFactor);
+                }
+            }
+        }
+        public override void Draw(Graphics dc)
+        {
+            dc.DrawRectangle(new Pen(Brushes.Blue), deliverZone.X, deliverZone.Y, deliverZone.Width, deliverZone.Height);
+            base.Draw(dc);
+        }
     }
 }

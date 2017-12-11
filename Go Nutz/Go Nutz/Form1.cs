@@ -24,22 +24,8 @@ namespace Go_Nutz
             timer1.Start();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-<<<<<<< HEAD
-
-            world.Update(fps);
-
-=======
-            world = new GameWorld(CreateGraphics(), rect);
-            world.SetupWorld();
->>>>>>> Mikkel-Dev
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
             if(dc == null)
             {
                 dc = CreateGraphics();
@@ -47,18 +33,11 @@ namespace Go_Nutz
 
             world = new GameWorld(CreateGraphics(), rect);
             world.SetupWorld();
-=======
-            world.GameLoop();
->>>>>>> Mikkel-Dev
-=======
-            world = new GameWorld(CreateGraphics(), rect);
-            world.SetupWorld();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             world.GameLoop();
->>>>>>> Lars-Dev
         }
 
     }

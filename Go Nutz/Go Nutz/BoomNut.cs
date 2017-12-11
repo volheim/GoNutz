@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace Go_Nutz
 {
-    class BoomNut : Nut
+    class BoomNut : GameObject
     {
         #region Feilds
         //when a player places a bomp allow him/her to Phase through it
         private bool phaseAble;
         //Tells other objects that the Boomnut is moveing also usefull for ativator for collision
         private bool inMotion;
+        int timeLeft;
         #endregion
 
         #region Properties
@@ -22,18 +23,36 @@ namespace Go_Nutz
             get { return inMotion; }
             set { inMotion = value; }
         }
+        public bool PhaseAble
+        {
+            get { return phaseAble; }
+            set { phaseAble = value; }
+        }
         #endregion
 
-        public BoomNut(Vector2 position, string imagePath) : base(position, imagePath)
+        public BoomNut(Vector2 position, string imagePath, float scaleFactor) : base(position, imagePath, scaleFactor)
         {
-            phaseAble = true;
+            phaseAble = false;
             inMotion = false;
+            timeLeft = 0;
         }
-
+        public override void Update(float fps)
+        {
+            if (timeLeft > 24*2)
+            {
+                Explode();
+            }
+            timeLeft++;
+            if (inMotion)
+            {
+                position += movementVector;
+            }
+            base.Update(fps);
+        }
         public void Explode()
         {
-            GameWorld.Objects.Add(new Explosion(new Vector2(position.X, position.X), "", 1));
-            GameWorld.Objects.Remove(this);
+            //GameWorld.Objects.Add(new Explosion(new Vector2(position.X, position.X), "", 1, 1));
+            GameWorld.Removed_Objects.Add(this);
         }
         public override void CheckCollision()
         {
@@ -50,11 +69,11 @@ namespace Go_Nutz
                     }
                 }
             }
-        }   
+        }
         public void Update()
         {
-            //if the Boomnut is moving check collision else don't shuold increase performance
-            if(inMotion = true)
+            //if the Boomnut is moving check collision else don't. :: should increase performance
+            if (inMotion = true)
             {
                 CheckCollision();
             }
@@ -89,7 +108,7 @@ namespace Go_Nutz
                     position.X = other.CollisionBox.Left - collisionbox.Width;
                 }
                 //Checks left collision
-                else if(collisionbox.Left >= other.CollisionBox.Right -20 && collisionbox.Left <= other.CollisionBox.Right)
+                else if (collisionbox.Left >= other.CollisionBox.Right - 20 && collisionbox.Left <= other.CollisionBox.Right)
                 {
                     movementVector = new Vector2(0, 0);
                     inMotion = false;
@@ -98,7 +117,7 @@ namespace Go_Nutz
 
             }
         }
-        public virtual bool IsIntersectingWith(GameObject other)
+        public bool IsIntersectingWith(GameObject other)
         {
             return CollisionBox.IntersectsWith(other.CollisionBox);
         }

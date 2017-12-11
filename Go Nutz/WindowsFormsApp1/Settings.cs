@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 
-namespace WindowsFormsApp1
+namespace Settings
 {
     public partial class Settings : Form
     {
@@ -20,7 +20,7 @@ namespace WindowsFormsApp1
 
         private void ReturnToMenu_Click(object sender, EventArgs e)
         {
-            new Form1();
+            new Go_Nutz.Form1();
         }
 
         private const int APPCOMMAND_VOLUME_MUTE = 0x80000;
@@ -48,6 +48,11 @@ namespace WindowsFormsApp1
         {
             SendMessageW(this.Handle, WM_APPCOMMAND, this.Handle,
                 (IntPtr)APPCOMMAND_VOLUME_UP);
+        }
+
+        private void Settings_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
