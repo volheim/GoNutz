@@ -60,12 +60,9 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="GameObject.cs" />
-<<<<<<< HEAD
     <Compile Include="GameWorld_Allan.cs" />
-=======
     <Compile Include="GameObject%28Morten%29.cs" />
     <Compile Include="GameWorld%28Objects%29.cs" />
->>>>>>> 2010a3d2189a2762af59e8e60251bac72e473543
     <Compile Include="HomeTree.cs" />
     <Compile Include="HomeTree2.cs" />
     <Compile Include="IrrKlang\SoundPlayer.cs" />
@@ -109,17 +106,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Content Include="51zeHiyhNOL._SY445_.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="classic_bitmap.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Piperlok.png">
-=======
     <Content Include="Images\acornDrawn.png">
->>>>>>> 2010a3d2189a2762af59e8e60251bac72e473543
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\acornDrawn_1..png" />

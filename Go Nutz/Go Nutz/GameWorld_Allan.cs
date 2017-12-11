@@ -58,18 +58,20 @@ namespace Go_Nutz
             this.dc = backBuffer.Graphics;
             players = new List<Player>();
         }
-
+        */
         public void SetupWorld()
         {
             MapLoader ML = new MapLoader();
             ML.GenerateLevelBitmap(0);
+            /*
             objects = new List<GameObject>();
             GameObject player = new Player(new Vector2(1.0f, 5.0f),"Piperlok.png", 100, 100, 10, Keys.A, Keys.S, Keys.D, Keys.W, Keys.Q, Keys.E);
             GameObject player2 = new Player(new Vector2(1.0f, 5.0f), "Piperlok.png", 100, 100, 10, Keys.J, Keys.K, Keys.L, Keys.I, Keys.U, Keys.O);
             objects.Add(player);
             objects.Add(player2);
+            */
         }
-        
+        /*
         public virtual void Update(float fps)
         {
             foreach (GameObject go in objects)
@@ -118,8 +120,8 @@ namespace Go_Nutz
 
             Update(currentFps);
             Draw();
-        */
         }
+        */
         public static void GenerateBlock(int x, int y)
         {
 
