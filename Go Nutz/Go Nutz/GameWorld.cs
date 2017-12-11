@@ -34,14 +34,18 @@ namespace Go_Nutz
             set { objects = value; }
         }
         #endregion
-<<<<<<< HEAD
+        #region generate properties
+        private static int playerNumber;
+        private static int homeNumber;
+        MapLoader ML;
+        #endregion
 
-
-        public GameWorld_Backup(Graphics dc, Rectangle displayRectangle)
-=======
         public GameWorld(Graphics dc, Rectangle displayRectangle)
->>>>>>> 2010a3d2189a2762af59e8e60251bac72e473543
+
         {
+            ML = new MapLoader();
+            ML.GenerateLevelBitmap(0);
+
             //create's (Allocates) a buffer in memory with the size of the display
             this.backBuffer = BufferedGraphicsManager.Current.Allocate(dc, displayRectangle);
 
@@ -98,6 +102,33 @@ namespace Go_Nutz
 
             Update(currentFps);
             Draw();
+        }
+
+        public static void GenerateBlock(int x, int y)
+        {
+
+        }
+        public static void GenerateHomeTree(int x, int y)
+        {
+
+        }
+        public static void PlacePlayer(int x, int y)
+        {
+            if (playerNumber == 0)
+            {
+                GameObject player = new Player(new Vector2(x, y), "Piperlok.png", 100, 100, 10, Keys.A, Keys.S, Keys.D, Keys.W, Keys.Q, Keys.E);
+                playerNumber++;
+            }
+            else if (playerNumber == 1)
+            {
+                GameObject player2 = new Player(new Vector2(1.0f, 5.0f), "Piperlok.png", 100, 100, 10, Keys.J, Keys.K, Keys.L, Keys.I, Keys.U, Keys.O);
+                /* make new player objecct
+                 * set sprite as chipmunk image
+                 * set position as x,y
+                 * include control keys
+                 */
+            }
+
         }
     }
 }
