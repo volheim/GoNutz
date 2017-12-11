@@ -35,15 +35,15 @@ namespace Go_Nutz
 
             if(pixelColor.ToArgb() == Color.White.ToArgb())
             {
-                GameWorld.GenerateBlock(xPos, yPos);
+                GameWorld_Allan.GenerateBlock(xPos, yPos);
             }
             if (pixelColor.ToArgb() == Color.Blue.ToArgb())
             {
-                GameWorld.GenerateHomeTree(xPos, yPos);
+                GameWorld_Allan.GenerateHomeTree(xPos, yPos);
             }
             if (pixelColor.ToArgb() == Color.Green.ToArgb())
             {
-                GameWorld.PlacePlayer(xPos, yPos);
+                GameWorld_Allan.PlacePlayer(xPos, yPos);
             }
 
         }
@@ -100,15 +100,15 @@ namespace Go_Nutz
                     }
                     else if(levelIndex[xPixel, yPixel] == 1)
                     {
-                        GameWorld.GenerateBlock(xPos, yPos);
+                        GameWorld_Allan.GenerateBlock(xPos, yPos);
                     }
                     else if(levelIndex[xPixel, yPixel] == 2)
                     {
-                        GameWorld.GenerateHomeTree(xPos, yPos);
+                        GameWorld_Allan.GenerateHomeTree(xPos, yPos);
                     }
                     else if (levelIndex[xPixel, yPixel] == 3)
                     {
-                        GameWorld.PlacePlayer(xPos, yPos);
+                        GameWorld_Allan.PlacePlayer(xPos, yPos);
                     }
                     yPixel++;
                 }

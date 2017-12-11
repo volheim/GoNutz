@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Go_Nutz
 {
-    class GameWorld_Backup
+    class GameWorld
     {
         #region Fields
         private Graphics dc;

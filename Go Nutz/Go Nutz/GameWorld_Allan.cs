@@ -9,8 +9,9 @@ using System.Windows.Forms;
 
 namespace Go_Nutz
 {
-    class GameWorld
+    class GameWorld_Allan
     {
+        /*
         #region Fields
         private Graphics dc;
         private static List<Player> players;
@@ -42,12 +43,12 @@ namespace Go_Nutz
             set { objects = value; }
         }
         #endregion
-
+        */
         #region generate properties
         private static int playerNumber;
         private static int homeNumber;
         #endregion
-
+        /*
         public GameWorld(Graphics dc, Rectangle displayRectangle)
         {
             //create's (Allocates) a buffer in memory with the size of the display
@@ -68,7 +69,7 @@ namespace Go_Nutz
             objects.Add(player);
             objects.Add(player2);
         }
-
+        
         public virtual void Update(float fps)
         {
             foreach (GameObject go in objects)
@@ -91,7 +92,7 @@ namespace Go_Nutz
                 /*
                 Font t = new Font("Arial", 16);
                 dc.DrawString(string.Format("Health:" + "" + ss.Health), t, Brushes.Black, 0, 0);
-                */
+                
             }
             //Renders the content of the buffered graphics context to the real context(Swap buffers)
             backBuffer.Render();
@@ -117,6 +118,7 @@ namespace Go_Nutz
 
             Update(currentFps);
             Draw();
+        */
         }
         public static void GenerateBlock(int x, int y)
         {
