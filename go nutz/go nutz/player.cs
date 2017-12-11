@@ -198,10 +198,13 @@ namespace Go_Nutz
             if (Keyboard.IsKeyDown(movementKeys[3]))
             {
                 position.Y -= Speed;
+<<<<<<< HEAD
             }
             if (Keyboard.IsKeyDown(movementKeys[4]))
             {
                 PlaceBomb();
+=======
+>>>>>>> Morten-Dev
             }
         }
     }
