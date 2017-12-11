@@ -11,8 +11,8 @@ namespace Go_Nutz
 {
     class Nut : GameObject
     {
-        static int p1Nuts = 2;
-        static int p2Nuts = 1;
+        static int p1Nuts = 6;
+        static int p2Nuts = 6;
 
         public static int P1Nuts { get => p1Nuts; set => p1Nuts = value; }
         public static int P2Nuts { get => p2Nuts; set => p2Nuts = value; }

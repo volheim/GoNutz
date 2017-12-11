@@ -26,12 +26,12 @@ namespace Go_Nutz
             this.position = position;
             //string[] imagePaths = imagePath.Split(';');
             this.health = health;
-            this.speed = speed;
+            this.Speed = speed;
             this.maxNuts = maxNuts;
             this.movementKeys = movementKeys;
         }
 
-
+        public float Speed { get => speed; set => speed = value; }
 
         public int GetHealth()
         {
@@ -75,6 +75,7 @@ namespace Go_Nutz
                 }
             }
         }
+
         public void OnCollision(GameObject other)
         {
             ///<summary>
@@ -121,6 +122,9 @@ namespace Go_Nutz
         #endregion
 
         Font f = new Font("Arial", 16);
+
+        
+
         public override void Draw(Graphics dc)
         {
             dc.DrawString(string.Format("P1 Score: {0}", Points_p1), f, Brushes.Black, 0, 600);
@@ -134,6 +138,7 @@ namespace Go_Nutz
             //Checks the players Collision
             CheckCollision();
             Movement();
+            PlayerSpeed();
             
         }
         
@@ -175,22 +180,22 @@ namespace Go_Nutz
             /// </summary>
             if (Keyboard.IsKeyDown(movementKeys[0]))
             {
-                position.X -= speed;
+                position.X -= Speed;
             }
 
             if (Keyboard.IsKeyDown(movementKeys[1]))
             {
-                position.Y += speed;
+                position.Y += Speed;
             }
 
             if (Keyboard.IsKeyDown(movementKeys[2]))
             {
-                position.X += speed;
+                position.X += Speed;
             }
 
             if (Keyboard.IsKeyDown(movementKeys[3]))
             {
-                position.Y -= speed;
+                position.Y -= Speed;
             }
         }
     }
