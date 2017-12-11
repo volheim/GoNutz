@@ -21,7 +21,7 @@ namespace Go_Nutz
         public Form1()
         {
             InitializeComponent();
-            timer1.Start();
+            GameLoop.Start();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -40,5 +40,9 @@ namespace Go_Nutz
             world.GameLoop();
         }
 
+        private void ButtomCooldown_Tick(object sender, EventArgs e)
+        {
+            Player.DepositNuts();
+        }
     }
 }
