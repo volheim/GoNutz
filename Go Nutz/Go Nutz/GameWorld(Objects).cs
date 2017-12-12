@@ -80,7 +80,7 @@ namespace Go_Nutz
 
         public static void GenerateBlock(int x, int y)
         {
-
+            objects.Add(new Wall(new Vector2(x, y), @"Images\wallNUT.png", 0.06f));
         }
         public static void GenerateHomeTree(int x, int y)
         {

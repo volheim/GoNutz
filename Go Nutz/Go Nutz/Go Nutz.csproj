@@ -180,7 +180,9 @@
     <Content Include="Images\stumpHome.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\wallNUT.png" />
+    <Content Include="Images\wallNUT.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="IrrKlang\ikpFlac.dll" />
     <Content Include="IrrKlang\ikpMP3.dll" />
     <Content Include="IrrKlang\irrKlang.dll" />

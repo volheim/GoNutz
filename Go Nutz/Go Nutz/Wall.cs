@@ -16,9 +16,13 @@ namespace Go_Nutz
 
         public Wall(Vector2 position, string imagePath, float scaleFactor) : base(position, imagePath, scaleFactor)
         {
-             
+            this.scaleFactor = scaleFactor;
+        }
+ 
+        public override void Draw(Graphics dc)
+        {
+            base.Draw(dc);
         }
 
-        
     }
 }
