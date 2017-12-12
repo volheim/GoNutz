@@ -14,14 +14,14 @@ namespace Go_Nutz
     {
         Graphics dc;
         Rectangle rect = new Rectangle(0,0,1920,1080);
-
+        
         GameWorld world;
         float fps;
 
         public Form1()
         {
             InitializeComponent();
-            timer1.Start();
+            GameLoop.Start();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -30,6 +30,7 @@ namespace Go_Nutz
             {
                 dc = CreateGraphics();
             }
+
 
             world = new GameWorld(CreateGraphics(), rect);
             world.SetupWorld();
@@ -40,5 +41,9 @@ namespace Go_Nutz
             world.GameLoop();
         }
 
+        private void ButtomCooldown_Tick(object sender, EventArgs e)
+        {
+            Player.DepositNuts();
+        }
     }
 }

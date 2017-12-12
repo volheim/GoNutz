@@ -10,27 +10,19 @@ namespace Go_Nutz
 {
     class Wall : GameObject
     {
-
+        #region Fields
         float scaleFactor;
-        Image sprite;
-        Vector2 position;
+        #endregion
 
-        public Wall(Vector2 position, string imagePath, float scaleFactor) : base(position, imagePath)
+        public Wall(Vector2 position, string imagePath, float scaleFactor) : base(position, imagePath, scaleFactor)
         {
-
-
-            this.position = position;
-
             this.scaleFactor = scaleFactor;
         }
-
-        public RectangleF CollisionBox
+ 
+        public override void Draw(Graphics dc)
         {
-            get
-            {
-                return new RectangleF(position.X, position.Y, sprite.Width * scaleFactor, sprite.Height * scaleFactor);
-            }
-            set { CollisionBox = value; }
+            base.Draw(dc);
         }
+
     }
 }

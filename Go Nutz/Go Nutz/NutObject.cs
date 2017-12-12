@@ -11,14 +11,13 @@ namespace Go_Nutz
     {
         private bool isAlive;
 
-        public NutObject(Vector2 position, string imagePath) : base(position, imagePath)
+        public NutObject(Vector2 position, string imagePath, float scaleFactor) : base(position, imagePath, scaleFactor)
         {
         }
 
         public void BreakApart()
         {
-            //Removes the sprite
-            GameWorld.Objects.Remove(this);
+
         }
     }
 }

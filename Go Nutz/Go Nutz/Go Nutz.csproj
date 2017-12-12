@@ -11,6 +11,21 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,6 +47,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="irrKlang.NET4, Version=1.0.5235.21387, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>IrrKlang\irrKlang.NET4.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
@@ -56,11 +75,19 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="GameObject.cs" />
+    <Compile Include="GameObject%28Morten%29.cs" />
+    <Compile Include="GameWorld%28Objects%29.cs" />
+    <Compile Include="GameWorld_Allan.cs" />
     <Compile Include="HomeTree.cs" />
+    <Compile Include="HomeTree2.cs" />
+    <Compile Include="IrrKlang\SoundPlayer.cs" />
     <Compile Include="Keyboard.cs" />
+    <Compile Include="MapLoader.cs" />
     <Compile Include="Nut.cs" />
     <Compile Include="NutObject.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="Player_CollisionWithBoomNut.cs" />
+    <Compile Include="Player_PlaceBomb.cs" />
     <Compile Include="PlayerScore.cs" />
     <Compile Include="PowerUp.cs" />
     <Compile Include="Program.cs" />
@@ -79,6 +106,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="IrrKlang\irrKlang.exp" />
+    <None Include="IrrKlang\irrKlang.lib" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -94,11 +123,86 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="51zeHiyhNOL._SY445_.jpg">
-		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	</Content>
-    <Content Include="Piperlok.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="classic_bitmap.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\acornDrawn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\acornDrawn_1..png" />
+    <Content Include="Images\blood\Splat01.png" />
+    <Content Include="Images\blood\Splat02.png" />
+    <Content Include="Images\blood\Splat03.png" />
+    <Content Include="Images\blood\Splat04.png" />
+    <Content Include="Images\Chipmunk.png" />
+    <Content Include="Images\ChipmunkWalk\ChipmunkWalk01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\ChipmunkWalk\ChipmunkWalk02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\ChipmunkWalk\ChipmunkWalk03.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\ChipmunkWalk\ChipmunkWalk04.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Squirrelanimation\Squirrel walk preview.gif" />
+    <Content Include="Images\Squirrelanimation\SquiwwelWalk01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Squirrelanimation\SquiwwelWalk02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Squirrelanimation\SquiwwelWalk03.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Squirrelanimation\SquiwwelWalk04.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Squirrelanimation\SquiwwelWalk05.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Squirrelanimation\SquiwwelWalk06.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Squirrelanimation\SquiwwelWalk07.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Squirrelanimation\SquiwwelWalk08.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Squiwwel.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\stumpHome.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\wallNUT.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="IrrKlang\ikpFlac.dll" />
+    <Content Include="IrrKlang\ikpMP3.dll" />
+    <Content Include="IrrKlang\irrKlang.dll" />
+    <Content Include="IrrKlang\irrKlang.NET4.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\Sprites\" />
+    <Folder Include="obj\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,28 +9,23 @@ using System.Windows.Forms;
 
 namespace Go_Nutz
 {
-    class GameWorld
     {
         #region Fields
         private Graphics dc;
         private static List<Player> players;
+        private static List<GameObject> objects;
+        private static List<GameObject> remove_Objects;
+        private static List<GameObject> add_Objects;
+        private static Stack<GameObject> Nuts;
         private DateTime endTime;
         private float currentFps;
         private BufferedGraphics backBuffer;
 
-        private static List<GameObject> objects1;
 
-        private static List<GameObject> objects;
-        private static List<GameObject> add_Objects;
-        private static List<GameObject> remove_Objects;
+
         #endregion
-
         #region Properties
-        public static List<GameObject> Add_Objects
-        {
-            get { return add_Objects; }
-            set { add_Objects = value; }
-        }
+
         public static List<GameObject> Removed_Objects
         {
             get { return remove_Objects; }
@@ -41,51 +36,62 @@ namespace Go_Nutz
             get { return objects; }
             set { objects = value; }
         }
+        public  static List<GameObject> Add_Objects
+        {
+            get { return add_Objects; }
+            set { add_Objects = value; }
+        }
         #endregion
 
 
         public GameWorld(Graphics dc, Rectangle displayRectangle)
         {
+
+
             //create's (Allocates) a buffer in memory with the size of the display
             this.backBuffer = BufferedGraphicsManager.Current.Allocate(dc, displayRectangle);
 
             //sets the graphics context to the graphics in the buffer
             this.dc = backBuffer.Graphics;
-            players = new List<Player>();
-        }
 
-        public void SetupWorld()
-        {
-            objects = new List<GameObject>();
-            GameObject player = new Player(new Vector2(1.0f, 5.0f),"Piperlok.png", 100, 100, 10, Keys.A, Keys.S, Keys.D, Keys.W, Keys.Q, Keys.E);
-            GameObject player2 = new Player(new Vector2(1.0f, 5.0f), "Piperlok.png", 100, 100, 10, Keys.J, Keys.K, Keys.L, Keys.I, Keys.U, Keys.O);
-            objects.Add(player);
-            objects.Add(player2);
         }
-
-        public virtual void Update(float fps)
+        
+        public void Update(float fps)
         {
             foreach (GameObject go in objects)
             {
                 go.Update(currentFps);
             }
+            //adds the added objects to the loop
+            Objects.AddRange(add_Objects);
+            foreach (GameObject gameobject in remove_Objects)
+            {
+                Objects.Remove(gameobject);
+            }
+            UpdateAnimation(fps);
+            ClearLoopLists();
         }
-
         public virtual void Draw()
+        public void ClearLoopLists()
+        {
+            add_Objects.Clear();
+            remove_Objects.Clear();
+        }
+        public void Draw()
         {
             dc.Clear(Color.Red);
+<<<<<<< HEAD
 
+=======
+            Font f = new Font("Arial", 16);
+>>>>>>> master
             foreach (GameObject go in objects)
             {
                 go.Draw(dc);
+
 #if DEBUG //This code will only be run in   debug mode
-                Font f = new Font("Arial", 16);
-                dc.DrawString(string.Format("FPS: {0}", currentFps), f, Brushes.Black, 520, 0);
+                dc.DrawString(string.Format("FPS: {0}", currentFps), f, Brushes.Black, 550, 0);
 #endif
-                /*
-                Font t = new Font("Arial", 16);
-                dc.DrawString(string.Format("Health:" + "" + ss.Health), t, Brushes.Black, 0, 0);
-                */
             }
             //Renders the content of the buffered graphics context to the real context(Swap buffers)
             backBuffer.Render();
@@ -112,5 +118,7 @@ namespace Go_Nutz
             Update(currentFps);
             Draw();
         }
+
+        
     }
 }

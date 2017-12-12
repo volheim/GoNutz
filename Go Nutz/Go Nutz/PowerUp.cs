@@ -10,7 +10,7 @@ namespace Go_Nutz
     class PowerUp : Nut
     {
 
-        public PowerUp(Vector2 position, string imagePath) : base(position, imagePath)
+        public PowerUp(Vector2 position, string imagePath, float scaleFactor) : base(position, imagePath, scaleFactor)
         {
         }
     }
