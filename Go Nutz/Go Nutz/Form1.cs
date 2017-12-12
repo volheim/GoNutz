@@ -14,7 +14,7 @@ namespace Go_Nutz
     {
         Graphics dc;
         Rectangle rect = new Rectangle(0,0,1920,1080);
-
+        
         GameWorld world;
         float fps;
 
@@ -30,6 +30,7 @@ namespace Go_Nutz
             {
                 dc = CreateGraphics();
             }
+
 
             world = new GameWorld(CreateGraphics(), rect);
             world.SetupWorld();
