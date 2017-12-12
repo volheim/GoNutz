@@ -9,22 +9,40 @@ using System.Windows.Forms;
 
 namespace Go_Nutz
 {
-    public class GameWorld
+    class GameWorld
     {
-
-        GameObject go;
-        Player player;
-
-
+        #region Fields
         private Graphics dc;
-        private static List<GameObject> objects;
+        private static List<Player> players;
         private DateTime endTime;
         private float currentFps;
         private BufferedGraphics backBuffer;
 
         private static List<GameObject> objects1;
 
-        internal static List<GameObject> Objects { get => objects1; set => objects1 = value; }
+        private static List<GameObject> objects;
+        private static List<GameObject> add_Objects;
+        private static List<GameObject> remove_Objects;
+        #endregion
+
+        #region Properties
+        public static List<GameObject> Add_Objects
+        {
+            get { return add_Objects; }
+            set { add_Objects = value; }
+        }
+        public static List<GameObject> Removed_Objects
+        {
+            get { return remove_Objects; }
+            set { remove_Objects = value; }
+        }
+        public static List<GameObject> Objects
+        {
+            get { return objects; }
+            set { objects = value; }
+        }
+        #endregion
+
 
         public GameWorld(Graphics dc, Rectangle displayRectangle)
         {
@@ -33,7 +51,7 @@ namespace Go_Nutz
 
             //sets the graphics context to the graphics in the buffer
             this.dc = backBuffer.Graphics;
-
+            players = new List<Player>();
         }
 
         public void SetupWorld()
@@ -47,11 +65,6 @@ namespace Go_Nutz
 
         public virtual void Update(float fps)
         {
-            /*foreach (var item in objects)
-            {
-                item.Update(fps);
-
-            }*/
             foreach (GameObject go in objects)
             {
                 go.Update(currentFps);

@@ -6,13 +6,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using StartMenu;
 
+
 namespace StartMenu
 {
     class ButtomSettings
     {
         public ButtomSettings()
         {
-            //new ;
+            new Settings.Settings();
+
+#if DEBUG
+            Console.WriteLine(MessageBox.Show("Works!"));
+
+#endif
+
         }
     }
 }
