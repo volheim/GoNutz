@@ -41,21 +41,22 @@ namespace Go_Nutz
         {
 
         }
-        Font f = new Font("Arial", 16);
+
         public override void Draw(Graphics dc)
         {
 
             //SpawnRandom();
-
+             Font f = new Font("Arial", 16);
             dc.DrawString(string.Format("P1 Eaten Nuts: {0}", P1Nuts), f, Brushes.Black, 220, 0);
             dc.DrawString(string.Format("P2 Eaten Nuts: {0}", P2Nuts), f, Brushes.Black, 800, 0);
+            base.Draw(dc);
 
         }
 
         public override void Update(float fps)
         {
             //SpawnRandom();
-            
+            base.Update(fps);
         }
 
         public void SpawnRandom()

@@ -17,6 +17,8 @@ namespace Go_Nutz
         int maxNuts;
         int kickForce;
         Vector2 kickVector;
+        Stack<PowerUp> powerUps;
+        List<BoomNut> bombs;
         Keys[] movementKeys;
         #endregion
 
@@ -29,6 +31,7 @@ namespace Go_Nutz
             this.Speed = speed;
             this.maxNuts = maxNuts;
             this.movementKeys = movementKeys;
+            kickForce = 5;
         }
 
         //public float Speed { get => speed; set => speed = value; }
@@ -81,7 +84,7 @@ namespace Go_Nutz
             ///<summary>
             ///depending on the other GameObject do something or nothing
             /// </summary>
-            if (other is Wall || other is NutObject || other is Player)
+            if (other is Wall || other is NutObject || other is Player || other is HomeTree)
             {
                 //Checks top collision
                 if (CollisionBox.Bottom > other.CollisionBox.Top && CollisionBox.Bottom < other.CollisionBox.Top + 30)
@@ -89,7 +92,7 @@ namespace Go_Nutz
                     position.Y = other.CollisionBox.Top - CollisionBox.Height;
                 }
                 //Checks bottom collision
-                else if (CollisionBox.Top > other.CollisionBox.Bottom && CollisionBox.Top < other.CollisionBox.Bottom - 30)
+                else if (CollisionBox.Top > other.CollisionBox.Bottom - 30 && CollisionBox.Top < other.CollisionBox.Bottom )
                 {
                     position.Y = other.CollisionBox.Bottom;
                 }

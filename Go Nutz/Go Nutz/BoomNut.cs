@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Go_Nutz
 {
-    class BoomNut : GameObject
+    partial class BoomNut : GameObject
     {
         #region Feilds
         //when a player places a bomp allow him/her to Phase through it
@@ -15,6 +15,7 @@ namespace Go_Nutz
         //Tells other objects that the Boomnut is moveing also usefull for ativator for collision
         private bool inMotion;
         int timeLeft;
+        Player player;
         #endregion
 
         #region Properties
@@ -34,11 +35,12 @@ namespace Go_Nutz
         {
             phaseAble = false;
             inMotion = false;
+            this.player = player;
             timeLeft = 0;
         }
         public override void Update(float fps)
         {
-            if (timeLeft > 24*2)
+            if (timeLeft > 24*5)
             {
                 Explode();
             }
@@ -81,7 +83,7 @@ namespace Go_Nutz
         public virtual void OnCollision(GameObject other)
         {
             // if the bomb hits a wall, a NutObejct or a Player stop the bomb and stops the motion of the bomb, then set the bomb at intial collision point
-            if (other is Wall || other is NutObject || other is Player)
+            if (other is Wall || other is NutObject)
             {
                 //Checks top collision
                 if (position.Y + sprite.Height > other.CollisionBox.Top && position.Y + sprite.Height < other.CollisionBox.Top + 10)
