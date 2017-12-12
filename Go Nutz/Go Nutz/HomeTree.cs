@@ -24,9 +24,6 @@ namespace Go_Nutz
             this.player = player;
             this.direction = direction;
         }
-        //Lav en extra collision boc i stedet
-      /*  public override RectangleF CollisionBox
-    #region Collision;
         public override RectangleF CollisionBox
         {
             get
@@ -41,7 +38,7 @@ namespace Go_Nutz
                 }
             }
         }
-        */
+        
         public RectangleF DeliverZone
         {
             get {

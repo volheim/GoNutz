@@ -14,8 +14,18 @@ namespace Go_Nutz
         static int p1Nuts = 6;
         static int p2Nuts = 6;
 
-        public static int P1Nuts { get => p1Nuts; set => p1Nuts = value; }
-        public static int P2Nuts { get => p2Nuts; set => p2Nuts = value; }
+       // public static int P1Nuts { get => p1Nuts; set => p1Nuts = value; }
+       // public static int P2Nuts { get => p2Nuts; set => p2Nuts = value; }
+        public static int P1Nuts
+        {
+            get { return p1Nuts; }
+            set { p1Nuts = value; }
+        }
+        public static int P2Nuts
+        {
+            get { return p2Nuts; }
+            set { p2Nuts = value; }
+        }
 
         public Nut(Vector2 position, string imagePath, float scaleFactor) : base(position, imagePath, scaleFactor)
         {

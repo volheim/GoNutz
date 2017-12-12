@@ -12,8 +12,18 @@ namespace Go_Nutz
         static int points_p2 = 0;
 
 
-        public static int Points_p2 { get => points_p2; set => points_p2 += value; }
-        public static int Points_p1 { get => points_p1; set => points_p1 += value; }
+        //public static int Points_p2 { get => points_p2; set => points_p2 += value; }
+        //public static int Points_p1 { get => points_p1; set => points_p1 += value; }
+        public static int Points_p2
+        {
+            get { return points_p2; }
+            set { points_p2 = value; }
+        }
+        public static int Points_p1
+        {
+            get { return points_p1; }
+            set { points_p1 = value; }
+        }
         
 
         public void PlayerSpeed()
