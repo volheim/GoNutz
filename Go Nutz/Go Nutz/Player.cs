@@ -31,8 +31,8 @@ namespace Go_Nutz
             this.movementKeys = movementKeys;
         }
 
-        public float Speed { get => speed; set => speed = value; }
-
+        //public float Speed { get => speed; set => speed = value; }
+        public float Speed { get { return speed; } set { speed = value; } }
         public int GetHealth()
         {
             return health;
@@ -49,7 +49,7 @@ namespace Go_Nutz
             //lose 1 health
             SetHealth(-1);
             //drop nuts
-            
+
 
             /* pseudo code:
              * move to home tree
@@ -121,12 +121,13 @@ namespace Go_Nutz
         }
         #endregion
 
-        Font f = new Font("Arial", 16);
 
-        
+
 
         public override void Draw(Graphics dc)
         {
+            Font f = new Font("Arial", 16);
+
             dc.DrawString(string.Format("P1 Score: {0}", Points_p1), f, Brushes.Black, 0, 600);
             dc.DrawString(string.Format("P2 Score: {0}", Points_p2), f, Brushes.Black, 1055, 600);
 
@@ -139,42 +140,42 @@ namespace Go_Nutz
             CheckCollision();
             Movement();
             PlayerSpeed();
-            
+
         }
-        
+
         public void Kick(GameObject other)
         {
             kickVector = new Vector2((other.Position.X - position.X) * kickForce, (other.Position.Y - position.Y) * kickForce);
             other.MovementVector = kickVector;
             //Test element
-            other.MovementVector = new Vector2(5,0);
+            other.MovementVector = new Vector2(5, 0);
         }
 
         public static void DepositNuts()
         {
-           
+
             if ((Keyboard.IsKeyDown(Keys.Q)) && Nut.P1Nuts > 0 && Nut.P1Nuts <= 6)
             {
 
                 Points_p1 += 1;
-                
+
 
                 Nut.P1Nuts--;
-                
+
             }
 
             if (Keyboard.IsKeyDown(Keys.U) && Nut.P2Nuts > 0 && Nut.P2Nuts <= 6)
             {
-                
+
                 Points_p2 += 1;
-                
+
 
                 Nut.P2Nuts--;
-                
+
             }
-            
+
         }
-        
+
         public void Movement()
         {
             ///<summary>
@@ -199,9 +200,25 @@ namespace Go_Nutz
             {
                 position.Y -= Speed;
             }
-            if (Keyboard.IsKeyDown(movementKeys[4]))
+            if (Keyboard.IsKeyDown(movementKeys[5]))
             {
-                PlaceBomb();
+                bool bombInPlace = false;
+                foreach (GameObject item in GameWorld.Objects)
+                {
+                    if (item is BoomNut)
+                    {
+                        if (IsIntersectingWith(item))
+                        {
+                            bombInPlace = true;
+                        }
+                    }
+
+                }
+                if (!bombInPlace)
+                {
+                    PlaceBomb();
+                }
+
             }
         }
     }
