@@ -16,32 +16,21 @@ namespace Go_Nutz
         int health;
         float speed;
         int maxNuts;
-<<<<<<< HEAD
 
         Image sprite;
         float scaleFactor;
 
-=======
->>>>>>> master
         int kickForce;
         bool canPlaceBomb;
         Vector2 kickVector;
-<<<<<<< HEAD
-
-        PlayerScore pointKeeper = new PlayerScore();
+        
         GameObject bomb;
-        Keys keyLeft;
-        Keys keyDown;
-        Keys keyRight;
-        Keys keyUp;
-        Keys keyPlaceBomb;
-        Keys keyDepositeNut;
-       
-=======
         Keys[] movementKeys;
->>>>>>> master
-        #endregion
 
+        private string lastKeyPressed = "right";
+        private string facing = "right";
+
+        #endregion
 
         public Player(Vector2 position, string imagePath, int health, float speed, int maxNuts, float scaleFactor, Keys[] movementKeys) : base(position, imagePath, scaleFactor)
         {
@@ -51,6 +40,16 @@ namespace Go_Nutz
             this.Speed = speed;
             this.maxNuts = maxNuts;
             this.movementKeys = movementKeys;
+
+            string[] Imagepaths = imagePath.Split(';');
+
+            this.animationFrames = new List<Image>();
+
+            foreach (string path in Imagepaths)
+            {
+                animationFrames.Add(Image.FromFile(path));
+            }
+            
         }
 
         public float Speed { get => speed; set => speed = value; }
@@ -71,7 +70,7 @@ namespace Go_Nutz
             //lose 1 health
             SetHealth(-1);
             //drop nuts
-            
+
 
             /* pseudo code:
              * move to home tree
@@ -141,158 +140,240 @@ namespace Go_Nutz
         {
             return CollisionBox.IntersectsWith(other.CollisionBox);
         }
-<<<<<<< HEAD
-#endregion
-        public override void Update(float fps)
-        {
-            Movement();
-            PlaceBomb();
-            //Draw(dc);
-            
-=======
         #endregion
->>>>>>> master
-
-        Font f = new Font("Arial", 16);
-
         
-
         public override void Draw(Graphics dc)
         {
+            Font f = new Font("Arial", 16);
             dc.DrawString(string.Format("P1 Score: {0}", Points_p1), f, Brushes.Black, 0, 600);
             dc.DrawString(string.Format("P2 Score: {0}", Points_p2), f, Brushes.Black, 1055, 600);
 
             base.Draw(dc);
         }
-<<<<<<< HEAD
-=======
+
 
         public override void Update(float fps)
         {
             //Checks the players Collision
             CheckCollision();
             Movement();
+            Turn();
             PlayerSpeed();
-            
+
         }
->>>>>>> master
-        
+
         public void Kick(GameObject other)
         {
             kickVector = new Vector2((other.Position.X - position.X) * kickForce, (other.Position.Y - position.Y) * kickForce);
             other.MovementVector = kickVector;
             //Test element
-            other.MovementVector = new Vector2(5,0);
+            other.MovementVector = new Vector2(5, 0);
         }
 
         public static void DepositNuts()
         {
-           
+
             if ((Keyboard.IsKeyDown(Keys.Q)) && Nut.P1Nuts > 0 && Nut.P1Nuts <= 6)
             {
 
                 Points_p1 += 1;
-                
+
 
                 Nut.P1Nuts--;
-                
-            }
 
-<<<<<<< HEAD
-        public virtual void Draw(Graphics dc)
-        {
-            dc.DrawImage(sprite, position.X, position.Y, sprite.Width * scaleFactor, sprite.Height * scaleFactor);
-            dc.DrawRectangle(new Pen(Brushes.Red), CollisionBox.X, CollisionBox.Y, sprite.Width * scaleFactor, sprite.Height * scaleFactor);
+            }
         }
-
-        public void PlaceBomb()
-        {
-            ///<summary>
-            ///the player places a bomb at his feet.
-            ///as long as have not placed more all his bombs.
-            /// </summary>
-            //PlaceHolder Code
             
-            if (Keyboard.IsKeyDown(keyPlaceBomb))
-            {
-                canPlaceBomb = true;
-            }
-
-            if (canPlaceBomb)
-            {
-                bomb = new BoomNut(new Vector2(position.X, position.Y), "Piperlok.png");
-                GameWorld.Add_Objects.Add(bomb);
-                canPlaceBomb = false;
-            }
-            
-            //BoombsPlaced++;
-            
-=======
-            if (Keyboard.IsKeyDown(Keys.U) && Nut.P2Nuts > 0 && Nut.P2Nuts <= 6)
-            {
-                
-                Points_p2 += 1;
-                
->>>>>>> master
-
-                Nut.P2Nuts--;
-                
-            }
-            
-        }
-        
+       
+        ///<summary>
+        ///KEY order (LEFT,DOWN,RIGHT,UP,ACTIONKEY1(placeBomb),ACTIONKEY2)
+        /// </summary>
         public void Movement()
         {
-<<<<<<< HEAD
-            Bitmap bmp = new Bitmap(sprite);
-
-            //Move left
-            if (Keyboard.IsKeyDown(keyLeft))
-            {
-                position.X -= speed;
-                bmp.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            }
-
-            //Move down
-            if (Keyboard.IsKeyDown(keyDown))
-=======
-            ///<summary>
-            ///KEY order (LEFT,DOWN,RIGHT,UP,ACTIONKEY1(placeBomb),ACTIONKEY2)
-            /// </summary>
             if (Keyboard.IsKeyDown(movementKeys[0]))
             {
                 position.X -= Speed;
+                lastKeyPressed = "left";
             }
 
             if (Keyboard.IsKeyDown(movementKeys[1]))
->>>>>>> master
             {
                 position.Y += Speed;
+                lastKeyPressed = "down";
             }
 
-<<<<<<< HEAD
             //Move right
-            if (Keyboard.IsKeyDown(keyRight))
-=======
             if (Keyboard.IsKeyDown(movementKeys[2]))
->>>>>>> master
             {
                 position.X += Speed;
+                lastKeyPressed = "right";
             }
 
-<<<<<<< HEAD
             // Move up
-            if (Keyboard.IsKeyDown(keyUp))
-=======
             if (Keyboard.IsKeyDown(movementKeys[3]))
             {
                 position.Y -= Speed;
+                lastKeyPressed = "up";
             }
+
             if (Keyboard.IsKeyDown(movementKeys[4]))
->>>>>>> master
             {
                 PlaceBomb();
             }
+        }
+
+        public void Turn()
+        {
+            if (lastKeyPressed == "left" && facing != "left")
+            {
+                TurnLeft();
+            }
+
+            if (lastKeyPressed == "down" && facing != "down")
+            {
+                TurnDown();
+            }
+
+            if (lastKeyPressed == "right" && facing != "right")
+            {
+                TurnRight();
+            }
+
+            if (lastKeyPressed == "up" && facing != "up")
+            {
+                TurnUp();
+            }
+        }
+        
+
+        public void TurnLeft()
+        {
+            switch (facing)
+            {
+                case "left":                    
+                    break;
+
+                case "down":
+                    foreach (Image img in animationFrames)
+                    {
+                        img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    }
+                    break;
+
+                case "right":
+                    foreach (Image img in animationFrames)
+                    {
+                        img.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                    }
+                    break;
+
+                case "up":
+                    foreach (Image img in animationFrames)
+                    {
+                        img.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                    }
+                    break;
+
+            }
+
+            facing = "left";
+        }
+
+        public void TurnDown()
+        {
+            switch (facing)
+            {
+                case "left":
+                    foreach (Image img in animationFrames)
+                    {
+                        img.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                    }
+                    break;
+
+                case "down":
+                    break;
+
+                case "right":
+                    foreach (Image img in animationFrames)
+                    {
+                        img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    }
+                    break;
+                    
+                case "up":
+                    foreach (Image img in animationFrames)
+                    {
+                        img.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                    }
+                    break;
+            }
+
+            facing = "down";
+        }
+        
+        public void TurnRight()
+        {
+            switch (facing)
+            {
+                case "left":
+                    foreach (Image img in animationFrames)
+                    {
+                        img.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                    }
+                    break;
+
+                case "down":
+                    foreach (Image img in animationFrames)
+                    {
+                        img.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                    }
+                    break;
+
+                case "right":
+                    break;
+
+                case "up":
+                    foreach (Image img in animationFrames)
+                    {
+                        img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    }
+                    break;
+
+            }
+
+            facing = "right";
+        }
+
+        public void TurnUp()
+        {
+            switch (facing)
+            {
+                case "left":
+                    foreach (Image img in animationFrames)
+                    {
+                        img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    }
+                    break;
+
+                case "down":
+                    foreach (Image img in animationFrames)
+                    {
+                        img.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                    }
+                    break;
+
+                case "right":
+                    foreach (Image img in animationFrames)
+                    {
+                        img.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                    }
+                    break;
+                    
+                case "up":
+                    break;
+            }
+
+            facing = "up";
         }
     }
 }

@@ -9,10 +9,10 @@ using System.Windows.Forms;
 
 namespace Go_Nutz
 {
+    partial class GameWorld
     {
         #region Fields
         private Graphics dc;
-        private static List<Player> players;
         private static List<GameObject> objects;
         private static List<GameObject> remove_Objects;
         private static List<GameObject> add_Objects;
@@ -71,7 +71,6 @@ namespace Go_Nutz
             UpdateAnimation(fps);
             ClearLoopLists();
         }
-        public virtual void Draw()
         public void ClearLoopLists()
         {
             add_Objects.Clear();
@@ -80,11 +79,7 @@ namespace Go_Nutz
         public void Draw()
         {
             dc.Clear(Color.Red);
-<<<<<<< HEAD
-
-=======
             Font f = new Font("Arial", 16);
->>>>>>> master
             foreach (GameObject go in objects)
             {
                 go.Draw(dc);

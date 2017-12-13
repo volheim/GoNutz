@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace Go_Nutz
 {
-    class BoomNut : Nut
     class BoomNut : GameObject
     {
         #region Feilds
