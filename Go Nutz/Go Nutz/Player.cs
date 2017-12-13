@@ -62,7 +62,7 @@ namespace Go_Nutz
         }
 
         #region Collision
-        public override void CheckCollision()
+        public void CheckCollision()
         {
             /// <summary>
             /// Check if a GameObject Collides with anohter

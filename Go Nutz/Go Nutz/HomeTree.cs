@@ -61,7 +61,7 @@ namespace Go_Nutz
         {
             return CollisionBox.IntersectsWith(other.CollisionBox);
         }
-        public override void CheckCollision()
+        public void CheckCollision()
         {
             /// <summary>
             /// Check if a GameObject Collides with anohter
