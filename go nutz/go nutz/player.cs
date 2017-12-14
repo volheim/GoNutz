@@ -155,9 +155,8 @@ namespace Go_Nutz
         public override void Update(float fps)
         {
             //Checks the players Collision
-            CheckCollision();
             Movement();
-            Turn();
+            CheckCollision();
             PlayerSpeed();
 
         }
@@ -220,8 +219,14 @@ namespace Go_Nutz
             {
                 PlaceBomb();
             }
+
+            //Makes the player face the right direction
+            Turn();
         }
 
+        ///<summary>
+        ///Makes player turn corresponding to the key pressed
+        /// </summary>
         public void Turn()
         {
             if (lastKeyPressed == "left" && facing != "left")
@@ -244,8 +249,10 @@ namespace Go_Nutz
                 TurnUp();
             }
         }
-        
 
+        ///<summary>
+        ///Makes player face left
+        /// </summary>
         public void TurnLeft()
         {
             switch (facing)
@@ -279,6 +286,9 @@ namespace Go_Nutz
             facing = "left";
         }
 
+        ///<summary>
+        ///Makes player face down
+        /// </summary>
         public void TurnDown()
         {
             switch (facing)
@@ -310,7 +320,10 @@ namespace Go_Nutz
 
             facing = "down";
         }
-        
+
+        ///<summary>
+        ///Makes player face right
+        /// </summary>
         public void TurnRight()
         {
             switch (facing)
@@ -344,6 +357,9 @@ namespace Go_Nutz
             facing = "right";
         }
 
+        ///<summary>
+        ///Makes player face up
+        /// </summary>
         public void TurnUp()
         {
             switch (facing)
