@@ -10,6 +10,7 @@ namespace Go_Nutz
 {
     partial class BoomNut
     {
+        Image explsionSprite = Image.FromFile(@"Images\blood\Splat01.png");
         public void CalculateExplosionRadius(int power)
         {
             CalculateLeft(power);
@@ -22,7 +23,6 @@ namespace Go_Nutz
         {
             float baseX = Position.X;
             float baseY = Position.Y;
-            Image explsionSprite = Image.FromFile(@"Images\blood\Splat01.png");
             for (int i = 0; i < power; i++)
             {
                 bool objectHit = false;
@@ -73,7 +73,7 @@ namespace Go_Nutz
         {
             float baseX = position.X;
             float baseY = position.Y;
-            Image explsionSprite = Image.FromFile(@"Images\blood\Splat01.png");
+            
             for (int i = 0; i < power; i++)
             {
                 bool objectHit = false;
@@ -85,7 +85,7 @@ namespace Go_Nutz
                     {
                         if (IsIntersectingWith(currentsqaure, Object))
                         {
-                            if (Object is Wall || Object is NutObject || Object is HomeTree)
+                            if (Object is Wall || Object is NutObject || Object is HomeTree || Object is Explosion)
                             {
                                 objectHit = true;
                                 continue;
@@ -124,7 +124,6 @@ namespace Go_Nutz
         {
             float baseX = position.X;
             float baseY = position.Y;
-            Image explsionSprite = Image.FromFile(@"Images\blood\Splat01.png");
             for (int i = 0; i < power; i++)
             {
                 bool objectHit = false;
@@ -136,7 +135,7 @@ namespace Go_Nutz
                     {
                         if (IsIntersectingWith(currentsqaure, Object))
                         {
-                            if (Object is Wall || Object is NutObject || Object is HomeTree)
+                            if (Object is Wall || Object is NutObject || Object is HomeTree || Object is Explosion)
                             {
                                 objectHit = true;
                                 break;
@@ -175,7 +174,6 @@ namespace Go_Nutz
         {
             float baseX = position.X;
             float baseY = position.Y;
-            Image explsionSprite = Image.FromFile(@"Images\blood\Splat01.png");
             for (int i = 0; i < power; i++)
             {
                 bool objectHit = false;
@@ -187,7 +185,7 @@ namespace Go_Nutz
                     {
                         if (IsIntersectingWith(currentsqaure, Object))
                         {
-                            if (Object is Wall || Object is NutObject || Object is HomeTree)
+                            if (Object is Wall || Object is NutObject || Object is HomeTree || Object is Explosion)
                             {
                                 objectHit = true;
                                 break;

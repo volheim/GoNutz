@@ -59,7 +59,7 @@ namespace Go_Nutz
         }
         public void Explode()
         {
-            CalculateExplosionRadius(5);
+            CalculateExplosionRadius(2);
             //GameWorld.Objects.Add(new Explosion(new Vector2(position.X, position.X), "", 1, 1));
             GameWorld.Removed_Objects.Add(this);
         }

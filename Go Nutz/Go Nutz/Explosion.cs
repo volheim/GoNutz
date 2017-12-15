@@ -8,22 +8,19 @@ using System.Numerics;
 
 namespace Go_Nutz
 {
-    class Explosion : GameObject
+    struct Explosion
     {
         private int power;
-        private Image sprite;
         private int timeLeft;
-        public int Power
+        private Image sprite;
+        public Explosion(Vector2 position, string imagePath, int power, float scaleFactor)
         {
-            get { return power; }
-            set { power = value; }
-        }
-        public Explosion(Vector2 position, string imagePath, int power, float scaleFactor) : base(position, imagePath, scaleFactor)
-        {
-            this.power = power;
+            this.power = power;      
             timeLeft = 16;
+            sprite = Image.FromFile(imagePath);
         }
-        public override void Update(float fps)
+        
+        public void Update(float fps)
         {
             if (timeLeft <= 0)
             {
@@ -31,5 +28,6 @@ namespace Go_Nutz
             }
             timeLeft--;
         }
+        
     }
 }
