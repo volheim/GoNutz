@@ -20,7 +20,7 @@ namespace Settings
 
         private void ReturnToMenu_Click(object sender, EventArgs e)
         {
-            new Go_Nutz.Form1();
+            Close();
         }
 
         private const int APPCOMMAND_VOLUME_MUTE = 0x80000;
