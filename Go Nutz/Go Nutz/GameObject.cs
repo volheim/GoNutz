@@ -69,13 +69,5 @@ namespace Go_Nutz
         {
            
         }
-
-        public virtual void CheckCollision()
-        {
-            foreach (GameObject gameObject in GameWorld.Objects)
-            {
-
-            }
-        }
     }
 }

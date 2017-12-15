@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Go_Nutz
 {
-    class BoomNut : GameObject
+    partial class BoomNut : GameObject
     {
         #region Feilds
         //when a player places a bomp allow him/her to Phase through it
@@ -15,6 +15,7 @@ namespace Go_Nutz
         //Tells other objects that the Boomnut is moveing also usefull for ativator for collision
         private bool inMotion;
         int timeLeft;
+        Player player;
         #endregion
 
         #region Properties
@@ -34,27 +35,35 @@ namespace Go_Nutz
         {
             phaseAble = false;
             inMotion = false;
+            this.player = player;
             timeLeft = 0;
         }
         public override void Update(float fps)
         {
-            if (timeLeft > 24*2)
+            if (timeLeft > 24*5)
             {
                 Explode();
             }
             timeLeft++;
             if (inMotion)
             {
+                //
                 position += movementVector;
+                //if the Boomnut is moving check collision else don't. :: should increase performance
+                if (inMotion)
+                {
+                    CheckCollision();
+                }
             }
             base.Update(fps);
         }
         public void Explode()
         {
+            CalculateExplosionRadius(5);
             //GameWorld.Objects.Add(new Explosion(new Vector2(position.X, position.X), "", 1, 1));
             GameWorld.Removed_Objects.Add(this);
         }
-        public override void CheckCollision()
+        public void CheckCollision()
         {
             /// <summary>
             /// Check if a GameObject Collides with anohter
@@ -70,19 +79,13 @@ namespace Go_Nutz
                 }
             }
         }
-        public void Update()
-        {
-            //if the Boomnut is moving check collision else don't. :: should increase performance
-            if (inMotion = true)
-            {
-                CheckCollision();
-            }
-        }
-        public virtual void OnCollision(GameObject other)
+
+        public void OnCollision(GameObject other)
         {
             // if the bomb hits a wall, a NutObejct or a Player stop the bomb and stops the motion of the bomb, then set the bomb at intial collision point
-            if (other is Wall || other is NutObject || other is Player)
+            if (other is Wall || other is NutObject || other is HomeTree)
             {
+                /*
                 //Checks top collision
                 if (position.Y + sprite.Height > other.CollisionBox.Top && position.Y + sprite.Height < other.CollisionBox.Top + 10)
                 {
@@ -114,7 +117,34 @@ namespace Go_Nutz
                     inMotion = false;
                     position.X = other.CollisionBox.Right;
                 }
-
+                */
+                if (CollisionBox.Bottom > other.CollisionBox.Top && CollisionBox.Bottom < other.CollisionBox.Top + 30)
+                {
+                    InMotion = false;
+                    movementVector = new Vector2(0, 0);
+                    position.Y = other.CollisionBox.Top - CollisionBox.Height;
+                }
+                //Checks bottom collision
+                else if (CollisionBox.Top > other.CollisionBox.Bottom - 30 && CollisionBox.Top < other.CollisionBox.Bottom)
+                {
+                    InMotion = false;
+                    movementVector = new Vector2(0, 0);
+                    position.Y = other.CollisionBox.Bottom;
+                }
+                //Checks right collision
+                else if (CollisionBox.Right >= other.CollisionBox.Left && CollisionBox.Right <= other.CollisionBox.Left + 20)
+                {
+                    InMotion = false;
+                    movementVector = new Vector2(0, 0);
+                    position.X = other.CollisionBox.Left - CollisionBox.Width;
+                }
+                //Checks left collision
+                else if (CollisionBox.Left >= other.CollisionBox.Right - 20 && CollisionBox.Left <= other.CollisionBox.Right)
+                {
+                    InMotion = false;
+                    movementVector = new Vector2(0, 0);
+                    position.X = other.CollisionBox.Right;
+                }
             }
         }
         public bool IsIntersectingWith(GameObject other)
