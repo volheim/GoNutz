@@ -47,12 +47,19 @@ namespace Go_Nutz
             timeLeft++;
             if (inMotion)
             {
+                //
                 position += movementVector;
+                //if the Boomnut is moving check collision else don't. :: should increase performance
+                if (inMotion)
+                {
+                    CheckCollision();
+                }
             }
             base.Update(fps);
         }
         public void Explode()
         {
+            CalculateExplosionRadius(5);
             //GameWorld.Objects.Add(new Explosion(new Vector2(position.X, position.X), "", 1, 1));
             GameWorld.Removed_Objects.Add(this);
         }
@@ -72,14 +79,7 @@ namespace Go_Nutz
                 }
             }
         }
-        public void Update()
-        {
-            //if the Boomnut is moving check collision else don't. :: should increase performance
-            if (inMotion)
-            {
-                CheckCollision();
-            }
-        }
+
         public void OnCollision(GameObject other)
         {
             // if the bomb hits a wall, a NutObejct or a Player stop the bomb and stops the motion of the bomb, then set the bomb at intial collision point

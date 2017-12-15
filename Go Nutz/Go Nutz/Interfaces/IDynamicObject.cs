@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Go_Nutz.Interfaces
 {
-    interface DynamicObject
+    interface IDynamicObject
     {
         void CheckCollision();
         void IntersectWith(GameObject other);

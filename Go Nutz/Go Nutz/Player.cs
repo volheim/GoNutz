@@ -15,7 +15,8 @@ namespace Go_Nutz
         int health;
         float speed;
         int maxNuts;
-        int kickForce;
+        int nutCount;
+        float kickForce;
         Vector2 kickVector;
         Stack<PowerUp> powerUps;
         List<BoomNut> bombs;
@@ -31,7 +32,7 @@ namespace Go_Nutz
             this.Speed = speed;
             this.maxNuts = maxNuts;
             this.movementKeys = movementKeys;
-            kickForce = 5;
+            kickForce = 0.2f;
         }
 
         //public float Speed { get => speed; set => speed = value; }
@@ -84,7 +85,7 @@ namespace Go_Nutz
             ///<summary>
             ///depending on the other GameObject do something or nothing
             /// </summary>
-            if (other is Wall || other is NutObject || other is Player || other is HomeTree)
+            if (other is Wall || other is NutObject || other is Player)
             {
                 //Checks top collision
                 if (CollisionBox.Bottom > other.CollisionBox.Top && CollisionBox.Bottom < other.CollisionBox.Top + 30)
@@ -116,6 +117,11 @@ namespace Go_Nutz
             {
                 HandleBoomNut(other as BoomNut);
             }
+            else if (other is Nut)
+            {
+                GameWorld.Removed_Objects.Add(other);
+                
+            }
         }
         //if two CollisionBoxes are colliding return true else false
         public bool IsIntersectingWith(GameObject other)
@@ -140,18 +146,17 @@ namespace Go_Nutz
         public override void Update(float fps)
         {
             //Checks the players Collision
-            CheckCollision();
             Movement();
+            CheckCollision();
             PlayerSpeed();
 
         }
 
         public void Kick(GameObject other)
         {
-            kickVector = new Vector2((other.Position.X - position.X) * kickForce, (other.Position.Y - position.Y) * kickForce);
+            kickVector = new Vector2((other.Position.X - Position.X) * kickForce, (other.Position.Y - Position.Y) * kickForce);
             other.MovementVector = kickVector;
             //Test element
-            other.MovementVector = new Vector2(5, 0);
         }
 
         public static void DepositNuts()
