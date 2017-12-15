@@ -149,7 +149,9 @@
     <Content Include="Images\ChipmunkWalk\ChipmunkWalk04.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Squirrelanimation\Squirrel walk preview.gif" />
+    <Content Include="Images\Rock.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Squirrelanimation\SquiwwelWalk01.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -174,9 +176,7 @@
     <Content Include="Images\Squirrelanimation\SquiwwelWalk08.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Squiwwel.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Images\Squiwwel.png" />
     <Content Include="Images\stumpHome.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

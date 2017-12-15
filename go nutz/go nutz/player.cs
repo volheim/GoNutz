@@ -43,13 +43,15 @@ namespace Go_Nutz
 
             string[] Imagepaths = imagePath.Split(';');
 
-            this.animationFrames = new List<Image>();
+            this.animationFrames = new List<Bitmap>();
 
             foreach (string path in Imagepaths)
             {
-                animationFrames.Add(Image.FromFile(path));
+                Image img = Image.FromFile(path);
+                Bitmap frame = new Bitmap(img);
+                animationFrames.Add(frame);
             }
-            
+
         }
 
         public float Speed { get => speed; set => speed = value; }
@@ -155,8 +157,8 @@ namespace Go_Nutz
         public override void Update(float fps)
         {
             //Checks the players Collision
-            CheckCollision();
             Movement();
+            CheckCollision();
             Turn();
             PlayerSpeed();
 
