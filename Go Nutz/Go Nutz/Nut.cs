@@ -14,8 +14,18 @@ namespace Go_Nutz
         static int p1Nuts = 6;
         static int p2Nuts = 6;
 
-        public static int P1Nuts { get => p1Nuts; set => p1Nuts = value; }
-        public static int P2Nuts { get => p2Nuts; set => p2Nuts = value; }
+       // public static int P1Nuts { get => p1Nuts; set => p1Nuts = value; }
+       // public static int P2Nuts { get => p2Nuts; set => p2Nuts = value; }
+        public static int P1Nuts
+        {
+            get { return p1Nuts; }
+            set { p1Nuts = value; }
+        }
+        public static int P2Nuts
+        {
+            get { return p2Nuts; }
+            set { p2Nuts = value; }
+        }
 
         public Nut(Vector2 position, string imagePath, float scaleFactor) : base(position, imagePath, scaleFactor)
         {
@@ -31,21 +41,22 @@ namespace Go_Nutz
         {
 
         }
-        Font f = new Font("Arial", 16);
+
         public override void Draw(Graphics dc)
         {
 
             //SpawnRandom();
-
+             Font f = new Font("Arial", 16);
             dc.DrawString(string.Format("P1 Eaten Nuts: {0}", P1Nuts), f, Brushes.Black, 220, 0);
             dc.DrawString(string.Format("P2 Eaten Nuts: {0}", P2Nuts), f, Brushes.Black, 800, 0);
+            base.Draw(dc);
 
         }
 
         public override void Update(float fps)
         {
             //SpawnRandom();
-            
+            base.Update(fps);
         }
 
         public void SpawnRandom()

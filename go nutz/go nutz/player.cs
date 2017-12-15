@@ -23,8 +23,10 @@ namespace Go_Nutz
         int kickForce;
         bool canPlaceBomb;
         Vector2 kickVector;
-        
+
         GameObject bomb;
+        Stack<PowerUp> powerUps;
+        List<BoomNut> bombs;
         Keys[] movementKeys;
 
         private string lastKeyPressed = "right";
@@ -50,10 +52,11 @@ namespace Go_Nutz
                 animationFrames.Add(Image.FromFile(path));
             }
             
+            kickForce = 5;
         }
 
-        public float Speed { get => speed; set => speed = value; }
-
+        //public float Speed { get => speed; set => speed = value; }
+        public float Speed { get { return speed; } set { speed = value; } }
         public int GetHealth()
         {
             return health;
@@ -80,7 +83,7 @@ namespace Go_Nutz
         }
 
         #region Collision
-        public override void CheckCollision()
+        public void CheckCollision()
         {
             /// <summary>
             /// Check if a GameObject Collides with anohter
@@ -102,7 +105,7 @@ namespace Go_Nutz
             ///<summary>
             ///depending on the other GameObject do something or nothing
             /// </summary>
-            if (other is Wall || other is NutObject || other is Player)
+            if (other is Wall || other is NutObject || other is Player || other is HomeTree)
             {
                 //Checks top collision
                 if (CollisionBox.Bottom > other.CollisionBox.Top && CollisionBox.Bottom < other.CollisionBox.Top + 30)
@@ -110,7 +113,7 @@ namespace Go_Nutz
                     position.Y = other.CollisionBox.Top - CollisionBox.Height;
                 }
                 //Checks bottom collision
-                else if (CollisionBox.Top > other.CollisionBox.Bottom && CollisionBox.Top < other.CollisionBox.Bottom - 30)
+                else if (CollisionBox.Top > other.CollisionBox.Bottom - 30 && CollisionBox.Top < other.CollisionBox.Bottom )
                 {
                     position.Y = other.CollisionBox.Bottom;
                 }
@@ -141,10 +144,11 @@ namespace Go_Nutz
             return CollisionBox.IntersectsWith(other.CollisionBox);
         }
         #endregion
-        
+
         public override void Draw(Graphics dc)
         {
             Font f = new Font("Arial", 16);
+            
             dc.DrawString(string.Format("P1 Score: {0}", Points_p1), f, Brushes.Black, 0, 600);
             dc.DrawString(string.Format("P2 Score: {0}", Points_p2), f, Brushes.Black, 1055, 600);
 
@@ -177,13 +181,23 @@ namespace Go_Nutz
 
                 Points_p1 += 1;
 
-
                 Nut.P1Nuts--;
 
             }
+        
+
+            if (Keyboard.IsKeyDown(Keys.U) && Nut.P2Nuts > 0 && Nut.P2Nuts <= 6)
+            {
+
+                Points_p2 += 1;
+
+
+                Nut.P2Nuts--;
+
+            }
+
         }
-            
-       
+
         ///<summary>
         ///KEY order (LEFT,DOWN,RIGHT,UP,ACTIONKEY1(placeBomb),ACTIONKEY2)
         /// </summary>
@@ -215,9 +229,29 @@ namespace Go_Nutz
                 lastKeyPressed = "up";
             }
 
+
             if (Keyboard.IsKeyDown(movementKeys[4]))
+            { }
+            if (Keyboard.IsKeyDown(movementKeys[5]))
+
             {
-                PlaceBomb();
+                bool bombInPlace = false;
+                foreach (GameObject item in GameWorld.Objects)
+                {
+                    if (item is BoomNut)
+                    {
+                        if (IsIntersectingWith(item))
+                        {
+                            bombInPlace = true;
+                        }
+                    }
+
+                }
+                if (!bombInPlace)
+                {
+                    PlaceBomb();
+                }
+
             }
 
             //Makes the player face the right direction

@@ -25,17 +25,18 @@ namespace Go_Nutz
         public void SetupWorld()
         {
 
-            #region Lists;
+            #region Lists
+
             objects = new List<GameObject>();
             add_Objects = new List<GameObject>();
             remove_Objects = new List<GameObject>();
             #endregion
 
-
-            ML = new MapLoader();
+             ML = new MapLoader();
             ML.GenerateLevelBitmap(0);
+            
+            #region Create Objects
 
-            #region Create Objects;
             #region Players
 
             //Player1 = new Player(new Vector2(500f, 250f), @"Images\ChipmunkWalk\ChipmunkWalk01.png;Images\ChipmunkWalk\ChipmunkWalk02.png;Images\ChipmunkWalk\ChipmunkWalk03.png;Images\ChipmunkWalk\ChipmunkWalk04.png", 10, 10, 10, 0.1f, new Keys[6] { Keys.A, Keys.S, Keys.D, Keys.W, Keys.Q, Keys.E });
@@ -50,7 +51,7 @@ namespace Go_Nutz
 
             #region Nuts
             Nut Nut1 = (new Nut(new Vector2(210f, 250f), @"Images\acornDrawn.png", 0.04f));
-
+ 
             #endregion
 
 
@@ -65,13 +66,13 @@ namespace Go_Nutz
             
             objects.Add(Nut1);
 
-
-
-
             #region NutGenerator
 
             #endregion
-
+            #region LevelGen
+            
+            ML.GenerateLevelBitmap(0);
+            #endregion
             #endregion;
             #endregion
 
