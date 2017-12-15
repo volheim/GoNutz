@@ -16,23 +16,20 @@ namespace Go_Nutz
         int health;
         float speed;
         int maxNuts;
-<<<<<<< HEAD
+
 
         Image sprite;
         float scaleFactor;
 
-        int kickForce;
+        float kickForce;
         bool canPlaceBomb;
         Vector2 kickVector;
         
         GameObject bomb;
-=======
         int nutCount;
-        float kickForce;
-        Vector2 kickVector;
+
         Stack<PowerUp> powerUps;
         List<BoomNut> bombs;
->>>>>>> Mikkel
         Keys[] movementKeys;
 
         private string lastKeyPressed = "right";
@@ -48,7 +45,7 @@ namespace Go_Nutz
             this.Speed = speed;
             this.maxNuts = maxNuts;
             this.movementKeys = movementKeys;
-<<<<<<< HEAD
+
 
             string[] Imagepaths = imagePath.Split(';');
 
@@ -61,9 +58,7 @@ namespace Go_Nutz
                 animationFrames.Add(frame);
             }
 
-=======
             kickForce = 0.2f;
->>>>>>> Mikkel
         }
 
         //public float Speed { get => speed; set => speed = value; }
@@ -160,21 +155,11 @@ namespace Go_Nutz
             return CollisionBox.IntersectsWith(other.CollisionBox);
         }
         #endregion
-<<<<<<< HEAD
         
         public override void Draw(Graphics dc)
         {
             Font f = new Font("Arial", 16);
-=======
 
-
-
-
-        public override void Draw(Graphics dc)
-        {
-            Font f = new Font("Arial", 16);
-
->>>>>>> Mikkel
             dc.DrawString(string.Format("P1 Score: {0}", Points_p1), f, Brushes.Black, 0, 600);
             dc.DrawString(string.Format("P2 Score: {0}", Points_p2), f, Brushes.Black, 1055, 600);
 
@@ -187,10 +172,7 @@ namespace Go_Nutz
             //Checks the players Collision
             Movement();
             CheckCollision();
-<<<<<<< HEAD
             Turn();
-=======
->>>>>>> Mikkel
             PlayerSpeed();
 
         }
@@ -200,10 +182,6 @@ namespace Go_Nutz
             kickVector = new Vector2((other.Position.X - Position.X) * kickForce, (other.Position.Y - Position.Y) * kickForce);
             other.MovementVector = kickVector;
             //Test element
-<<<<<<< HEAD
-            other.MovementVector = new Vector2(5, 0);
-=======
->>>>>>> Mikkel
         }
 
         public static void DepositNuts()
@@ -213,25 +191,10 @@ namespace Go_Nutz
             {
 
                 Points_p1 += 1;
-<<<<<<< HEAD
-
 
                 Nut.P1Nuts--;
 
             }
-        }
-            
-       
-        ///<summary>
-        ///KEY order (LEFT,DOWN,RIGHT,UP,ACTIONKEY1(placeBomb),ACTIONKEY2)
-        /// </summary>
-=======
-
-
-                Nut.P1Nuts--;
-
-            }
-
             if (Keyboard.IsKeyDown(Keys.U) && Nut.P2Nuts > 0 && Nut.P2Nuts <= 6)
             {
 
@@ -244,7 +207,6 @@ namespace Go_Nutz
 
         }
 
->>>>>>> Mikkel
         public void Movement()
         {
             if (Keyboard.IsKeyDown(movementKeys[0]))
@@ -272,12 +234,9 @@ namespace Go_Nutz
                 position.Y -= Speed;
                 lastKeyPressed = "up";
             }
-<<<<<<< HEAD
-
             if (Keyboard.IsKeyDown(movementKeys[4]))
-=======
+            { }
             if (Keyboard.IsKeyDown(movementKeys[5]))
->>>>>>> Mikkel
             {
                 bool bombInPlace = false;
                 foreach (GameObject item in GameWorld.Objects)
