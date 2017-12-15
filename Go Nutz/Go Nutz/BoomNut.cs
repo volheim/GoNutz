@@ -85,39 +85,6 @@ namespace Go_Nutz
             // if the bomb hits a wall, a NutObejct or a Player stop the bomb and stops the motion of the bomb, then set the bomb at intial collision point
             if (other is Wall || other is NutObject || other is HomeTree)
             {
-                /*
-                //Checks top collision
-                if (position.Y + sprite.Height > other.CollisionBox.Top && position.Y + sprite.Height < other.CollisionBox.Top + 10)
-                {
-                    //the movement of the bomb is set to zero
-                    movementVector = new Vector2(0, 0);
-                    //the bomb is no longer moving
-                    inMotion = false;
-                    //sets the bombs position a the egde of the ohter object
-                    position.Y = other.CollisionBox.Top - collisionbox.Height;
-                }
-                //Checks bottom collision
-                else if (position.Y > other.CollisionBox.Bottom && position.Y < other.CollisionBox.Bottom - 10)
-                {
-                    movementVector = new Vector2(0, 0);
-                    inMotion = false;
-                    position.Y = other.CollisionBox.Bottom;
-                }
-                //Checks right collision
-                else if (collisionbox.Right >= other.CollisionBox.Left && collisionbox.Right <= other.CollisionBox.Left + 20)
-                {
-                    movementVector = new Vector2(0, 0);
-                    inMotion = false;
-                    position.X = other.CollisionBox.Left - collisionbox.Width;
-                }
-                //Checks left collision
-                else if (collisionbox.Left >= other.CollisionBox.Right - 20 && collisionbox.Left <= other.CollisionBox.Right)
-                {
-                    movementVector = new Vector2(0, 0);
-                    inMotion = false;
-                    position.X = other.CollisionBox.Right;
-                }
-                */
                 if (CollisionBox.Bottom > other.CollisionBox.Top && CollisionBox.Bottom < other.CollisionBox.Top + 30)
                 {
                     InMotion = false;
@@ -145,6 +112,10 @@ namespace Go_Nutz
                     movementVector = new Vector2(0, 0);
                     position.X = other.CollisionBox.Right;
                 }
+            }
+            else if (other is Explosion)
+            {
+                this.Explode();
             }
         }
         public bool IsIntersectingWith(GameObject other)

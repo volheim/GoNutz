@@ -16,6 +16,9 @@ namespace Go_Nutz
         private static List<GameObject> objects;
         private static List<GameObject> remove_Objects;
         private static List<GameObject> add_Objects;
+        private static List<Explosion> explosions_List;
+        private static List<Explosion> add_Explosions_List;
+        private static List<Explosion> remove_Explosions_List;
         private static Stack<GameObject> Nuts;
         private DateTime endTime;
         private float currentFps;
@@ -40,6 +43,21 @@ namespace Go_Nutz
         {
             get { return add_Objects; }
             set { add_Objects = value; }
+        }
+        public static List<Explosion> Explosions_List
+        {
+            get { return explosions_List; }
+            set { explosions_List = value; }
+        }
+        public static List<Explosion> Add_Explosions_List
+        {
+            get { return add_Explosions_List; }
+            set { add_Explosions_List = value; }
+        }
+        public static List<Explosion> Remove_Explosions_List
+        {
+            get { return remove_Explosions_List; }
+            set { remove_Explosions_List = value; }
         }
         #endregion
         #region generate properties
@@ -93,6 +111,10 @@ namespace Go_Nutz
 #if DEBUG //This code will only be run in   debug mode
                 dc.DrawString(string.Format("FPS: {0}", currentFps), f, Brushes.Black, 550, 0);
 #endif
+            }
+            foreach (Explosion ex in explosions_List)
+            {
+
             }
             //Renders the content of the buffered graphics context to the real context(Swap buffers)
             backBuffer.Render();

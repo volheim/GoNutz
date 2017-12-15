@@ -227,7 +227,7 @@ namespace Go_Nutz
         }
         public void ExplosionVsBoomNut(BoomNut boomNut)
         {
-            boomNut.Explode();
+            //boomNut.Explode();
         }
         public bool IsIntersectingWith(RectangleF sqaure, GameObject other)
         {
