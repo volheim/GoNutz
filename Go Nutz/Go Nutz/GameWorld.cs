@@ -86,6 +86,15 @@ namespace Go_Nutz
             {
                 go.Update(currentFps);
             }
+            foreach (Explosion ex in explosions_List)
+            {
+                ex.Update(currentFps);
+            }
+            explosions_List.AddRange(add_Explosions_List);
+            foreach (Explosion ex in remove_Explosions_List)
+            {
+                explosions_List.Remove(ex);
+            }
             //adds the added objects to the loop
             Objects.AddRange(add_Objects);
             foreach (GameObject gameobject in remove_Objects)
@@ -99,6 +108,8 @@ namespace Go_Nutz
         {
             add_Objects.Clear();
             remove_Objects.Clear();
+            add_Explosions_List.Clear();
+            remove_Explosions_List.Clear();
         }
         public void Draw()
         {
@@ -114,7 +125,7 @@ namespace Go_Nutz
             }
             foreach (Explosion ex in explosions_List)
             {
-
+                ex.Draw(dc);
             }
             //Renders the content of the buffered graphics context to the real context(Swap buffers)
             backBuffer.Render();

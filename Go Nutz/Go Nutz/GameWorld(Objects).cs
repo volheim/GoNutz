@@ -14,9 +14,13 @@ namespace Go_Nutz
         public void SetupWorld()
         {
             #region Lists
+            // Creates the lists needed for the game to run
             objects = new List<GameObject>();
             add_Objects = new List<GameObject>();
             remove_Objects = new List<GameObject>();
+            explosions_List = new List<Explosion>();
+            remove_Explosions_List = new List<Explosion>();
+            add_Explosions_List = new List<Explosion>();
             #endregion
 
             #region Create Objects
