@@ -113,7 +113,7 @@ namespace Go_Nutz
         }
         public void Draw()
         {
-            dc.Clear(Color.Red);
+            dc.Clear(Color.Cornsilk);
             Font f = new Font("Arial", 16);
             foreach (GameObject go in objects)
             {

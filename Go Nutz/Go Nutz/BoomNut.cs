@@ -68,16 +68,27 @@ namespace Go_Nutz
             /// <summary>
             /// Check if a GameObject Collides with anohter
             /// </summary>
-            foreach (GameObject gameObject in GameWorld.Objects)
+            if (inMotion)
             {
-                if (gameObject != this)
+                foreach (GameObject gameObject in GameWorld.Objects)
                 {
-                    if (this.IsIntersectingWith(gameObject))
+                    if (gameObject != this)
                     {
-                        OnCollision(gameObject);
+                        if (this.IsIntersectingWith(gameObject))
+                        {
+                            OnCollision(gameObject);
+                        }
                     }
                 }
             }
+            foreach (Explosion ex in GameWorld.Explosions_List)
+            {
+                if (this.IsIntersectingWith(ex))
+                {
+                    Explode();
+                }
+            }
+
         }
 
         public void OnCollision(GameObject other)
@@ -113,10 +124,10 @@ namespace Go_Nutz
                     position.X = other.CollisionBox.Right;
                 }
             }
-            else if (other is Explosion)
-            {
-                this.Explode();
-            }
+        }
+        public bool IsIntersectingWith(Explosion boom)
+        {
+            return CollisionBox.IntersectsWith(boom.CollisionBox);
         }
         public bool IsIntersectingWith(GameObject other)
         {

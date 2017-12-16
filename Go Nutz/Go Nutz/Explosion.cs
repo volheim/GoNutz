@@ -8,17 +8,17 @@ using System.Numerics;
 
 namespace Go_Nutz
 {
-    struct Explosion
+    class Explosion
     {
         private Vector2 position;
         private int power;
-        private int timeLeft;
+        private int timeLeft = 10;
         private Image sprite;
         float scaleFactor;
         public Explosion(Vector2 position, string imagePath, int power, float scaleFactor)
         {
             this.power = power;      
-            timeLeft = 16;
+            this.timeLeft = 16;
             sprite = Image.FromFile(imagePath);
             this.position = position;
             this.scaleFactor = scaleFactor;
@@ -26,15 +26,23 @@ namespace Go_Nutz
         
         public void Update(float fps)
         {
+            timeLeft--;
             if (timeLeft <= 0)
             {
                 GameWorld.Remove_Explosions_List.Add(this);
             }
-            timeLeft--;
+
         }
         public void Draw(Graphics dc)
         {
             dc.DrawImage(sprite, position.X, position.Y, sprite.Width * scaleFactor, sprite.Height * scaleFactor);
+        }
+        public RectangleF CollisionBox
+        {
+            get
+            {
+                return new RectangleF(position.X, position.Y, sprite.Width * scaleFactor, sprite.Height * scaleFactor);
+            }
         }
         
     }

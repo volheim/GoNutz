@@ -23,14 +23,13 @@ namespace Go_Nutz
         {
             float baseX = Position.X;
             float baseY = Position.Y;
-            for (int i = 0; i < power; i++)
+            for (int i = 0; i < power + 1; i++)
             {
                 RectangleF currentsquare = new RectangleF(baseX + explsionSprite.Width, baseY, explsionSprite.Width, explsionSprite.Height);
-                ;
                 // the explosion hit another Object(wall or Nutobject)
                 if (Checkspace(currentsquare))
                 {
-                    continue;
+                    break;
                 }
                 else
                 {
@@ -46,11 +45,17 @@ namespace Go_Nutz
         {
             float baseX = position.X;
             float baseY = position.Y;
-            
+
             for (int i = 0; i < power; i++)
             {
-        
+
                 RectangleF currentsquare = new RectangleF(baseX - explsionSprite.Width, baseY, explsionSprite.Width, explsionSprite.Height);
+                if (i == 0)
+                {
+                    currentsquare = new RectangleF(baseX - (explsionSprite.Width + explsionSprite.Width), baseY, explsionSprite.Width, explsionSprite.Height);
+                    baseX = currentsquare.X;
+                    continue;
+                }
                 // the explosion hit another Object(wall or Nutobject)
                 if (Checkspace(currentsquare))
                 {
@@ -73,7 +78,12 @@ namespace Go_Nutz
             for (int i = 0; i < power; i++)
             {
                 RectangleF currentsquare = new RectangleF(baseX, baseY - explsionSprite.Height, explsionSprite.Width, explsionSprite.Height);
-               
+                if (i == 0)
+                {
+                    currentsquare = new RectangleF(baseX, baseY - (explsionSprite.Height + explsionSprite.Height), explsionSprite.Width, explsionSprite.Height);
+                    baseY = currentsquare.Y;
+                    continue;
+                }
                 // the explosion hit another Object(wall or Nutobject)
                 if (Checkspace(currentsquare))
                 {
@@ -95,10 +105,14 @@ namespace Go_Nutz
             float baseY = position.Y;
             for (int i = 0; i < power; i++)
             {
-                bool objectHit = false;
                 RectangleF currentsquare = new RectangleF(baseX, baseY + explsionSprite.Height, explsionSprite.Width, explsionSprite.Height);
+                if (i == 0)
+                {
+                    currentsquare = new RectangleF(baseX, baseY + (explsionSprite.Height + explsionSprite.Height), explsionSprite.Width, explsionSprite.Height);
+                    baseY = currentsquare.Y;
+                    continue;
+                }
 
-                
                 // the explosion hit another Object(wall or Nutobject)
                 if (Checkspace(currentsquare))
                 {
@@ -119,7 +133,7 @@ namespace Go_Nutz
         }
         public void ExplosionVsBoomNut(BoomNut boomNut)
         {
-            boomNut.Explode();
+            //boomNut.Explode();
         }
         public bool IsIntersectingWith(RectangleF sqaure, GameObject other)
         {
