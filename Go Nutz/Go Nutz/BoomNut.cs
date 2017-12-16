@@ -94,7 +94,7 @@ namespace Go_Nutz
         public void OnCollision(GameObject other)
         {
             // if the bomb hits a wall, a NutObejct or a Player stop the bomb and stops the motion of the bomb, then set the bomb at intial collision point
-            if (other is Wall || other is NutObject || other is HomeTree)
+            if (other is Wall || other is NutObject || other is HomeTree || other is BoomNut)
             {
                 if (CollisionBox.Bottom > other.CollisionBox.Top && CollisionBox.Bottom < other.CollisionBox.Top + 30)
                 {
