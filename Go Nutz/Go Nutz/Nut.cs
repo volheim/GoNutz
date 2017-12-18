@@ -47,8 +47,8 @@ namespace Go_Nutz
 
             //SpawnRandom();
              Font f = new Font("Arial", 16);
-            dc.DrawString(string.Format("P1 Eaten Nuts: {0}", P1Nuts), f, Brushes.Black, 220, 0);
-            dc.DrawString(string.Format("P2 Eaten Nuts: {0}", P2Nuts), f, Brushes.Black, 800, 0);
+            //dc.DrawString(string.Format("P1 Eaten Nuts: {0}", P1Nuts), f, Brushes.Black, 220, 0);
+            //dc.DrawString(string.Format("P2 Eaten Nuts: {0}", P2Nuts), f, Brushes.Black, 800, 0);
             base.Draw(dc);
 
         }

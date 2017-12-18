@@ -31,30 +31,26 @@ namespace Go_Nutz
         }
         #endregion
 
-        public BoomNut(Vector2 position, string imagePath, float scaleFactor) : base(position, imagePath, scaleFactor)
+        public BoomNut(Vector2 position, string imagePath, float scaleFactor, Player player) : base(position, imagePath, scaleFactor)
         {
-            phaseAble = false;
+            phaseAble = true;
             inMotion = false;
             this.player = player;
             timeLeft = 0;
         }
         public override void Update(float fps)
         {
-            if (timeLeft > 24*5)
+            if (timeLeft > 24 * 5)
             {
                 Explode();
             }
             timeLeft++;
-            if (inMotion)
-            {
-                //
-                position += movementVector;
-                //if the Boomnut is moving check collision else don't. :: should increase performance
-                if (inMotion)
-                {
-                    CheckCollision();
-                }
-            }
+            //
+            position += movementVector;
+            //if the Boomnut is moving check collision else don't. :: should increase performance
+
+            CheckCollision();
+            CheckCollisionWithExplosion();
             base.Update(fps);
         }
         public void Explode()
@@ -68,7 +64,8 @@ namespace Go_Nutz
             /// <summary>
             /// Check if a GameObject Collides with anohter
             /// </summary>
-            if (inMotion)
+
+            if (inMotion || phaseAble)
             {
                 foreach (GameObject gameObject in GameWorld.Objects)
                 {
@@ -77,18 +74,29 @@ namespace Go_Nutz
                         if (this.IsIntersectingWith(gameObject))
                         {
                             OnCollision(gameObject);
+                            if (phaseAble && gameObject != player)
+                            {
+                                phaseAble = false;
+                            }
+                        }
+                        else if (phaseAble)
+                        {
+                            phaseAble = false;
                         }
                     }
                 }
             }
+
+        }
+        public void CheckCollisionWithExplosion()
+        {
             foreach (Explosion ex in GameWorld.Explosions_List)
             {
-                if (this.IsIntersectingWith(ex))
+                if (this.IsIntersectingWithBoom(ex))
                 {
                     Explode();
                 }
             }
-
         }
 
         public void OnCollision(GameObject other)
@@ -125,7 +133,7 @@ namespace Go_Nutz
                 }
             }
         }
-        public bool IsIntersectingWith(Explosion boom)
+        public bool IsIntersectingWithBoom(Explosion boom)
         {
             return CollisionBox.IntersectsWith(boom.CollisionBox);
         }

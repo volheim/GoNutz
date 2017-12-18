@@ -11,7 +11,7 @@ namespace Go_Nutz
     {
         public void PlaceBomb()
         {
-            GameWorld.Add_Objects.Add(new BoomNut(new Vector2(position.X + (sprite.Width/3)*scaleFactor, position.Y + (sprite.Height/8)*scaleFactor),Constants.boomNutAnimation, 0.2f));
+            GameWorld.Add_Objects.Add(new BoomNut(new Vector2(position.X + (sprite.Width/3)*scaleFactor, position.Y + (sprite.Height/8)*scaleFactor),Constants.boomNutAnimation, 0.2f,this));
         }
     }
 }

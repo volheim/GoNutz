@@ -39,10 +39,11 @@ namespace Go_Nutz
         {
             world.GameLoop();
         }
-
+        
         private void ButtomCooldown_Tick(object sender, EventArgs e)
         {
-            Player.DepositNuts();
+           // Player.DepositNuts();
         }
+        
     }
 }

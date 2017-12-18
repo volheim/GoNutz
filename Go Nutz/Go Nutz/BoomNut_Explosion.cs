@@ -164,12 +164,6 @@ namespace Go_Nutz
                             break;
 
                         }
-                        else if (Object is BoomNut)
-                        {
-                            ExplosionVsBoomNut(Object as BoomNut);
-                            break;
-                            //calls the boomnut to explode
-                        }
                         else if (Object is NutObject)
                         {
                             objectHit = true;

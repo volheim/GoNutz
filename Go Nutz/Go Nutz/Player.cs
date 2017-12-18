@@ -15,14 +15,32 @@ namespace Go_Nutz
         int health;
         float speed;
         int maxNuts;
+        int DepositCd;
         int nutCount;
         float kickForce;
         Vector2 kickVector;
         Stack<PowerUp> powerUps;
-        List<BoomNut> bombs;
+        int boomNutCount;
         Keys[] movementKeys;
         #endregion
+        #region Properties
+        public int BombNutCount
+        {
+            get { return boomNutCount; }
+            set { boomNutCount = value; }
 
+        }
+        public int NutCount
+        {
+            get { return nutCount; }
+            set { nutCount = value; }
+        }
+        public float Speed
+        {
+            get { return speed; }
+            set { speed = value; }
+        }
+        #endregion
 
         public Player(Vector2 position, string imagePath, int health, float speed, int maxNuts, float scaleFactor, Keys[] movementKeys) : base(position, imagePath, scaleFactor)
         {
@@ -33,10 +51,9 @@ namespace Go_Nutz
             this.maxNuts = maxNuts;
             this.movementKeys = movementKeys;
             kickForce = 0.2f;
+            nutCount = 3;
         }
 
-        //public float Speed { get => speed; set => speed = value; }
-        public float Speed { get { return speed; } set { speed = value; } }
         public int GetHealth()
         {
             return health;
@@ -53,7 +70,7 @@ namespace Go_Nutz
             //lose 1 health
             SetHealth(-1);
             //drop nuts
-
+            GameWorld.Removed_Objects.Add(this);
 
             /* pseudo code:
              * move to home tree
@@ -85,7 +102,7 @@ namespace Go_Nutz
             ///<summary>
             ///depending on the other GameObject do something or nothing
             /// </summary>
-            if (other is Wall || other is NutObject || other is Player)
+            if (other is Wall || other is NutObject || other is Player || other is HomeTree)
             {
                 //Checks top collision
                 if (CollisionBox.Bottom > other.CollisionBox.Top && CollisionBox.Bottom < other.CollisionBox.Top + 30)
@@ -117,10 +134,11 @@ namespace Go_Nutz
             {
                 HandleBoomNut(other as BoomNut);
             }
-            else if (other is Nut)
+            else if (other is Nut)// if the other is Nut
             {
+                //remove the nut from the worlda and add a nut to the players nutcount
                 GameWorld.Removed_Objects.Add(other);
-                
+                nutCount++;
             }
         }
         //if two CollisionBoxes are colliding return true else false
@@ -136,9 +154,9 @@ namespace Go_Nutz
         public override void Draw(Graphics dc)
         {
             Font f = new Font("Arial", 16);
-
-            dc.DrawString(string.Format("P1 Score: {0}", Points_p1), f, Brushes.Black, 0, 600);
-            dc.DrawString(string.Format("P2 Score: {0}", Points_p2), f, Brushes.Black, 1055, 600);
+            
+            //dc.DrawString(string.Format("P1 Score: {0}", Points_p1), f, Brushes.Black, 0, 600);
+            //dc.DrawString(string.Format("P2 Score: {0}", Points_p2), f, Brushes.Black, 1055, 600);
 
             base.Draw(dc);
         }
@@ -147,6 +165,7 @@ namespace Go_Nutz
         {
             //Checks the players Collision
             Movement();
+            DepositNuts();
             CheckCollision();
             PlayerSpeed();
 
@@ -156,15 +175,14 @@ namespace Go_Nutz
         {
             kickVector = new Vector2((other.Position.X - Position.X) * kickForce, (other.Position.Y - Position.Y) * kickForce);
             other.MovementVector = kickVector;
-            //Test element
         }
-
+        /*
         public static void DepositNuts()
         {
 
             if ((Keyboard.IsKeyDown(Keys.Q)) && Nut.P1Nuts > 0 && Nut.P1Nuts <= 6)
             {
-
+                
                 Points_p1 += 1;
 
 
@@ -183,11 +201,43 @@ namespace Go_Nutz
             }
 
         }
+        */
+        public void DepositNuts()
+        {
+            if ((Keyboard.IsKeyDown(movementKeys[4])) && nutCount > 0 && isHomeTree())
 
+            {
+                if(DepositCd <= 0)
+                {
+                    playerPoints++;
+                    nutCount--;
+                    DepositCd = 12;
+                }
+                else
+                {
+                    DepositCd--;
+                }
+            }
+        }
+        public bool isHomeTree()
+        {
+            foreach (HomeTree home in GameWorld.Hometrees)
+            {
+                if (CollisionBox.IntersectsWith(home.DeliverZone))
+                {
+                    if (home.ValidatePlayer(this))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
         public void Movement()
         {
             ///<summary>
-            ///KEY order (LEFT,DOWN,RIGHT,UP,ACTIONKEY1(placeBomb),ACTIONKEY2)
+            ///if a player presses curtain keys let the player move a round the map
+            ///KEY order (LEFT,DOWN,RIGHT,UP,ACTIONKEY1(DeliverNuts),ACTIONKEY2(PlaceBomb))
             /// </summary>
             if (Keyboard.IsKeyDown(movementKeys[0]))
             {
@@ -210,6 +260,7 @@ namespace Go_Nutz
             }
             if (Keyboard.IsKeyDown(movementKeys[5]))
             {
+                //check if there is a bomb underneath the player
                 bool bombInPlace = false;
                 foreach (GameObject item in GameWorld.Objects)
                 {

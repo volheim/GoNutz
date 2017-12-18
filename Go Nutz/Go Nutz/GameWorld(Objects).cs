@@ -21,6 +21,7 @@ namespace Go_Nutz
             explosions_List = new List<Explosion>();
             remove_Explosions_List = new List<Explosion>();
             add_Explosions_List = new List<Explosion>();
+            hometrees = new List<HomeTree>();
             #endregion
 
             #region Create Objects
@@ -51,6 +52,8 @@ namespace Go_Nutz
 
             objects.Add(Hometree1);
             objects.Add(Hometree2);
+            hometrees.Add(Hometree1);
+            hometrees.Add(Hometree2);
             objects.Add(Nut1);
 
             #region NutGenerator
