@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="BoomNut.cs" />
     <Compile Include="BoomNut_Explosion.cs" />
+    <Compile Include="BorderWall.cs" />
     <Compile Include="Explosion.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -129,6 +130,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="classic_bitmap.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="empty.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\acornDrawn.png">

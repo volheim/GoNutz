@@ -111,7 +111,7 @@ namespace Go_Nutz
             ///<summary>
             ///depending on the other GameObject do something or nothing
             /// </summary>
-            if (other is Wall || other is NutObject || other is Player)
+            if (other is Wall || other is NutObject || other is Player || other is BorderWall)
             {
                 //Checks top collision
                 if (CollisionBox.Bottom > other.CollisionBox.Top && CollisionBox.Bottom < other.CollisionBox.Top + 30)

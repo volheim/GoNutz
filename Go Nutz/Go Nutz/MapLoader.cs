@@ -109,6 +109,10 @@ namespace Go_Nutz
                 }
                 xPixel++;
             }
+            GameWorld.Add_Objects.Add(new BorderWall(new System.Numerics.Vector2(0, -1260), "empty.png", 1260));
+            GameWorld.Add_Objects.Add(new BorderWall(new System.Numerics.Vector2(0, 720), "empty.png", 1260));
+            GameWorld.Add_Objects.Add(new BorderWall(new System.Numerics.Vector2(-720, 0), "empty.png", 720));
+            GameWorld.Add_Objects.Add(new BorderWall(new System.Numerics.Vector2(1260, 0), "empty.png", 720));
             PlaceWallNuts(75);
         }
 

@@ -49,10 +49,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1189, 625);
+            this.ClientSize = new System.Drawing.Size(1259, 721);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1080, 760);
-            this.MinimumSize = new System.Drawing.Size(1080, 760);
+            this.MaximumSize = new System.Drawing.Size(1275, 760);
+            this.MinimumSize = new System.Drawing.Size(1275, 760);
             this.Name = "Form1";
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
