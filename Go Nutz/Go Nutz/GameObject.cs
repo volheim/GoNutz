@@ -67,7 +67,7 @@ namespace Go_Nutz
 
         public virtual void Update(float fps)
         {
-           
+          
         }
     }
 }

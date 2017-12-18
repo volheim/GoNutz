@@ -24,5 +24,10 @@ namespace Go_Nutz
             base.Draw(dc);
         }
 
+        public void Break()
+        {
+            GameWorld.Removed_Objects.Add(this);
+            GameWorld.Add_Objects.Add(new Nut(this.position, @"Images/acornDrawn.png", 0.45f));
+        }
     }
 }
