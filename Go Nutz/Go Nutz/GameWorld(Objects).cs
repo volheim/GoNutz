@@ -37,39 +37,27 @@ namespace Go_Nutz
             #endregion
 
 
-            ML = new MapLoader();
-            ML.GenerateLevelBitmap(0);
+
             
             #region Create Objects;
-
-
+            
             #region Nuts
             Nut Nut1 = (new Nut(new Vector2(210f, 250f), @"Images\acornDrawn.png", 0.04f));
- 
-            #endregion
-
-
-
             #endregion;
+
             #region Adds To Lists;
-            objects.Add(Hometree1);
-            objects.Add(Hometree2);
             hometrees.Add(Hometree1);
             hometrees.Add(Hometree2);
             objects.Add(Nut1);
-
-            #region NutGenerator
-
             #endregion
 
             #region LevelGen
-            
-            ML.GenerateLevelBitmap(0);
-            #endregion
 
+            ML = new MapLoader();
+            ML.GenerateLevelBitmap(0);
             #endregion;
 
-
+            #endregion;
         }
 
         public static void GenerateBlock(int x, int y)

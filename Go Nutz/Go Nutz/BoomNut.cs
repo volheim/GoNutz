@@ -31,7 +31,7 @@ namespace Go_Nutz
         }
         #endregion
 
-        public BoomNut(Vector2 position, string imagePath, float scaleFactor, Player player) : base(position, imagePath, scaleFactor)
+        public BoomNut(string imagePath, Vector2 position, float scaleFactor, Player player) : base(position, imagePath, scaleFactor)
         {
             phaseAble = true;
             inMotion = false;
