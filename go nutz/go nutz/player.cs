@@ -16,32 +16,28 @@ namespace Go_Nutz
         int health;
         float speed;
         int maxNuts;
-<<<<<<< HEAD
+
 
 
         Image sprite;
         float scaleFactor;
 
-=======
+
         int DepositCd;
         int nutCount;
->>>>>>> Mikkel
         float kickForce;
         bool canPlaceBomb;
         Vector2 kickVector;
 
         GameObject bomb;
-        int nutCount;
 
         Stack<PowerUp> powerUps;
         int boomNutCount;
         Keys[] movementKeys;
-<<<<<<< HEAD
 
         private string lastKeyPressed = "right";
         private string facing = "right";
 
-=======
         #endregion
         #region Properties
         public int BombNutCount
@@ -60,7 +56,6 @@ namespace Go_Nutz
             get { return speed; }
             set { speed = value; }
         }
->>>>>>> Mikkel
         #endregion
 
         public Player(Vector2 position, string imagePath, int health, float speed, int maxNuts, float scaleFactor, Keys[] movementKeys) : base(position, imagePath, scaleFactor)
@@ -136,11 +131,7 @@ namespace Go_Nutz
             ///<summary>
             ///depending on the other GameObject do something or nothing
             /// </summary>
-<<<<<<< HEAD
-            if (other is Wall || other is NutObject || other is Player || other is BorderWall)
-=======
-            if (other is Wall || other is NutObject || other is Player || other is HomeTree)
->>>>>>> Mikkel
+            if (other is Wall || other is NutObject || other is Player || other is BorderWall || other is HomeTree)
             {
                 //Checks top collision
                 if (CollisionBox.Bottom > other.CollisionBox.Top && CollisionBox.Bottom < other.CollisionBox.Top + 30)
@@ -242,8 +233,6 @@ namespace Go_Nutz
         public void DepositNuts()
         {
             if ((Keyboard.IsKeyDown(movementKeys[4])) && nutCount > 0 && isHomeTree())
-
-<<<<<<< HEAD
             {
                 if(DepositCd <= 0)
                 {
@@ -271,20 +260,13 @@ namespace Go_Nutz
             }
             return false;
         }
-=======
-        ///<summary>
-        ///KEY order (LEFT,DOWN,RIGHT,UP,ACTIONKEY1(placeBomb),ACTIONKEY2)
-        /// </summary>
->>>>>>> Lars-Dev
+
         public void Movement()
         {
-<<<<<<< HEAD
-=======
             ///<summary>
             ///if a player presses curtain keys let the player move a round the map
             ///KEY order (LEFT,DOWN,RIGHT,UP,ACTIONKEY1(DeliverNuts),ACTIONKEY2(PlaceBomb))
             /// </summary>
->>>>>>> Mikkel
             if (Keyboard.IsKeyDown(movementKeys[0]))
             {
                 position.X -= Speed;

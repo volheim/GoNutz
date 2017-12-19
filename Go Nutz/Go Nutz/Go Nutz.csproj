@@ -68,11 +68,8 @@
   <ItemGroup>
     <Compile Include="BoomNut.cs" />
     <Compile Include="BoomNut_Explosion.cs" />
-<<<<<<< HEAD
     <Compile Include="BorderWall.cs" />
-=======
     <Compile Include="Constants.cs" />
->>>>>>> Mikkel
     <Compile Include="Explosion.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
