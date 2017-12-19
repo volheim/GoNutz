@@ -29,53 +29,9 @@ namespace Go_Nutz
 
         Random r = new Random();
 
-        public void CreateGameObject()
-        {
-            int xPos = xPixel*60;
-            int yPos = yPixel*60;
-
-            if(pixelColor.ToArgb() == Color.Black.ToArgb())
-            {
-                levelLayout[xPixel, yPixel] = 4;
-            }
-            if(pixelColor.ToArgb() == Color.White.ToArgb())
-            {
-                levelLayout[xPixel, yPixel] = 1;
-                GameWorld.GenerateBlock(xPos, yPos);
-            }
-            if (pixelColor.ToArgb() == Color.Blue.ToArgb())
-            {
-                levelLayout[xPixel, yPixel] = 2;
-                GameWorld.GenerateHomeTree(xPos, yPos);
-            }
-            if (pixelColor.ToArgb() == Color.Green.ToArgb())
-            {
-                levelLayout[xPixel, yPixel] = 3;
-                GameWorld.PlacePlayer(xPos, yPos);
-            }
-
-        }
-
-        public void PlaceWallNuts(int count)
-        {
-            int x;
-            int y;
-            for(int i = 0; i < count;)
-            {
-                x = r.Next(0, 21);
-                y = r.Next(0, 12);
-                if (levelLayout[x, y] == 4)
-                {
-                    GameWorld.PlaceWallNut(x, y);
-                    i++;
-                }
-            }
-        }
-
-
         public void GenerateLevelBitmap(int levelIndex)
         {
-            if(levelIndex == 0)
+            if (levelIndex == 0)
             {
                 curentLevel = new Bitmap(level0);
             }
@@ -101,7 +57,8 @@ namespace Go_Nutz
                 for (yPixel = 0; yPixel < curentLevel.Height;)
                 {
                     pixelColor = curentLevel.GetPixel(xPixel, yPixel);
-                    if(pixelColor.ToArgb() != Color.FromArgb(100,100,100).ToArgb())
+                    //100,100,100 is area WallNuts can't spawn
+                    if (pixelColor.ToArgb() != Color.FromArgb(100, 100, 100).ToArgb())
                     {
                         CreateGameObject();
                     }
@@ -118,21 +75,21 @@ namespace Go_Nutz
 
         public void GenerateLevelIntArray(int[,] levelIndex)
         {
-            for(int xPixel = 0; xPixel < 21;)
+            for (int xPixel = 0; xPixel < 21;)
             {
-                for(int yPixel = 0; yPixel < 12;)
+                for (int yPixel = 0; yPixel < 12;)
                 {
                     int xPos = xPixel * 60;
                     int yPos = yPixel * 60;
-                    if (levelIndex[xPixel,yPixel] == 0)
+                    if (levelIndex[xPixel, yPixel] == 0)
                     {
-                        
+
                     }
-                    else if(levelIndex[xPixel, yPixel] == 1)
+                    else if (levelIndex[xPixel, yPixel] == 1)
                     {
                         GameWorld.GenerateBlock(xPos, yPos);
                     }
-                    else if(levelIndex[xPixel, yPixel] == 2)
+                    else if (levelIndex[xPixel, yPixel] == 2)
                     {
                         GameWorld.GenerateHomeTree(xPos, yPos);
                     }
@@ -140,11 +97,63 @@ namespace Go_Nutz
                     {
                         GameWorld.PlacePlayer(xPos, yPos);
                     }
+                    else if (pixelColor.ToArgb() == Color.Black.ToArgb())
+                    {
+                        levelLayout[xPixel, yPixel] = 4;
+                    }
                     yPixel++;
                 }
                 xPixel++;
             }
             PlaceWallNuts(75);
+        }
+
+        public void CreateGameObject()
+        {
+            int xPos = xPixel*60;
+            int yPos = yPixel*60;
+
+
+            if(pixelColor.ToArgb() == Color.White.ToArgb())
+            {
+                //Impassable block
+                levelLayout[xPixel, yPixel] = 1;
+                GameWorld.GenerateBlock(xPos, yPos);
+            }
+            else if (pixelColor.ToArgb() == Color.Blue.ToArgb())
+            {
+                //Home tree location
+                levelLayout[xPixel, yPixel] = 2;
+                GameWorld.GenerateHomeTree(xPos, yPos);
+            }
+            else if (pixelColor.ToArgb() == Color.Green.ToArgb())
+            {
+                //player start location
+                levelLayout[xPixel, yPixel] = 3;
+                GameWorld.PlacePlayer(xPos, yPos);
+            }
+            else if (pixelColor.ToArgb() == Color.Black.ToArgb())
+            {
+                //potential WallNut spot
+                levelLayout[xPixel, yPixel] = 4;
+            }
+
+        }
+
+        public void PlaceWallNuts(int count)
+        {
+            int x;
+            int y;
+            for(int i = 0; i < count;)
+            {
+                x = r.Next(0, 21);
+                y = r.Next(0, 12);
+                if (levelLayout[x, y] == 4)
+                {
+                    GameWorld.PlaceWallNut(x, y);
+                    i++;
+                }
+            }
         }
     }
 }
