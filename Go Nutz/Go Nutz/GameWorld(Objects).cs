@@ -26,10 +26,18 @@ namespace Go_Nutz
         {
 
             #region Lists
+<<<<<<< HEAD
 
+=======
+            // Creates the lists needed for the game to run
+>>>>>>> Mikkel
             objects = new List<GameObject>();
             add_Objects = new List<GameObject>();
             remove_Objects = new List<GameObject>();
+            explosions_List = new List<Explosion>();
+            remove_Explosions_List = new List<Explosion>();
+            add_Explosions_List = new List<Explosion>();
+            hometrees = new List<HomeTree>();
             #endregion
 
             ML = new MapLoader();
@@ -60,10 +68,17 @@ namespace Go_Nutz
             #region Adds To Lists;
 
 
+<<<<<<< HEAD
      
 
             
             
+=======
+            objects.Add(Hometree1);
+            objects.Add(Hometree2);
+            hometrees.Add(Hometree1);
+            hometrees.Add(Hometree2);
+>>>>>>> Mikkel
             objects.Add(Nut1);
 
             #region NutGenerator

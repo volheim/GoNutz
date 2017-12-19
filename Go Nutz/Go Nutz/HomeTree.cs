@@ -17,7 +17,6 @@ namespace Go_Nutz
         private float scaleFactor;
         private float scaleFactorWidth = 0.2f;
         private bool direction;
-        private RectangleF deliverZone;
         public HomeTree(Vector2 position, string imagePath, float scaleFactor, Player player, bool direction) : base(position,imagePath,scaleFactor)
         {
             this.scaleFactor = scaleFactor;
@@ -28,19 +27,15 @@ namespace Go_Nutz
         {
             get
             {
-                if (direction)
-                {
-                    return new RectangleF(position.X, position.Y, sprite.Width * scaleFactorWidth, sprite.Height * scaleFactor);
-                }
-                else
-                {
-                    return new RectangleF(position.X-104, position.Y, sprite.Width * scaleFactorWidth, sprite.Height * scaleFactor);
-                }
+               return new RectangleF(position.X, position.Y, sprite.Width * scaleFactor, sprite.Height * scaleFactor);
             }
         }
         
         public RectangleF DeliverZone
         {
+            ///<summary>
+            ///creates a zone where the player can deliver his/her nuts
+            /// </summary>
             get {
                 if (direction)
                 {
@@ -48,34 +43,25 @@ namespace Go_Nutz
                 }
                 else
                 {
-                    return new RectangleF(position.X - 104, position.Y, sprite.Width * scaleFactorWidth, sprite.Height * scaleFactor);
+                    return new RectangleF(position.X - 100, position.Y, sprite.Width * scaleFactorWidth, sprite.Height * scaleFactor);
                 }
             }
         }
+#if DEBUG
         public override void Draw(Graphics dc)
         {
-            dc.DrawRectangle(new Pen(Brushes.Blue), deliverZone.X, deliverZone.Y, deliverZone.Width, deliverZone.Height);
+            dc.DrawRectangle(new Pen(Brushes.Blue), DeliverZone.X, DeliverZone.Y, DeliverZone.Width, DeliverZone.Height);
             base.Draw(dc);
         }
-        public bool IsIntersectingWith(GameObject other)
+#endif
+
+        public bool ValidatePlayer(Player Caller)
         {
-            return CollisionBox.IntersectsWith(other.CollisionBox);
-        }
-        public void CheckCollision()
-        {
-            /// <summary>
-            /// Check if a GameObject Collides with anohter
-            /// </summary>
-            foreach (GameObject gameObject in GameWorld.Objects)
+            if (Caller == player)
             {
-                if (gameObject == this)
-                {
-                    //if (this.IsIntersectingWith(Player))
-                    //{
-                    //    OnCollision(gameObject);
-                    //}
-                }
+                return true;
             }
+            return false;
         }
     }
 }

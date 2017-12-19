@@ -10,6 +10,7 @@ namespace Go_Nutz
 {
     partial class BoomNut
     {
+        Image explsionSprite = Image.FromFile(@"Images\blood\Splat01.png");
         public void CalculateExplosionRadius(int power)
         {
             CalculateLeft(power);
@@ -22,49 +23,20 @@ namespace Go_Nutz
         {
             float baseX = Position.X;
             float baseY = Position.Y;
-            Image explsionSprite = Image.FromFile(@"Images\blood\Splat01.png");
-            for (int i = 0; i < power; i++)
+            for (int i = 0; i < power + 1; i++)
             {
-                bool objectHit = false;
-                RectangleF currentsqaure = new RectangleF(baseX + explsionSprite.Width, baseY, explsionSprite.Width, explsionSprite.Height);
-
-                foreach (GameObject Object in GameWorld.Objects)
-                {
-                    if (Object != this)
-                    {
-                        if (IsIntersectingWith(currentsqaure, Object))
-                        {
-                            if (Object is Wall || Object is NutObject || Object is HomeTree)
-                            {
-                                objectHit = true;
-                                break;
-                            }
-                            else if (Object is Player)
-                            {
-                                // calls player to lose health
-                                ExplosionVsPlayer(Object as Player);
-
-                            }
-                            else if (Object is BoomNut)
-                            {
-                                ExplosionVsBoomNut(Object as BoomNut);
-                                //calls the boomnut to explode
-                            }
-                        }
-                    }
-
-                }
+                RectangleF currentsquare = new RectangleF(baseX + explsionSprite.Width, baseY, explsionSprite.Width, explsionSprite.Height);
                 // the explosion hit another Object(wall or Nutobject)
-                if (objectHit)
+                if (Checkspace(currentsquare))
                 {
-                    continue;
+                    break;
                 }
                 else
                 {
-                    GameWorld.Add_Objects.Add(new Explosion(new Vector2(baseX, baseY), @"Images\blood\Splat01.png", power, 1f));
+                    GameWorld.Add_Explosions_List.Add(new Explosion(new Vector2(baseX, baseY), @"Images\blood\Splat01.png", power, 1f));
                     //add Tile to explosion
                 }
-                baseX = currentsqaure.X;
+                baseX = currentsquare.X;
             }
         }
         #endregion
@@ -73,49 +45,28 @@ namespace Go_Nutz
         {
             float baseX = position.X;
             float baseY = position.Y;
-            Image explsionSprite = Image.FromFile(@"Images\blood\Splat01.png");
+
             for (int i = 0; i < power; i++)
             {
-                bool objectHit = false;
-                RectangleF currentsqaure = new RectangleF(baseX - explsionSprite.Width, baseY, explsionSprite.Width, explsionSprite.Height);
 
-                foreach (GameObject Object in GameWorld.Objects)
+                RectangleF currentsquare = new RectangleF(baseX - explsionSprite.Width, baseY, explsionSprite.Width, explsionSprite.Height);
+                if (i == 0)
                 {
-                    if (Object != this)
-                    {
-                        if (IsIntersectingWith(currentsqaure, Object))
-                        {
-                            if (Object is Wall || Object is NutObject || Object is HomeTree)
-                            {
-                                objectHit = true;
-                                continue;
-                            }
-                            else if (Object is Player)
-                            {
-                                // calls player to lose health
-                                ExplosionVsPlayer(Object as Player);
-
-                            }
-                            else if (Object is BoomNut)
-                            {
-                                ExplosionVsBoomNut(Object as BoomNut);
-                                //calls the boomnut to explode
-                            }
-                        }
-                    }
-
+                    currentsquare = new RectangleF(baseX - (explsionSprite.Width + explsionSprite.Width), baseY, explsionSprite.Width, explsionSprite.Height);
+                    baseX = currentsquare.X;
+                    continue;
                 }
                 // the explosion hit another Object(wall or Nutobject)
-                if (objectHit)
+                if (Checkspace(currentsquare))
                 {
                     break;
                 }
                 else
                 {
-                    GameWorld.Add_Objects.Add(new Explosion(new Vector2(baseX, baseY), @"Images\blood\Splat01.png", power, 1f));
+                    GameWorld.Add_Explosions_List.Add(new Explosion(new Vector2(baseX, baseY), @"Images\blood\Splat01.png", power, 1f));
                     //add Tile to explosion
                 }
-                baseX = currentsqaure.X;
+                baseX = currentsquare.X;
             }
         }
         #endregion
@@ -124,49 +75,26 @@ namespace Go_Nutz
         {
             float baseX = position.X;
             float baseY = position.Y;
-            Image explsionSprite = Image.FromFile(@"Images\blood\Splat01.png");
             for (int i = 0; i < power; i++)
             {
-                bool objectHit = false;
-                RectangleF currentsqaure = new RectangleF(baseX, baseY - explsionSprite.Height, explsionSprite.Width, explsionSprite.Height);
-
-                foreach (GameObject Object in GameWorld.Objects)
+                RectangleF currentsquare = new RectangleF(baseX, baseY - explsionSprite.Height, explsionSprite.Width, explsionSprite.Height);
+                if (i == 0)
                 {
-                    if (Object != this)
-                    {
-                        if (IsIntersectingWith(currentsqaure, Object))
-                        {
-                            if (Object is Wall || Object is NutObject || Object is HomeTree)
-                            {
-                                objectHit = true;
-                                break;
-                            }
-                            else if (Object is Player)
-                            {
-                                // calls player to lose health
-                                ExplosionVsPlayer(Object as Player);
-
-                            }
-                            else if (Object is BoomNut)
-                            {
-                                ExplosionVsBoomNut(Object as BoomNut);
-                                //calls the boomnut to explode
-                            }
-                        }
-                    }
-
+                    currentsquare = new RectangleF(baseX, baseY - (explsionSprite.Height + explsionSprite.Height), explsionSprite.Width, explsionSprite.Height);
+                    baseY = currentsquare.Y;
+                    continue;
                 }
                 // the explosion hit another Object(wall or Nutobject)
-                if (objectHit)
+                if (Checkspace(currentsquare))
                 {
                     break;
                 }
                 else
                 {
-                    GameWorld.Add_Objects.Add(new Explosion(new Vector2(baseX, baseY), @"Images\blood\Splat01.png", power, 1f));
+                    GameWorld.Add_Explosions_List.Add(new Explosion(new Vector2(baseX, baseY), @"Images\blood\Splat01.png", power, 1f));
                     //add Tile to explosion
                 }
-                baseY = currentsqaure.Y;
+                baseY = currentsquare.Y;
             }
         }
         #endregion
@@ -175,49 +103,27 @@ namespace Go_Nutz
         {
             float baseX = position.X;
             float baseY = position.Y;
-            Image explsionSprite = Image.FromFile(@"Images\blood\Splat01.png");
             for (int i = 0; i < power; i++)
             {
-                bool objectHit = false;
-                RectangleF currentsqaure = new RectangleF(baseX, baseY + explsionSprite.Height, explsionSprite.Width, explsionSprite.Height);
-
-                foreach (GameObject Object in GameWorld.Objects)
+                RectangleF currentsquare = new RectangleF(baseX, baseY + explsionSprite.Height, explsionSprite.Width, explsionSprite.Height);
+                if (i == 0)
                 {
-                    if (Object != this)
-                    {
-                        if (IsIntersectingWith(currentsqaure, Object))
-                        {
-                            if (Object is Wall || Object is NutObject || Object is HomeTree)
-                            {
-                                objectHit = true;
-                                break;
-                            }
-                            else if (Object is Player)
-                            {
-                                // calls player to lose health
-                                ExplosionVsPlayer(Object as Player);
-
-                            }
-                            else if (Object is BoomNut)
-                            {
-                                ExplosionVsBoomNut(Object as BoomNut);
-                                //calls the boomnut to explode
-                            }
-                        }
-                    }
-
+                    currentsquare = new RectangleF(baseX, baseY + (explsionSprite.Height + explsionSprite.Height), explsionSprite.Width, explsionSprite.Height);
+                    baseY = currentsquare.Y;
+                    continue;
                 }
+
                 // the explosion hit another Object(wall or Nutobject)
-                if (objectHit)
+                if (Checkspace(currentsquare))
                 {
                     break;
                 }
                 else
                 {
-                    GameWorld.Add_Objects.Add(new Explosion(new Vector2(baseX, baseY), @"Images\blood\Splat01.png", power, 1f));
+                    GameWorld.Add_Explosions_List.Add(new Explosion(new Vector2(baseX, baseY), @"Images\blood\Splat01.png", power, 1f));
                     //add Tile to explosion
                 }
-                baseY = currentsqaure.Y;
+                baseY = currentsquare.Y;
             }
         }
         #endregion
@@ -227,11 +133,46 @@ namespace Go_Nutz
         }
         public void ExplosionVsBoomNut(BoomNut boomNut)
         {
-            boomNut.Explode();
+            //boomNut.Explode();
         }
         public bool IsIntersectingWith(RectangleF sqaure, GameObject other)
         {
             return sqaure.IntersectsWith(other.CollisionBox);
+        }
+        public bool Checkspace(RectangleF currentsquare)
+        {
+            ///<summary>
+            ///check if the space where the explosion could appear is free of walls
+            ///plus it calls ohter objects to do something if they are hit
+            /// </summary>
+            bool objectHit = false;
+            foreach (GameObject Object in GameWorld.Objects)
+            {
+                if (Object != this)
+                {
+                    if (IsIntersectingWith(currentsquare, Object))
+                    {
+                        if (Object is Wall || Object is HomeTree)
+                        {
+                            objectHit = true;
+                            break;
+                        }
+                        else if (Object is Player)
+                        {
+                            // calls player to lose health
+                            ExplosionVsPlayer(Object as Player);
+                            break;
+
+                        }
+                        else if (Object is NutObject)
+                        {
+                            objectHit = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            return objectHit;
         }
     }
 }

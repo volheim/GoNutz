@@ -10,8 +10,13 @@ namespace Go_Nutz
     {
         static int points_p1 = 0;
         static int points_p2 = 0;
+        private int playerPoints;
 
-
+        public int PlayerPoints
+        {
+            get { return playerPoints; }
+            set { playerPoints = value; }
+        }
         //public static int Points_p2 { get => points_p2; set => points_p2 += value; }
         //public static int Points_p1 { get => points_p1; set => points_p1 += value; }
         public static int Points_p2

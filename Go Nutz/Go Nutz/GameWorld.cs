@@ -16,12 +16,15 @@ namespace Go_Nutz
         private static List<GameObject> objects;
         private static List<GameObject> remove_Objects;
         private static List<GameObject> add_Objects;
+        private static List<Explosion> explosions_List;
+        private static List<Explosion> add_Explosions_List;
+        private static List<Explosion> remove_Explosions_List;
         private static Stack<GameObject> Nuts;
         private DateTime endTime;
         private float currentFps;
         private BufferedGraphics backBuffer;
 
-
+        private static List<HomeTree> hometrees;
 
         #endregion
         #region Properties
@@ -40,6 +43,26 @@ namespace Go_Nutz
         {
             get { return add_Objects; }
             set { add_Objects = value; }
+        }
+        public static List<Explosion> Explosions_List
+        {
+            get { return explosions_List; }
+            set { explosions_List = value; }
+        }
+        public static List<Explosion> Add_Explosions_List
+        {
+            get { return add_Explosions_List; }
+            set { add_Explosions_List = value; }
+        }
+        public static List<Explosion> Remove_Explosions_List
+        {
+            get { return remove_Explosions_List; }
+            set { remove_Explosions_List = value; }
+        }
+        public static List<HomeTree> Hometrees
+        {
+            get { return hometrees; }
+            set { hometrees = value; }
         }
         #endregion
 
@@ -62,6 +85,15 @@ namespace Go_Nutz
             {
                 go.Update(currentFps);
             }
+            foreach (Explosion ex in explosions_List)
+            {
+                ex.Update(currentFps);
+            }
+            explosions_List.AddRange(add_Explosions_List);
+            foreach (Explosion ex in remove_Explosions_List)
+            {
+                explosions_List.Remove(ex);
+            }
             //adds the added objects to the loop
             Objects.AddRange(add_Objects);
             foreach (GameObject gameobject in remove_Objects)
@@ -73,25 +105,57 @@ namespace Go_Nutz
         }
         public void ClearLoopLists()
         {
+            ///<summary>
+            ///Clear all the add and remove lists
+            /// </summary>
             add_Objects.Clear();
             remove_Objects.Clear();
+            add_Explosions_List.Clear();
+            remove_Explosions_List.Clear();
         }
         public void Draw()
         {
-            dc.Clear(Color.Red);
+            dc.Clear(Color.Cornsilk);
             Font f = new Font("Arial", 16);
+            int pCounter = 0;
             foreach (GameObject go in objects)
             {
                 go.Draw(dc);
 
+                if (go is Player)
+                {
+                    DrawUiPlayer(go as Player, pCounter);
+                    pCounter++;
+                }
 #if DEBUG //This code will only be run in   debug mode
                 dc.DrawString(string.Format("FPS: {0}", currentFps), f, Brushes.Black, 550, 0);
 #endif
+
+            }
+            foreach (Explosion ex in explosions_List)
+            {
+                ex.Draw(dc);
             }
             //Renders the content of the buffered graphics context to the real context(Swap buffers)
             backBuffer.Render();
         }
-
+        public void DrawUiPlayer(Player player, int pCounter)
+        {
+            Font f = new Font("Arial", 16);
+            if (pCounter == 0)
+            {
+                dc.DrawString(string.Format("P1 Score: {0}", player.PlayerPoints), f, Brushes.Black, 0, 600);
+ 
+                dc.DrawString(string.Format("P1 Eaten Nuts: {0}", player.NutCount), f, Brushes.Black, 220, 0);
+                pCounter++;
+            }
+            else if (pCounter == 1)
+            {
+                dc.DrawString(string.Format("P2 Eaten Nuts: {0}", player.NutCount), f, Brushes.Black, 800, 0);
+                dc.DrawString(string.Format("P2 Score: {0}", player.PlayerPoints), f, Brushes.Black, 1055, 600);
+                pCounter++;
+            }
+        }
         public void GameLoop()
         {
 
