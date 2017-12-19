@@ -67,23 +67,28 @@ namespace Go_Nutz
 
             if (inMotion || phaseAble)
             {
+                int listLength = 0;
                 foreach (GameObject gameObject in GameWorld.Objects)
                 {
                     if (gameObject != this)
                     {
                         if (this.IsIntersectingWith(gameObject))
                         {
+
                             OnCollision(gameObject);
-                            if (phaseAble && gameObject != player)
-                            {
-                                phaseAble = false;
-                            }
                         }
-                        else if (phaseAble)
-                        {
-                            phaseAble = false;
-                        }
+
                     }
+                    else if(phaseAble)
+                    {
+                        phaseAble = true;
+                        break;
+                    }
+                    listLength++;
+                }
+                if (listLength == GameWorld.Objects.Count)
+                {
+                    phaseAble = false;
                 }
             }
 
@@ -131,6 +136,10 @@ namespace Go_Nutz
                     movementVector = new Vector2(0, 0);
                     position.X = other.CollisionBox.Right;
                 }
+            }
+            if (other == player && phaseAble)
+            {
+                phaseAble = true;
             }
         }
         public bool IsIntersectingWithBoom(Explosion boom)
