@@ -80,6 +80,7 @@
     <Compile Include="GameObject%28Morten%29.cs" />
     <Compile Include="GameWorld%28Objects%29.cs" />
     <Compile Include="GameWorld_Allan.cs" />
+    <Compile Include="GameWorld_altPointSystem.cs" />
     <Compile Include="HomeTree.cs" />
     <Compile Include="HomeTree2.cs" />
     <Compile Include="Interfaces\IDynamicObject.cs" />
