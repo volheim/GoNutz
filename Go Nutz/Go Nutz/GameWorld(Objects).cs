@@ -40,10 +40,17 @@ namespace Go_Nutz
             hometrees = new List<HomeTree>();
             #endregion
 
+<<<<<<< HEAD
+             ML = new MapLoader();
+            ML.GenerateLevelBitmap(0);
+            
+            #region Create Objects
+=======
             ML = new MapLoader();
             ML.GenerateLevelBitmap(0);
 
             #region Create Objects;
+>>>>>>> master
 
             #region Players
 
@@ -84,6 +91,13 @@ namespace Go_Nutz
             #region NutGenerator
 
             #endregion
+<<<<<<< HEAD
+            #region LevelGen
+            
+            ML.GenerateLevelBitmap(0);
+            #endregion
+=======
+>>>>>>> master
             #endregion;
             #endregion
 

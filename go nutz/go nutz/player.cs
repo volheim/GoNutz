@@ -29,7 +29,7 @@ namespace Go_Nutz
         float kickForce;
         bool canPlaceBomb;
         Vector2 kickVector;
-        
+
         GameObject bomb;
         int nutCount;
 
@@ -72,7 +72,6 @@ namespace Go_Nutz
             this.maxNuts = maxNuts;
             this.movementKeys = movementKeys;
 
-
             string[] Imagepaths = imagePath.Split(';');
 
             this.animationFrames = new List<Bitmap>();
@@ -83,6 +82,7 @@ namespace Go_Nutz
                 Bitmap frame = new Bitmap(img);
                 animationFrames.Add(frame);
             }
+
 
             kickForce = 0.2f;
             nutCount = 3;
@@ -185,6 +185,7 @@ namespace Go_Nutz
             return CollisionBox.IntersectsWith(other.CollisionBox);
         }
         #endregion
+
         
         public override void Draw(Graphics dc)
         {
@@ -225,6 +226,7 @@ namespace Go_Nutz
                 Nut.P1Nuts--;
 
             }
+
             if (Keyboard.IsKeyDown(Keys.U) && Nut.P2Nuts > 0 && Nut.P2Nuts <= 6)
             {
 
@@ -241,6 +243,7 @@ namespace Go_Nutz
         {
             if ((Keyboard.IsKeyDown(movementKeys[4])) && nutCount > 0 && isHomeTree())
 
+<<<<<<< HEAD
             {
                 if(DepositCd <= 0)
                 {
@@ -268,6 +271,11 @@ namespace Go_Nutz
             }
             return false;
         }
+=======
+        ///<summary>
+        ///KEY order (LEFT,DOWN,RIGHT,UP,ACTIONKEY1(placeBomb),ACTIONKEY2)
+        /// </summary>
+>>>>>>> Lars-Dev
         public void Movement()
         {
 <<<<<<< HEAD
@@ -302,8 +310,12 @@ namespace Go_Nutz
                 position.Y -= Speed;
                 lastKeyPressed = "up";
             }
+
             if (Keyboard.IsKeyDown(movementKeys[4]))
-            { }
+            {
+
+            }
+
             if (Keyboard.IsKeyDown(movementKeys[5]))
             {
                 //check if there is a bomb underneath the player
@@ -317,16 +329,22 @@ namespace Go_Nutz
                             bombInPlace = true;
                         }
                     }
-
                 }
+
                 if (!bombInPlace)
                 {
                     PlaceBomb();
                 }
 
             }
+
+            //Makes the player face the right direction
+            Turn();
         }
 
+        ///<summary>
+        ///Makes player turn corresponding to the key pressed
+        /// </summary>
         public void Turn()
         {
             if (lastKeyPressed == "left" && facing != "left")
@@ -349,8 +367,10 @@ namespace Go_Nutz
                 TurnUp();
             }
         }
-        
 
+        ///<summary>
+        ///Makes player face left
+        /// </summary>
         public void TurnLeft()
         {
             switch (facing)
@@ -384,6 +404,9 @@ namespace Go_Nutz
             facing = "left";
         }
 
+        ///<summary>
+        ///Makes player face down
+        /// </summary>
         public void TurnDown()
         {
             switch (facing)
@@ -415,7 +438,10 @@ namespace Go_Nutz
 
             facing = "down";
         }
-        
+
+        ///<summary>
+        ///Makes player face right
+        /// </summary>
         public void TurnRight()
         {
             switch (facing)
@@ -449,6 +475,9 @@ namespace Go_Nutz
             facing = "right";
         }
 
+        ///<summary>
+        ///Makes player face up
+        /// </summary>
         public void TurnUp()
         {
             switch (facing)
