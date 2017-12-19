@@ -43,6 +43,7 @@ namespace Go_Nutz
             if (timeLeft > 24 * 5)
             {
                 Explode();
+                
             }
             timeLeft++;
             //

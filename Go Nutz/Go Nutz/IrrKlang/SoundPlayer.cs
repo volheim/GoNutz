@@ -7,7 +7,7 @@ using IrrKlang;
 
 namespace Go_Nutz.IrrKlang
 {
-    class SoundPlayer
+   class SoundPlayer
     {
         //Creates a new soundengine using IrrKlang
         ISoundEngine soundEngine = new ISoundEngine();
