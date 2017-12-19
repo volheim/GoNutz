@@ -81,7 +81,7 @@
     <Compile Include="GameWorld_Allan.cs" />
     <Compile Include="HomeTree.cs" />
     <Compile Include="HomeTree2.cs" />
-    <Compile Include="Interfaces\DynamicObject.cs" />
+    <Compile Include="Interfaces\IDynamicObject.cs" />
     <Compile Include="IrrKlang\SoundPlayer.cs" />
     <Compile Include="Keyboard.cs" />
     <Compile Include="MapLoader.cs" />
@@ -134,7 +134,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\acornDrawn_1..png" />
-    <Content Include="Images\blood\Splat01.png" />
+    <Content Include="Images\blood\Splat01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\blood\Splat02.png" />
     <Content Include="Images\blood\Splat03.png" />
     <Content Include="Images\blood\Splat04.png" />
@@ -166,7 +168,9 @@
     <Content Include="Images\ChipmunkWalk\ChipmunkWalk04.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Squirrelanimation\Squirrel walk preview.gif" />
+    <Content Include="Images\Rock.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Squirrelanimation\SquiwwelWalk01.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -191,9 +195,7 @@
     <Content Include="Images\Squirrelanimation\SquiwwelWalk08.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Squiwwel.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Images\Squiwwel.png" />
     <Content Include="Images\stumpHome.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

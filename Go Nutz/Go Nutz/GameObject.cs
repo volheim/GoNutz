@@ -15,7 +15,7 @@ namespace Go_Nutz
         protected Vector2 movementVector;
         protected RectangleF collisionbox;
         protected Image sprite;
-        protected List<Image> animationFrames;
+        protected List<Bitmap> animationFrames;
 
         #endregion
 
@@ -45,11 +45,13 @@ namespace Go_Nutz
             this.scaleFactor = scaleFactor;
             string[] Imagepaths = imagePath.Split(';');
 
-            this.animationFrames = new List<Image>();
+            this.animationFrames = new List<Bitmap>();
 
             foreach (string path in Imagepaths)
             {
-                animationFrames.Add(Image.FromFile(path));
+                Image img = Image.FromFile(path);
+                Bitmap frame = new Bitmap(img);
+                animationFrames.Add(frame);
             }
 
             this.sprite = this.animationFrames[0];

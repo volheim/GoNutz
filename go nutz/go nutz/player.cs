@@ -17,14 +17,17 @@ namespace Go_Nutz
         float speed;
         int maxNuts;
 
+
         Image sprite;
         float scaleFactor;
 
-        int kickForce;
+        float kickForce;
         bool canPlaceBomb;
         Vector2 kickVector;
 
         GameObject bomb;
+        int nutCount;
+
         Stack<PowerUp> powerUps;
         List<BoomNut> bombs;
         Keys[] movementKeys;
@@ -45,14 +48,17 @@ namespace Go_Nutz
 
             string[] Imagepaths = imagePath.Split(';');
 
-            this.animationFrames = new List<Image>();
+            this.animationFrames = new List<Bitmap>();
 
             foreach (string path in Imagepaths)
             {
-                animationFrames.Add(Image.FromFile(path));
+                Image img = Image.FromFile(path);
+                Bitmap frame = new Bitmap(img);
+                animationFrames.Add(frame);
             }
-            
-            kickForce = 5;
+
+
+            kickForce = 0.2f;
         }
 
         //public float Speed { get => speed; set => speed = value; }
@@ -105,7 +111,7 @@ namespace Go_Nutz
             ///<summary>
             ///depending on the other GameObject do something or nothing
             /// </summary>
-            if (other is Wall || other is NutObject || other is Player || other is HomeTree)
+            if (other is Wall || other is NutObject || other is Player)
             {
                 //Checks top collision
                 if (CollisionBox.Bottom > other.CollisionBox.Top && CollisionBox.Bottom < other.CollisionBox.Top + 30)
@@ -137,6 +143,11 @@ namespace Go_Nutz
             {
                 HandleBoomNut(other as BoomNut);
             }
+            else if (other is Nut)
+            {
+                GameWorld.Removed_Objects.Add(other);
+                
+            }
         }
         //if two CollisionBoxes are colliding return true else false
         public bool IsIntersectingWith(GameObject other)
@@ -145,10 +156,11 @@ namespace Go_Nutz
         }
         #endregion
 
+        
         public override void Draw(Graphics dc)
         {
             Font f = new Font("Arial", 16);
-            
+
             dc.DrawString(string.Format("P1 Score: {0}", Points_p1), f, Brushes.Black, 0, 600);
             dc.DrawString(string.Format("P2 Score: {0}", Points_p2), f, Brushes.Black, 1055, 600);
 
@@ -161,16 +173,16 @@ namespace Go_Nutz
             //Checks the players Collision
             Movement();
             CheckCollision();
+            Turn();
             PlayerSpeed();
 
         }
 
         public void Kick(GameObject other)
         {
-            kickVector = new Vector2((other.Position.X - position.X) * kickForce, (other.Position.Y - position.Y) * kickForce);
+            kickVector = new Vector2((other.Position.X - Position.X) * kickForce, (other.Position.Y - Position.Y) * kickForce);
             other.MovementVector = kickVector;
             //Test element
-            other.MovementVector = new Vector2(5, 0);
         }
 
         public static void DepositNuts()
@@ -184,7 +196,6 @@ namespace Go_Nutz
                 Nut.P1Nuts--;
 
             }
-        
 
             if (Keyboard.IsKeyDown(Keys.U) && Nut.P2Nuts > 0 && Nut.P2Nuts <= 6)
             {
@@ -229,11 +240,12 @@ namespace Go_Nutz
                 lastKeyPressed = "up";
             }
 
-
             if (Keyboard.IsKeyDown(movementKeys[4]))
-            { }
-            if (Keyboard.IsKeyDown(movementKeys[5]))
+            {
 
+            }
+
+            if (Keyboard.IsKeyDown(movementKeys[5]))
             {
                 bool bombInPlace = false;
                 foreach (GameObject item in GameWorld.Objects)
@@ -245,8 +257,8 @@ namespace Go_Nutz
                             bombInPlace = true;
                         }
                     }
-
                 }
+
                 if (!bombInPlace)
                 {
                     PlaceBomb();

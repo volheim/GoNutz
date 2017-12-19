@@ -7,18 +7,15 @@ using System.Windows.Forms;
 using StartMenu;
 
 
-namespace StartMenu
+namespace WindowsFormsApp1
 {
     class ButtomSettings
     {
         public ButtomSettings()
         {
-            new Settings.Settings();
+            Settings.Settings set = new Settings.Settings();
 
-#if DEBUG
-            Console.WriteLine(MessageBox.Show("Works!"));
-
-#endif
+            set.Show();
 
         }
     }
