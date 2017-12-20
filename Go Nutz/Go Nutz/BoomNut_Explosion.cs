@@ -23,7 +23,7 @@ namespace Go_Nutz
         {
             float baseX = Position.X;
             float baseY = Position.Y;
-            for (int i = 0; i < power + 1; i++)
+            for (int i = 0; i < power; i++)
             {
                 RectangleF currentsquare = new RectangleF(baseX + explsionSprite.Width, baseY, explsionSprite.Width, explsionSprite.Height);
                 // the explosion hit another Object(wall or Nutobject)
@@ -53,9 +53,9 @@ namespace Go_Nutz
                 if (i == 0)
                 {
                     currentsquare = new RectangleF(baseX - (explsionSprite.Width + explsionSprite.Width), baseY, explsionSprite.Width, explsionSprite.Height);
-                    baseX = currentsquare.X;
                     continue;
                 }
+                baseX = currentsquare.X;
                 // the explosion hit another Object(wall or Nutobject)
                 if (Checkspace(currentsquare))
                 {
@@ -66,7 +66,7 @@ namespace Go_Nutz
                     GameWorld.Add_Explosions_List.Add(new Explosion(new Vector2(baseX, baseY), @"Images\blood\Splat01.png", power, 1f));
                     //add Tile to explosion
                 }
-                baseX = currentsquare.X;
+
             }
         }
         #endregion
@@ -81,9 +81,10 @@ namespace Go_Nutz
                 if (i == 0)
                 {
                     currentsquare = new RectangleF(baseX, baseY - (explsionSprite.Height + explsionSprite.Height), explsionSprite.Width, explsionSprite.Height);
-                    baseY = currentsquare.Y;
+                  
                     continue;
                 }
+                baseY = currentsquare.Y;
                 // the explosion hit another Object(wall or Nutobject)
                 if (Checkspace(currentsquare))
                 {
@@ -94,7 +95,6 @@ namespace Go_Nutz
                     GameWorld.Add_Explosions_List.Add(new Explosion(new Vector2(baseX, baseY), @"Images\blood\Splat01.png", power, 1f));
                     //add Tile to explosion
                 }
-                baseY = currentsquare.Y;
             }
         }
         #endregion
@@ -108,11 +108,10 @@ namespace Go_Nutz
                 RectangleF currentsquare = new RectangleF(baseX, baseY + explsionSprite.Height, explsionSprite.Width/2, explsionSprite.Height/2);
                 if (i == 0)
                 {
-                    currentsquare = new RectangleF(baseX, baseY + (explsionSprite.Height/2 + explsionSprite.Height/2), explsionSprite.Width/2, explsionSprite.Height/2);
-                    baseY = currentsquare.Y;
+                    currentsquare = new RectangleF(baseX, baseY + (explsionSprite.Height / 2 + explsionSprite.Height / 2), explsionSprite.Width / 2, explsionSprite.Height / 2);
                     continue;
                 }
-
+                baseY = currentsquare.Y;
                 // the explosion hit another Object(wall or Nutobject)
                 if (Checkspace(currentsquare))
                 {
@@ -123,7 +122,6 @@ namespace Go_Nutz
                     GameWorld.Add_Explosions_List.Add(new Explosion(new Vector2(baseX, baseY), @"Images\blood\Splat01.png", power, 0.2f));
                     //add Tile to explosion
                 }
-                baseY = currentsquare.Y;
             }
         }
         #endregion
