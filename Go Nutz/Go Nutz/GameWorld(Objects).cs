@@ -34,6 +34,7 @@ namespace Go_Nutz
             remove_Explosions_List = new List<Explosion>();
             add_Explosions_List = new List<Explosion>();
             hometrees = new List<HomeTree>();
+            playerList = new List<Player>();
             #endregion
 
 
@@ -46,8 +47,6 @@ namespace Go_Nutz
             #endregion;
 
             #region Adds To Lists;
-            hometrees.Add(Hometree1);
-            hometrees.Add(Hometree2);
             objects.Add(Nut1);
             #endregion
 
@@ -68,14 +67,14 @@ namespace Go_Nutz
         {
             if(homeNumber == 0)
             {
-                HomeTree Hometree1 = (new HomeTree(new Vector2(x, y), @"Images\stumpHome.png", 1.2f, Player1, false));
+                Hometree1 = (new HomeTree(new Vector2(x, y), @"Images\stumpHome.png", 1f, Player1, true));
                 objects.Add(Hometree1);
                 Hometrees.Add(Hometree1);
                 homeNumber++;
             }
             else if(homeNumber == 1)
             {
-                HomeTree Hometree2 = (new HomeTree(new Vector2(x, y), @"Images\stumpHome.png", 1.2f, Player2, false));
+                Hometree2 = (new HomeTree(new Vector2(x, y), @"Images\stumpHome.png", 1f, Player2, true));
                 objects.Add(Hometree2);
                 Hometrees.Add(Hometree2);
                 homeNumber++;
@@ -89,12 +88,14 @@ namespace Go_Nutz
             {
                 Player1 = new Player(new Vector2(x, y), @"Images\ChipmunkWalk\ChipmunkWalk01.png;Images\ChipmunkWalk\ChipmunkWalk02.png;Images\ChipmunkWalk\ChipmunkWalk03.png;Images\ChipmunkWalk\ChipmunkWalk04.png", 10, 10, 10, 0.55f, new Keys[6] { Keys.A, Keys.S, Keys.D, Keys.W, Keys.Q, Keys.E });
                 objects.Add(Player1);
+                playerList.Add(Player1);
                 playerNumber++;
             }
             else if (playerNumber == 1)
             {
                 Player2 = new Player(new Vector2(x, y), @"Images\Squirrelanimation\SquiwwelWalk01.png;Images\Squirrelanimation\SquiwwelWalk02.png;Images\Squirrelanimation\SquiwwelWalk03.png;Images\Squirrelanimation\SquiwwelWalk04.png;Images\Squirrelanimation\SquiwwelWalk05.png;Images\Squirrelanimation\SquiwwelWalk06.png;Images\Squirrelanimation\SquiwwelWalk07.png;Images\Squirrelanimation\SquiwwelWalk08.png", 10, 10, 10, 0.55f, new Keys[6] { Keys.J, Keys.K, Keys.L, Keys.I, Keys.U, Keys.O });
                 objects.Add(Player2);
+                playerList.Add(Player2);
                 playerNumber++;
             }
 

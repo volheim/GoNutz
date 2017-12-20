@@ -139,7 +139,7 @@ namespace Go_Nutz
                     position.Y = other.CollisionBox.Top - CollisionBox.Height;
                 }
                 //Checks bottom collision
-                else if (CollisionBox.Top > other.CollisionBox.Bottom - 30 && CollisionBox.Top < other.CollisionBox.Bottom )
+                else if (CollisionBox.Top > other.CollisionBox.Bottom - 30 && CollisionBox.Top < other.CollisionBox.Bottom)
                 {
                     position.Y = other.CollisionBox.Bottom;
                 }
@@ -177,11 +177,11 @@ namespace Go_Nutz
         }
         #endregion
 
-        
+
         public override void Draw(Graphics dc)
         {
             Font f = new Font("Arial", 16);
-            
+
             //dc.DrawString(string.Format("P1 Score: {0}", Points_p1), f, Brushes.Black, 0, 600);
             //dc.DrawString(string.Format("P2 Score: {0}", Points_p2), f, Brushes.Black, 1055, 600);
 
@@ -234,7 +234,7 @@ namespace Go_Nutz
         {
             if ((Keyboard.IsKeyDown(movementKeys[4])) && nutCount > 0 && isHomeTree())
             {
-                if(DepositCd <= 0)
+                if (DepositCd <= 0)
                 {
                     playerPoints++;
                     nutCount--;
@@ -250,17 +250,16 @@ namespace Go_Nutz
         {
             foreach (HomeTree home in GameWorld.Hometrees)
             {
-                if (home != null)
+
+                if (this.CollisionBox.IntersectsWith(home.DeliverZone))
                 {
-                    if (this.CollisionBox.IntersectsWith(home.DeliverZone))
+                    if (home.ValidatePlayer(this))
                     {
-                        if (home.ValidatePlayer(this))
-                        {
-                            return true;
-                        }
+                        return true;
                     }
                 }
-   
+
+
             }
             return false;
         }
@@ -362,7 +361,7 @@ namespace Go_Nutz
         {
             switch (facing)
             {
-                case "left":                    
+                case "left":
                     break;
 
                 case "down":
@@ -414,7 +413,7 @@ namespace Go_Nutz
                         img.RotateFlip(RotateFlipType.Rotate90FlipNone);
                     }
                     break;
-                    
+
                 case "up":
                     foreach (Image img in animationFrames)
                     {
@@ -489,7 +488,7 @@ namespace Go_Nutz
                         img.RotateFlip(RotateFlipType.Rotate270FlipNone);
                     }
                     break;
-                    
+
                 case "up":
                     break;
             }

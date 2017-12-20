@@ -10,30 +10,37 @@ namespace Go_Nutz
 {
     partial class BoomNut
     {
-        Image explsionSprite = Image.FromFile(@"Images\blood\Splat01.png");
+        private Image explsionSprite = Image.FromFile(@"Images\ExplosionSprites\Ex3.png");
+        public Image ExplosionSprite
+        {
+            get { return explsionSprite; }
+            set { explsionSprite = value; }
+        }
         public void CalculateExplosionRadius(int power)
         {
-            CalculateLeft(power);
-            CalculateRight(power);
-            CalculateUp(power);
-            CaculateDown(power);
+            float factor = 0.15f;
+            CalculateLeft(power, factor);
+            CalculateRight(power, factor);
+            CalculateUp(power, factor);
+            CaculateDown(power, factor);
         }
         #region Calc Right
-        void CalculateRight(int power)
+        void CalculateRight(int power, float scaleFactor2)
         {
             float baseX = Position.X;
             float baseY = Position.Y;
             for (int i = 0; i < power; i++)
             {
-                RectangleF currentsquare = new RectangleF(baseX + explsionSprite.Width, baseY, explsionSprite.Width, explsionSprite.Height);
+                RectangleF currentsquare = new RectangleF(baseX + explsionSprite.Width * scaleFactor2, baseY, (explsionSprite.Width * scaleFactor2)/2, explsionSprite.Height * scaleFactor2);
                 // the explosion hit another Object(wall or Nutobject)
+
                 if (Checkspace(currentsquare))
                 {
                     break;
                 }
                 else
                 {
-                    GameWorld.Add_Explosions_List.Add(new Explosion(new Vector2(baseX, baseY), @"Images\blood\Splat01.png", power, 1f));
+                    GameWorld.Add_Explosions_List.Add(new Explosion(new Vector2(baseX, baseY), @"Images\ExplosionSprites\Ex0.png", power, scaleFactor2));
                     //add Tile to explosion
                 }
                 baseX = currentsquare.X;
@@ -41,7 +48,7 @@ namespace Go_Nutz
         }
         #endregion
         #region Calc Left
-        void CalculateLeft(int power)
+        void CalculateLeft(int power, float scaleFactor2)
         {
             float baseX = position.X;
             float baseY = position.Y;
@@ -49,10 +56,10 @@ namespace Go_Nutz
             for (int i = 0; i < power; i++)
             {
 
-                RectangleF currentsquare = new RectangleF(baseX - explsionSprite.Width, baseY, explsionSprite.Width, explsionSprite.Height);
+                RectangleF currentsquare = new RectangleF(baseX - explsionSprite.Width * scaleFactor2, baseY, explsionSprite.Width * scaleFactor2, explsionSprite.Height * scaleFactor2);
                 if (i == 0)
                 {
-                    currentsquare = new RectangleF(baseX - (explsionSprite.Width + explsionSprite.Width), baseY, explsionSprite.Width, explsionSprite.Height);
+                    currentsquare = new RectangleF(baseX - (explsionSprite.Width + explsionSprite.Width) * scaleFactor2, baseY, explsionSprite.Width * scaleFactor2, explsionSprite.Height * scaleFactor2);
                     continue;
                 }
                 baseX = currentsquare.X;
@@ -63,7 +70,7 @@ namespace Go_Nutz
                 }
                 else
                 {
-                    GameWorld.Add_Explosions_List.Add(new Explosion(new Vector2(baseX, baseY), @"Images\blood\Splat01.png", power, 1f));
+                    GameWorld.Add_Explosions_List.Add(new Explosion(new Vector2(baseX, baseY), @"Images\ExplosionSprites\Ex1.png", power, scaleFactor2));
                     //add Tile to explosion
                 }
 
@@ -71,17 +78,17 @@ namespace Go_Nutz
         }
         #endregion
         #region Calc Up
-        void CalculateUp(int power)
+        void CalculateUp(int power, float scaleFactor2)
         {
             float baseX = position.X;
             float baseY = position.Y;
             for (int i = 0; i < power; i++)
             {
-                RectangleF currentsquare = new RectangleF(baseX, baseY - explsionSprite.Height, explsionSprite.Width, explsionSprite.Height);
+                RectangleF currentsquare = new RectangleF(baseX, baseY - explsionSprite.Height * scaleFactor2, explsionSprite.Width * scaleFactor2, explsionSprite.Height * scaleFactor2);
                 if (i == 0)
                 {
-                    currentsquare = new RectangleF(baseX, baseY - (explsionSprite.Height + explsionSprite.Height), explsionSprite.Width, explsionSprite.Height);
-                  
+                    currentsquare = new RectangleF(baseX, baseY - (explsionSprite.Height + explsionSprite.Height) * scaleFactor2, explsionSprite.Width * scaleFactor2, explsionSprite.Height * scaleFactor2);
+
                     continue;
                 }
                 baseY = currentsquare.Y;
@@ -92,23 +99,23 @@ namespace Go_Nutz
                 }
                 else
                 {
-                    GameWorld.Add_Explosions_List.Add(new Explosion(new Vector2(baseX, baseY), @"Images\blood\Splat01.png", power, 1f));
+                    GameWorld.Add_Explosions_List.Add(new Explosion(new Vector2(baseX, baseY), @"Images\ExplosionSprites\Ex2.png", power, scaleFactor2));
                     //add Tile to explosion
                 }
             }
         }
         #endregion
         #region CalcDown
-        void CaculateDown(int power)
+        void CaculateDown(int power, float scaleFactor2)
         {
             float baseX = position.X;
             float baseY = position.Y;
             for (int i = 0; i < power; i++)
             {
-                RectangleF currentsquare = new RectangleF(baseX, baseY + explsionSprite.Height, explsionSprite.Width/2, explsionSprite.Height/2);
+                RectangleF currentsquare = new RectangleF(baseX, baseY + explsionSprite.Height * scaleFactor2, explsionSprite.Width * scaleFactor2, explsionSprite.Height * scaleFactor2);
                 if (i == 0)
                 {
-                    currentsquare = new RectangleF(baseX, baseY + (explsionSprite.Height / 2 + explsionSprite.Height / 2), explsionSprite.Width / 2, explsionSprite.Height / 2);
+                    currentsquare = new RectangleF(baseX, baseY + (explsionSprite.Height + explsionSprite.Height) * scaleFactor2, explsionSprite.Width * scaleFactor2, explsionSprite.Height * scaleFactor2);
                     continue;
                 }
                 baseY = currentsquare.Y;
@@ -119,7 +126,7 @@ namespace Go_Nutz
                 }
                 else
                 {
-                    GameWorld.Add_Explosions_List.Add(new Explosion(new Vector2(baseX, baseY), @"Images\blood\Splat01.png", power, 0.2f));
+                    GameWorld.Add_Explosions_List.Add(new Explosion(new Vector2(baseX, baseY), @"Images\ExplosionSprites\Ex3.png", power, scaleFactor2));
                     //add Tile to explosion
                 }
             }
@@ -132,6 +139,10 @@ namespace Go_Nutz
         public void ExplosionVsBoomNut(BoomNut boomNut)
         {
             //boomNut.Explode();
+        }
+        public void ExplosionVsNutObject(NutObject nut)
+        {
+            nut.BreakApart();
         }
         public bool IsIntersectingWith(RectangleF sqaure, GameObject other)
         {
@@ -150,7 +161,7 @@ namespace Go_Nutz
                 {
                     if (IsIntersectingWith(currentsquare, Object))
                     {
-                        if (Object is Wall || Object is HomeTree)
+                        if (Object is Wall || Object is HomeTree || Object is BorderWall)
                         {
                             objectHit = true;
                             break;
@@ -164,6 +175,7 @@ namespace Go_Nutz
                         }
                         else if (Object is NutObject)
                         {
+                            ExplosionVsNutObject(Object as NutObject);
                             objectHit = true;
                             break;
                         }

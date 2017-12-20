@@ -14,8 +14,7 @@ namespace Go_Nutz
     class HomeTree : GameObject
     {
         private Player player;
-        private float scaleFactor;
-        private float scaleFactorWidth = 0.2f;
+        private float scaleFactorWidth = 2f;
         private bool direction;
         public HomeTree(Vector2 position, string imagePath, float scaleFactor, Player player, bool direction) : base(position,imagePath,scaleFactor)
         {
@@ -43,7 +42,7 @@ namespace Go_Nutz
                 }
                 else
                 {
-                    return new RectangleF(position.X - 100, position.Y, sprite.Width * scaleFactorWidth, sprite.Height * scaleFactor);
+                    return new RectangleF(position.X - Sprite.Width, position.Y, sprite.Width * scaleFactorWidth, sprite.Height * scaleFactor);
                 }
             }
         }

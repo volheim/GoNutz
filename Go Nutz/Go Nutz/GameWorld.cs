@@ -23,8 +23,9 @@ namespace Go_Nutz
         private DateTime endTime;
         private float currentFps;
         private BufferedGraphics backBuffer;
-
+        //makes a shorter list to iterate faster
         private static List<HomeTree> hometrees;
+        private static List<Player> playerList;
 
         #endregion
         #region Properties
@@ -117,16 +118,10 @@ namespace Go_Nutz
         {
             dc.Clear(Color.Cornsilk);
             Font f = new Font("Arial", 16);
-            int pCounter = 0;
             foreach (GameObject go in objects)
             {
                 go.Draw(dc);
 
-                if (go is Player)
-                {
-                    DrawUiPlayer(go as Player, pCounter);
-                    pCounter++;
-                }
 #if DEBUG //This code will only be run in   debug mode
                 dc.DrawString(string.Format("FPS: {0}", currentFps), f, Brushes.Black, 550, 0);
 #endif
@@ -136,24 +131,27 @@ namespace Go_Nutz
             {
                 ex.Draw(dc);
             }
+            foreach (Player player in playerList)
+            {
+                DrawUiPlayer(player);
+
+            }
             //Renders the content of the buffered graphics context to the real context(Swap buffers)
             backBuffer.Render();
         }
-        public void DrawUiPlayer(Player player, int pCounter)
+        public void DrawUiPlayer(Player player)
         {
             Font f = new Font("Arial", 16);
-            if (pCounter == 0)
+            if (player == Player1)
             {
                 dc.DrawString(string.Format("P1 Score: {0}", player.PlayerPoints), f, Brushes.Black, 0, 600);
  
                 dc.DrawString(string.Format("P1 Eaten Nuts: {0}", player.NutCount), f, Brushes.Black, 220, 0);
-                pCounter++;
             }
-            else if (pCounter == 1)
+            else if (player == Player2)
             {
                 dc.DrawString(string.Format("P2 Eaten Nuts: {0}", player.NutCount), f, Brushes.Black, 800, 0);
                 dc.DrawString(string.Format("P2 Score: {0}", player.PlayerPoints), f, Brushes.Black, 1055, 600);
-                pCounter++;
             }
         }
         public void GameLoop()

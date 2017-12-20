@@ -12,7 +12,7 @@ namespace Go_Nutz
     {
         public static void PlaceWallNut(int x, int y)
         {
-            objects.Add(new Wall(new Vector2(x * 60, y * 60), @"Images/wallNUT.png", 0.6f));
+            objects.Add(new NutObject(new Vector2(x * 60, y * 60), @"Images/wallNUT.png", 0.6f));
         } 
         
     }

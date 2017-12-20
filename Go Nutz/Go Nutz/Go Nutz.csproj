@@ -189,6 +189,18 @@
     <Content Include="Images\ChipmunkWalk\ChipmunkWalk04.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\ExplosionSprites\Ex0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\ExplosionSprites\Ex1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\ExplosionSprites\Ex2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\ExplosionSprites\Ex3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Rock.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

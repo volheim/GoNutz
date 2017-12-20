@@ -16,6 +16,7 @@ namespace Go_Nutz
         private bool inMotion;
         int timeLeft;
         Player player;
+        int power;
         #endregion
 
         #region Properties
@@ -31,12 +32,13 @@ namespace Go_Nutz
         }
         #endregion
 
-        public BoomNut(string imagePath, Vector2 position, float scaleFactor, Player player) : base(position, imagePath, scaleFactor)
+        public BoomNut(string imagePath, Vector2 position, float scaleFactor, Player player, int power) : base(position, imagePath, scaleFactor)
         {
             phaseAble = true;
             inMotion = false;
             this.player = player;
             timeLeft = 0;
+            this.power = power;
         }
         public override void Update(float fps)
         {
@@ -55,7 +57,7 @@ namespace Go_Nutz
         }
         public void Explode()
         {
-            CalculateExplosionRadius(2);
+            CalculateExplosionRadius(power);
             //GameWorld.Objects.Add(new Explosion(new Vector2(position.X, position.X), "", 1, 1));
             GameWorld.Removed_Objects.Add(this);
         }
