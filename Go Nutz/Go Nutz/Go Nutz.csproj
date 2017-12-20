@@ -143,9 +143,15 @@
     <Content Include="Images\blood\Splat01.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\blood\Splat02.png" />
-    <Content Include="Images\blood\Splat03.png" />
-    <Content Include="Images\blood\Splat04.png" />
+    <Content Include="Images\blood\Splat02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\blood\Splat03.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\blood\Splat04.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\BoomNut\BoomNutF_001.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
