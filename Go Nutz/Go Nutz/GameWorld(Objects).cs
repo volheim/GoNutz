@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Numerics;
 using System.Windows.Forms;
+using Go_Nutz.IrrKlang;
 
 namespace Go_Nutz
 {
@@ -35,10 +36,8 @@ namespace Go_Nutz
             add_Explosions_List = new List<Explosion>();
             hometrees = new List<HomeTree>();
             playerList = new List<Player>();
+   
             #endregion
-
-
-
             
             #region Create Objects;
             
@@ -47,7 +46,6 @@ namespace Go_Nutz
             #endregion;
 
             #region Adds To Lists;
-            objects.Add(Nut1);
             #endregion
 
             #region LevelGen
@@ -86,7 +84,8 @@ namespace Go_Nutz
         {
             if (playerNumber == 0)
             {
-                Player1 = new Player(new Vector2(x, y), @"Images\ChipmunkWalk\ChipmunkWalk01.png;Images\ChipmunkWalk\ChipmunkWalk02.png;Images\ChipmunkWalk\ChipmunkWalk03.png;Images\ChipmunkWalk\ChipmunkWalk04.png", 10, 10, 10, 0.55f, new Keys[6] { Keys.A, Keys.S, Keys.D, Keys.W, Keys.Q, Keys.E });
+                Player1 = new Player(new Vector2(x, y), @"Images\ChipmunkWalk\ChipmunkWalk01.png;Images\ChipmunkWalk\ChipmunkWalk02.png;Images\ChipmunkWalk\ChipmunkWalk03.png;Images\ChipmunkWalk\ChipmunkWalk04.png", 10, 10, 2, 0.55f, new Keys[6] { Keys.A, Keys.S, Keys.D, Keys.W, Keys.Q, Keys.E });
+                Hometree1.HometreePlayer = Player1;
                 objects.Add(Player1);
                 playerList.Add(Player1);
                 playerNumber++;
@@ -94,6 +93,7 @@ namespace Go_Nutz
             else if (playerNumber == 1)
             {
                 Player2 = new Player(new Vector2(x, y), @"Images\Squirrelanimation\SquiwwelWalk01.png;Images\Squirrelanimation\SquiwwelWalk02.png;Images\Squirrelanimation\SquiwwelWalk03.png;Images\Squirrelanimation\SquiwwelWalk04.png;Images\Squirrelanimation\SquiwwelWalk05.png;Images\Squirrelanimation\SquiwwelWalk06.png;Images\Squirrelanimation\SquiwwelWalk07.png;Images\Squirrelanimation\SquiwwelWalk08.png", 10, 10, 10, 0.55f, new Keys[6] { Keys.J, Keys.K, Keys.L, Keys.I, Keys.U, Keys.O });
+                Hometree2.HometreePlayer = Player2;
                 objects.Add(Player2);
                 playerList.Add(Player2);
                 playerNumber++;

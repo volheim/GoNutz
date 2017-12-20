@@ -44,6 +44,7 @@ namespace Go_Nutz
         {
             if (timeLeft > 24 * 5)
             {
+                
                 Explode();
             }
             timeLeft++;
@@ -57,7 +58,7 @@ namespace Go_Nutz
         }
         public void Explode()
         {
-            CalculateExplosionRadius(power);
+            CalculateExplosionRadius(2+power);
             //GameWorld.Objects.Add(new Explosion(new Vector2(position.X, position.X), "", 1, 1));
             GameWorld.Removed_Objects.Add(this);
         }

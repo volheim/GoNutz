@@ -37,7 +37,7 @@ namespace Go_Nutz
 
         private string lastKeyPressed = "right";
         private string facing = "right";
-
+        
         #endregion
         #region Properties
         public int BombNutCount
@@ -193,6 +193,11 @@ namespace Go_Nutz
         {
             //Checks the players Collision
             Movement();
+            //lower the deposit nut cooldown
+            if (DepositCd > 0)
+            {
+                DepositCd--;
+            }
             DepositNuts();
             CheckCollision();
             Turn();
@@ -205,31 +210,33 @@ namespace Go_Nutz
             kickVector = new Vector2((other.Position.X - Position.X) * kickForce, (other.Position.Y - Position.Y) * kickForce);
             other.MovementVector = kickVector;
         }
+
+        #region Deposit Nuts
         /*
-        public static void DepositNuts()
-        {
+public static void DepositNuts()
+{
 
-            if ((Keyboard.IsKeyDown(Keys.Q)) && Nut.P1Nuts > 0 && Nut.P1Nuts <= 6)
-            {
-                
-                Points_p1 += 1;
+    if ((Keyboard.IsKeyDown(Keys.Q)) && Nut.P1Nuts > 0 && Nut.P1Nuts <= 6)
+    {
 
-                Nut.P1Nuts--;
+        Points_p1 += 1;
 
-            }
+        Nut.P1Nuts--;
 
-            if (Keyboard.IsKeyDown(Keys.U) && Nut.P2Nuts > 0 && Nut.P2Nuts <= 6)
-            {
+    }
 
-                Points_p2 += 1;
+    if (Keyboard.IsKeyDown(Keys.U) && Nut.P2Nuts > 0 && Nut.P2Nuts <= 6)
+    {
+
+        Points_p2 += 1;
 
 
-                Nut.P2Nuts--;
+        Nut.P2Nuts--;
 
-            }
+    }
 
-        }
-        */
+}
+*/
         public void DepositNuts()
         {
             if ((Keyboard.IsKeyDown(movementKeys[4])) && nutCount > 0 && isHomeTree())
@@ -239,10 +246,6 @@ namespace Go_Nutz
                     playerPoints++;
                     nutCount--;
                     DepositCd = 12;
-                }
-                else
-                {
-                    DepositCd--;
                 }
             }
         }
@@ -263,6 +266,7 @@ namespace Go_Nutz
             }
             return false;
         }
+        #endregion
         #region Movement
         public void Movement()
         {

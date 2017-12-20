@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Numerics;
 using System.Windows.Forms;
+using Go_Nutz.IrrKlang;
 
 namespace Go_Nutz
 {
@@ -26,7 +27,6 @@ namespace Go_Nutz
         //makes a shorter list to iterate faster
         private static List<HomeTree> hometrees;
         private static List<Player> playerList;
-
         #endregion
         #region Properties
 
@@ -64,6 +64,19 @@ namespace Go_Nutz
         {
             get { return hometrees; }
             set { hometrees = value; }
+        }
+
+        public static SoundPlayer SoundsformBeyond
+        {
+            get
+            {
+                return soundsformBeyond;
+            }
+
+            set
+            {
+                soundsformBeyond = value;
+            }
         }
         #endregion
 
