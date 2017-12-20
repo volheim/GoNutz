@@ -173,7 +173,7 @@ namespace Go_Nutz
             //Checks the players Collision
             Movement();
             CheckCollision();
-            Turn();
+             Turn();
             PlayerSpeed();
 
         }
@@ -436,6 +436,26 @@ namespace Go_Nutz
             }
 
             facing = "up";
+        }
+
+        public void Die()
+        {
+            if (health <= 0)
+            {
+                string deathAnimation = @"Images\blood\Splat01;Images\blood\Splat02;Images\blood\Splat03;Images\blood\Splat04";
+                string[] Imagepaths = deathAnimation.Split(';');
+
+                this.animationFrames = new List<Bitmap>();
+
+                foreach (string path in Imagepaths)
+                {
+                    Image img = Image.FromFile(path);
+                    Bitmap frame = new Bitmap(img);
+                    animationFrames.Add(frame);
+                }
+
+                GameWorld.Removed_Objects.Add(this);
+            }
         }
     }
 }

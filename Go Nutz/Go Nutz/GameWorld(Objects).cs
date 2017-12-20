@@ -32,17 +32,11 @@ namespace Go_Nutz
             remove_Objects = new List<GameObject>();
             #endregion
 
-<<<<<<< HEAD
-             ML = new MapLoader();
-            ML.GenerateLevelBitmap(0);
-            
-            #region Create Objects
-=======
+
             ML = new MapLoader();
             ML.GenerateLevelBitmap(0);
 
             #region Create Objects;
->>>>>>> master
 
             #region Players
 
@@ -58,7 +52,7 @@ namespace Go_Nutz
 
             #region Nuts
             Nut Nut1 = (new Nut(new Vector2(210f, 250f), @"Images\acornDrawn.png", 0.04f));
- 
+
             #endregion
 
 
@@ -66,24 +60,22 @@ namespace Go_Nutz
             #endregion;
             #region Adds To Lists;
 
+            #endregion Create Objects;
 
-     
 
-            
-            
+
+
             objects.Add(Nut1);
 
             #region NutGenerator
 
             #endregion
-<<<<<<< HEAD
+
             #region LevelGen
             
             ML.GenerateLevelBitmap(0);
             #endregion
-=======
->>>>>>> master
-            #endregion;
+
             #endregion
 
 
