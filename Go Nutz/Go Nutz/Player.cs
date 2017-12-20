@@ -250,17 +250,21 @@ namespace Go_Nutz
         {
             foreach (HomeTree home in GameWorld.Hometrees)
             {
-                if (CollisionBox.IntersectsWith(home.DeliverZone))
+                if (home != null)
                 {
-                    if (home.ValidatePlayer(this))
+                    if (this.CollisionBox.IntersectsWith(home.DeliverZone))
                     {
-                        return true;
+                        if (home.ValidatePlayer(this))
+                        {
+                            return true;
+                        }
                     }
                 }
+   
             }
             return false;
         }
-
+        #region Movement
         public void Movement()
         {
             ///<summary>
@@ -323,7 +327,8 @@ namespace Go_Nutz
             //Makes the player face the right direction
             Turn();
         }
-
+        #endregion
+        #region Turn
         ///<summary>
         ///Makes player turn corresponding to the key pressed
         /// </summary>
@@ -491,5 +496,6 @@ namespace Go_Nutz
 
             facing = "up";
         }
+        #endregion
     }
 }

@@ -68,14 +68,16 @@ namespace Go_Nutz
         {
             if(homeNumber == 0)
             {
-                HomeTree Hometree1 = (new HomeTree(new Vector2(x, y), @"Images\stumpHome.png", 1.2f, Player1, true));
+                HomeTree Hometree1 = (new HomeTree(new Vector2(x, y), @"Images\stumpHome.png", 1.2f, Player1, false));
                 objects.Add(Hometree1);
+                Hometrees.Add(Hometree1);
                 homeNumber++;
             }
             else if(homeNumber == 1)
             {
-                HomeTree Hometree2 = (new HomeTree(new Vector2(x, y), @"Images\stumpHome.png", 1.2f, Player2, true));
+                HomeTree Hometree2 = (new HomeTree(new Vector2(x, y), @"Images\stumpHome.png", 1.2f, Player2, false));
                 objects.Add(Hometree2);
+                Hometrees.Add(Hometree2);
                 homeNumber++;
             }
 

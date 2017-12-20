@@ -105,10 +105,10 @@ namespace Go_Nutz
             float baseY = position.Y;
             for (int i = 0; i < power; i++)
             {
-                RectangleF currentsquare = new RectangleF(baseX, baseY + explsionSprite.Height, explsionSprite.Width, explsionSprite.Height);
+                RectangleF currentsquare = new RectangleF(baseX, baseY + explsionSprite.Height, explsionSprite.Width/2, explsionSprite.Height/2);
                 if (i == 0)
                 {
-                    currentsquare = new RectangleF(baseX, baseY + (explsionSprite.Height + explsionSprite.Height), explsionSprite.Width, explsionSprite.Height);
+                    currentsquare = new RectangleF(baseX, baseY + (explsionSprite.Height/2 + explsionSprite.Height/2), explsionSprite.Width/2, explsionSprite.Height/2);
                     baseY = currentsquare.Y;
                     continue;
                 }
@@ -120,7 +120,7 @@ namespace Go_Nutz
                 }
                 else
                 {
-                    GameWorld.Add_Explosions_List.Add(new Explosion(new Vector2(baseX, baseY), @"Images\blood\Splat01.png", power, 1f));
+                    GameWorld.Add_Explosions_List.Add(new Explosion(new Vector2(baseX, baseY), @"Images\blood\Splat01.png", power, 0.2f));
                     //add Tile to explosion
                 }
                 baseY = currentsquare.Y;

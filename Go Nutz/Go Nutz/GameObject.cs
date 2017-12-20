@@ -37,6 +37,10 @@ namespace Go_Nutz
                 return new RectangleF(position.X, position.Y, sprite.Width * scaleFactor, sprite.Height * scaleFactor);
             }
         }
+        public Image Sprite
+        {
+            get { return sprite; }
+        }
         #endregion
 
         public GameObject(Vector2 position, string imagePath, float scaleFactor)
