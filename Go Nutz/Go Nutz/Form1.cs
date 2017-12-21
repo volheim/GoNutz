@@ -45,6 +45,10 @@ namespace Go_Nutz
         {
            // Player.DepositNuts();
         }
-        
+
+        private void timer1_Tick_1(object sender, EventArgs e)
+        {
+            world.EndGame();
+        }
     }
 }

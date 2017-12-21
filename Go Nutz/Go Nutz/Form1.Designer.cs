@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.GameLoop = new System.Windows.Forms.Timer(this.components);
             this.ButtomCooldown = new System.Windows.Forms.Timer(this.components);
+            this.GameDurationTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // GameLoop
@@ -44,6 +45,12 @@
             this.ButtomCooldown.Enabled = true;
             this.ButtomCooldown.Interval = 200;
             this.ButtomCooldown.Tick += new System.EventHandler(this.ButtomCooldown_Tick);
+            // 
+            // GameDurationTimer
+            // 
+            this.GameDurationTimer.Enabled = true;
+            this.GameDurationTimer.Interval = 1000;
+            this.GameDurationTimer.Tick += new System.EventHandler(this.timer1_Tick_1);
             // 
             // Form1
             // 
@@ -65,6 +72,7 @@
 
         private System.Windows.Forms.Timer GameLoop;
         private System.Windows.Forms.Timer ButtomCooldown;
+        private System.Windows.Forms.Timer GameDurationTimer;
     }
 }
 

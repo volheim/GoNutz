@@ -79,6 +79,7 @@ namespace Go_Nutz
             //sets the graphics context to the graphics in the buffer
             this.dc = backBuffer.Graphics;
 
+            this.endTimer = 150;
         }
         
         public void Update(float fps)
@@ -178,18 +179,25 @@ namespace Go_Nutz
         }
         public void EndGame()
         {
-            int currentHighestScore = 0;
-            Player winner = null;
-            foreach (Player player in playerList)
+            if (endTimer <= 0)
             {
-                if ( player.PlayerPoints > currentHighestScore)
+                int currentHighestScore = 0;
+                Player winner = null;
+                foreach (Player player in playerList)
                 {
-                    currentHighestScore = player.PlayerPoints;
-                    winner = player;
+                    if (player.PlayerPoints > currentHighestScore)
+                    {
+                        currentHighestScore = player.PlayerPoints;
+                        winner = player;
+                    }
                 }
+                string winnerString = string.Format("Winner is {0} with {1}", winner, currentHighestScore);
+                MessageBox.Show(winnerString);
             }
-            string winnerString = string.Format("Winner is {0} with {1}", winner, currentHighestScore);
-            MessageBox.Show(winnerString);  
+            else
+            {
+                endTimer--;
+            }
         }
         
     }
