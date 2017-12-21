@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Numerics;
 using System.Windows.Forms;
-using Go_Nutz.IrrKlang;
+
 
 namespace Go_Nutz
 {
@@ -64,19 +64,6 @@ namespace Go_Nutz
         {
             get { return hometrees; }
             set { hometrees = value; }
-        }
-
-        public static SoundPlayer SoundsformBeyond
-        {
-            get
-            {
-                return soundsformBeyond;
-            }
-
-            set
-            {
-                soundsformBeyond = value;
-            }
         }
         #endregion
 

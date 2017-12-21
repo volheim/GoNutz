@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using IrrKlang;
 
-namespace Go_Nutz.IrrKlang
+namespace Go_Nutz
 {
     public static class SoundPlayer
     {
@@ -13,6 +13,7 @@ namespace Go_Nutz.IrrKlang
         static ISoundEngine soundEngine = new ISoundEngine();
 
         //a Callable metode to play a soundfile, mp3 prefered
+
         public static void playSound(string soundpath)
         {
             

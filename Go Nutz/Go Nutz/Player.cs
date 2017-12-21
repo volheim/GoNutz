@@ -16,25 +16,17 @@ namespace Go_Nutz
         int health;
         float speed;
         int maxNuts;
-
-
-
         Image sprite;
         float scaleFactor;
-
-
         int DepositCd;
         int nutCount;
+        int boomNutCount;
         float kickForce;
         bool canPlaceBomb;
         Vector2 kickVector;
-
         GameObject bomb;
-
         Stack<PowerUp> powerUps;
-        int boomNutCount;
         Keys[] movementKeys;
-
         private string lastKeyPressed = "right";
         private string facing = "right";
         
@@ -68,9 +60,7 @@ namespace Go_Nutz
             this.movementKeys = movementKeys;
 
             string[] Imagepaths = imagePath.Split(';');
-
             this.animationFrames = new List<Bitmap>();
-
             foreach (string path in Imagepaths)
             {
                 Image img = Image.FromFile(path);
@@ -156,7 +146,7 @@ namespace Go_Nutz
             }
             else if (other is PowerUp) //if the object is powerup.
             {
-
+                powerUps.Push(new PowerUp(new Vector2(position.X, position.Y), "", 0.1f));
                 GameWorld.Objects.Remove(other);
             }
             else if (other is BoomNut) // if the other is BoomNut.
@@ -191,6 +181,15 @@ namespace Go_Nutz
 
         public override void Update(float fps)
         {
+   
+            if (nutCount != 0)
+            {
+                maxNuts = nutCount;
+            }
+            else
+            {
+                maxNuts = 1;
+            }
             //Checks the players Collision
             Movement();
             //lower the deposit nut cooldown
@@ -320,7 +319,7 @@ public static void DepositNuts()
                     }
                 }
 
-                if (!bombInPlace)
+                if (!bombInPlace && BombNutCount < maxNuts)
                 {
                     PlaceBomb();
                 }

@@ -44,8 +44,9 @@ namespace Go_Nutz
         {
             if (timeLeft > 24 * 5)
             {
-                
+                SoundPlayer.playSound(@"C:\Users\MIKZ\Source\Repos\GoNutz\Go Nutz\Go Nutz\Sounds\PewPew.mp3");
                 Explode();
+                player.BombNutCount--;
             }
             timeLeft++;
             //
@@ -105,7 +106,7 @@ namespace Go_Nutz
         public void OnCollision(GameObject other)
         {
             // if the bomb hits a wall, a NutObejct or a Player stop the bomb and stops the motion of the bomb, then set the bomb at intial collision point
-            if (other is Wall || other is NutObject || other is HomeTree || other is BoomNut)
+            if (other is Wall || other is NutObject || other is HomeTree || other is BoomNut || other is BorderWall)
             {
                 if (CollisionBox.Bottom > other.CollisionBox.Top && CollisionBox.Bottom < other.CollisionBox.Top + 30)
                 {
