@@ -5,16 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using IrrKlang;
 
-namespace Go_Nutz.IrrKlang
+namespace Go_Nutz
 {
-    class SoundPlayer
+    public static class SoundPlayer
     {
         //Creates a new soundengine using IrrKlang
-        ISoundEngine soundEngine = new ISoundEngine();
+        static ISoundEngine soundEngine = new ISoundEngine();
+
         //a Callable metode to play a soundfile, mp3 prefered
-        public void playSound(string soundpath)
+
+        public static void playSound(string soundpath)
         {
-            soundEngine.Play2D(soundpath);
+            
+            soundEngine.Play2D(soundpath,false);
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Numerics;
 using System.Windows.Forms;
 
+
 namespace Go_Nutz
 {
     partial class GameWorld
@@ -26,7 +27,6 @@ namespace Go_Nutz
         //makes a shorter list to iterate faster
         private static List<HomeTree> hometrees;
         private static List<Player> playerList;
-
         #endregion
         #region Properties
 
