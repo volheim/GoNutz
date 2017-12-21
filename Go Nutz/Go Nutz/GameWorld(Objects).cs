@@ -84,7 +84,7 @@ namespace Go_Nutz
         {
             if (playerNumber == 0)
             {
-                Player1 = new Player(new Vector2(x, y), @"Images\ChipmunkWalk\ChipmunkWalk01.png;Images\ChipmunkWalk\ChipmunkWalk02.png;Images\ChipmunkWalk\ChipmunkWalk03.png;Images\ChipmunkWalk\ChipmunkWalk04.png", 1, 10, 2, 0.55f, new Keys[6] { Keys.A, Keys.S, Keys.D, Keys.W, Keys.Q, Keys.E });
+                Player1 = new Player(new Vector2(x, y), @"Images\ChipmunkWalk\ChipmunkWalk01.png;Images\ChipmunkWalk\ChipmunkWalk02.png;Images\ChipmunkWalk\ChipmunkWalk03.png;Images\ChipmunkWalk\ChipmunkWalk04.png", 1, 10, 10, 0.55f, new Keys[6] { Keys.A, Keys.S, Keys.D, Keys.W, Keys.Q, Keys.E });
                 Hometree1.HometreePlayer = Player1;
                 objects.Add(Player1);
                 playerList.Add(Player1);
