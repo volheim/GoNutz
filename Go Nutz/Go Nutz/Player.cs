@@ -24,6 +24,7 @@ namespace Go_Nutz
         float kickForce;
         bool canPlaceBomb;
         Vector2 kickVector;
+        Vector2 startPosition;
         GameObject bomb;
         Stack<PowerUp> powerUps;
         Keys[] movementKeys;
@@ -58,7 +59,7 @@ namespace Go_Nutz
             this.Speed = speed;
             this.maxNuts = maxNuts;
             this.movementKeys = movementKeys;
-
+            this.startPosition = position;
             string[] Imagepaths = imagePath.Split(';');
             this.animationFrames = new List<Bitmap>();
             foreach (string path in Imagepaths)
@@ -83,14 +84,32 @@ namespace Go_Nutz
             health += val;
             return health;
         }
-
+        public void RespawnPlayer()
+        {
+            Position = startPosition;
+        }
+        public void DropNuts()
+        {
+            for (int i = 0; i < nutCount; i++)
+            {
+                GameWorld.Objects.Add(new Nut(this.position, @"Images/acornDrawn.png", 0.45f));
+            }
+        }
         public void LoseHealth()
         {
             //lose 1 health
             SetHealth(-1);
+ 
             //drop nuts
-            GameWorld.Removed_Objects.Add(this);
 
+            nutCount = 0;
+            RespawnPlayer();
+            if (health <= 0)
+            {
+                //player Dies
+                GameWorld.Removed_Objects.Add(this);
+            }
+ 
             /* pseudo code:
              * move to home tree
              * be invincible for a short time

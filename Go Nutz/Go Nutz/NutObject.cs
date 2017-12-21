@@ -18,7 +18,7 @@ namespace Go_Nutz
         public void BreakApart()
         {
             GameWorld.Removed_Objects.Add(this);
-            GameWorld.Add_Objects.Add(new Nut(this.position, @"Images/acornDrawn.png", 0.45f));
+            GameWorld.Add_Objects.Add(new Nut(new Vector2(position.X*1.03f,position.Y*1.04f), @"Images/acornDrawn.png", 0.45f));
         }
     }
 }

@@ -27,6 +27,7 @@ namespace Go_Nutz
         //makes a shorter list to iterate faster
         private static List<HomeTree> hometrees;
         private static List<Player> playerList;
+        private int endTimer;
         #endregion
         #region Properties
 
@@ -71,7 +72,7 @@ namespace Go_Nutz
         public GameWorld(Graphics dc, Rectangle displayRectangle)
         {
 
-
+            
             //create's (Allocates) a buffer in memory with the size of the display
             this.backBuffer = BufferedGraphicsManager.Current.Allocate(dc, displayRectangle);
 
@@ -175,7 +176,21 @@ namespace Go_Nutz
             Update(currentFps);
             Draw();
         }
-
+        public void EndGame()
+        {
+            int currentHighestScore = 0;
+            Player winner = null;
+            foreach (Player player in playerList)
+            {
+                if ( player.PlayerPoints > currentHighestScore)
+                {
+                    currentHighestScore = player.PlayerPoints;
+                    winner = player;
+                }
+            }
+            string winnerString = string.Format("Winner is {0} with {1}", winner, currentHighestScore);
+            MessageBox.Show(winnerString);  
+        }
         
     }
 }
