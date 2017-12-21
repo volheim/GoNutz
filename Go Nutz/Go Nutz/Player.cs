@@ -16,6 +16,9 @@ namespace Go_Nutz
         int health;
         float speed;
         int maxNuts;
+        byte counter = 0;
+        bool playerRespawned = false;
+
         Image sprite;
         float scaleFactor;
         int DepositCd;
@@ -87,6 +90,7 @@ namespace Go_Nutz
         public void RespawnPlayer()
         {
             Position = startPosition;
+            health++;
         }
         public void DropNuts()
         {
@@ -103,13 +107,8 @@ namespace Go_Nutz
             //drop nuts
 
             nutCount = 0;
-            RespawnPlayer();
-            if (health <= 0)
-            {
-                //player Dies
-                GameWorld.Removed_Objects.Add(this);
-            }
- 
+            
+             
             /* pseudo code:
              * move to home tree
              * be invincible for a short time
@@ -221,6 +220,27 @@ namespace Go_Nutz
             Turn();
             PlayerSpeed();
 
+            if (health <= 0)
+            {
+                //Die();
+                RespawnPlayer();
+            }
+            
+            //if (Die())
+            //{
+            //    if (counter == 4)
+            //    {
+            //        RespawnPlayer();
+            //        playerRespawned = true;
+            //    }
+            //    counter++;
+            //}
+
+            //if (playerRespawned)
+            //{
+            //    counter = 0;
+            //    playerRespawned = false;
+            //}
         }
 
         public void Kick(GameObject other)
@@ -518,5 +538,31 @@ public static void DepositNuts()
             facing = "up";
         }
         #endregion
+        
+        public bool Die()
+        {
+            if (health <= 0)
+            {
+
+                //string ImagePath = @"Images\blood\Splat01.png;Images\blood\Splat02.png;Images\blood\Splat03.png;Images\blood\Splat04.png";
+                //string[] ImagePaths = ImagePath.Split(';');
+
+                //this.animationFrames = new List<Bitmap>();
+                //foreach (var item in animationFrames)
+                //{
+                //    animationFrames.Remove(item);
+                //}
+
+                //foreach (string path in ImagePaths)
+                //{
+                //    Image img = Image.FromFile(path);
+                //    Bitmap frame = new Bitmap(img);
+                //    animationFrames.Add(frame);
+                //}
+
+                return true;
+            }
+            return false;
+        }
     }
 }
