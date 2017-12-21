@@ -10,6 +10,8 @@ namespace Go_Nutz
 {
     partial class GameWorld
     {
+
+
         public static void PlaceWallNut(int x, int y)
         {
             objects.Add(new NutObject(new Vector2(x * 60, y * 60), @"Images/wallNUT.png", 0.6f));

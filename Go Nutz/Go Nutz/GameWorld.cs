@@ -179,8 +179,9 @@ namespace Go_Nutz
         }
         public void EndGame()
         {
-            if (endTimer <= 0)
+            if (endTimer == 0)
             {
+                endTimer--;
                 int currentHighestScore = 0;
                 Player winner = null;
                 foreach (Player player in playerList)
